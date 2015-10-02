@@ -37,7 +37,7 @@
                         <ColumnDefinition Width="86*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel  Grid.Column="0" Margin="5">
-                        <Label Padding="5,0" Content="Current Handback Status --"/>
+                        <Label Padding="5,0" Content="Current Handback Status –"/>
                         <TextBlock x:Name="Gameareas" Padding="25,0"
                                    Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas found'}"/>
                         <TextBlock x:Name="Languages" Padding="25,0" ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}}"
@@ -53,7 +53,7 @@
                 <TextBlock Margin="30,0" Padding="0,5,5,5" VerticalAlignment="Bottom" FontWeight="Bold"
                            Text="{Binding CurrentFile, StringFormat='Checking {0}...'}"/>
                 <ProgressBar VerticalAlignment="Bottom" Height="25" Margin="0,5" BorderThickness="0,1" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
-                             Value="{Binding Progress}" ValueChanged="ProgressBar_ValueChanged"/>
+                             Value="{Binding Progress}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">

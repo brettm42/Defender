@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Defender.Model
 {
-    public class Computer : ModelBase
+    public class Compute : ModelBase
     {
+        public XMLStatReader(string path, object outtable, bool deletefiles)
+        {
 
+        }
     }
 }

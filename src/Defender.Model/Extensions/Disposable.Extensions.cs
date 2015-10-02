@@ -13,10 +13,7 @@ namespace Defender.Model.Extensions
             Func<TDisposable, TResult> fn)
             where TDisposable : IDisposable
         {
-            using (var disp = factory())
-            {
-                return fn(disp);
-            }
+            using (var disp = factory()) return fn(disp);
         }
     }
 }

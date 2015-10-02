@@ -71,7 +71,7 @@ namespace Defender.ViewModel
             set
             {
                 _curfile = value;
-                RaisePropertyChanged(nameof(_curfile));
+                RaisePropertyChanged(nameof(CurrentFile));
             }
         }
         //private string _curfile;
@@ -123,5 +123,18 @@ namespace Defender.ViewModel
         }
         private string[] _filelist;
 
+        public object Statistics
+        {
+            get
+            {
+                return _stats;
+            }
+            set
+            {
+                _stats = value;
+                RaisePropertyChanged(nameof(Statistics));
+            }
+        }
+        private object _stats;
     }
 }
