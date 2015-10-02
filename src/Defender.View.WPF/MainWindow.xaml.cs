@@ -26,8 +26,6 @@ namespace Defender.View.WPF
         public MainWindow()
         {
             this.InitializeComponent();
-
-            this.DataContext = new Defender.ViewModel.ViewModel();
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)

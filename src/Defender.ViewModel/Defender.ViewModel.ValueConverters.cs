@@ -55,7 +55,7 @@ namespace Defender.ViewModel
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value as string).Split(',');
+            return (value as string)?.Split(',') ?? new string[0];
         }
     }
 
@@ -63,7 +63,7 @@ namespace Defender.ViewModel
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value as string[]).Count();
+            return (value as string[])?.Count() ?? 0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
