@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Data;
+using System.Windows.Media;
+using Defender.Model;
+using Defender.Model.Extensions;
+
+namespace Defender.ViewModel
+{
+    public class BoolToFillConverter : IValueConverter
+    {
+        private static string Red = System.Windows.Media.Colors.Red.ToString();
+        private static string LGreen = System.Windows.Media.Colors.LightGreen.ToString();
+        
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (bool)value ? LGreen : Red;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((string)value == LGreen) ? true : false;
+        }
+    }
+
+    public class BoolToCharaConverter : IValueConverter
+    {
+        private const string X = @"X";
+        private const string Check = @"✓";
+        
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (bool)value ? Check : X;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ((string)value == Check) ? true : false;
+        }
+    }
+
+    public class StringArrayToString : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return new StringBuilder()
+                           .AppendSequence((string[])value, (sb, str) => sb.AppendFormat("{0}, ", str))
+                           .ToString()
+                           .TrimEnd(", ".ToCharArray());
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (value as string).Split(',');
+        }
+    }
+
+    public class StringArrayToInt : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (value as string[]).Count();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
