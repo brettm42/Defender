@@ -43,7 +43,7 @@
                         <TextBlock x:Name="Languages" Padding="25,0" ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}}"
                                    Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages loaded'}"/>
                         <TextBlock x:Name="Status" Padding="25,0" 
-                                   Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='Found {0} Fabric queries to handback, checking now...'}"/>
+                                   Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='Found {0} queries to handback, checking now...'}"/>
                     </StackPanel>
                     <Button Margin="5" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"
                             Foreground="White" Background="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"
