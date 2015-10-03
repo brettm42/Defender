@@ -26,8 +26,6 @@ namespace Defender.View.WPF
         public MainWindow()
         {
             this.InitializeComponent();
-
-            this.DataContext = new Defender.ViewModel.ViewModel();
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
@@ -49,7 +47,7 @@ namespace Defender.View.WPF
             OpenFileDialog openfile = new OpenFileDialog()
             {
                 Title = "Select the RQF Folder for Handback",
-                FileName = "-----Select This Folder-----",
+                FileName = " -----Select This Folder----- ",
                 CheckFileExists = false,
                 Filter = "Query folder (*.*)|*.rqf|RQF files (*.rqf)|*.rqf"
             };
@@ -57,11 +55,6 @@ namespace Defender.View.WPF
             (this.DataContext as ViewModel.ViewModel).Folder = (openfile.ShowDialog() == true) 
                                                                ? openfile.FileName 
                                                                : (this.DataContext as ViewModel.ViewModel).Folder;
-
-        }
-
-        private void ProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
 
         }
     }

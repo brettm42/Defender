@@ -7,6 +7,9 @@
         xmlns:local="clr-namespace:Defender.View.WPF"
         mc:Ignorable="d"
         Title="Defender" Height="600" Width="600">
+    <Window.DataContext>
+        <ViewModel:ViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <ViewModel:BoolToFillConverter x:Key="BoolToFillConverter"/>
         <ViewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
@@ -34,14 +37,13 @@
                         <ColumnDefinition Width="86*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel  Grid.Column="0" Margin="5">
-                        <Label Padding="5,0" Content="Current Handback Status --"/>
-                        <TextBlock x:Name="Gameareas" Padding="25,0" 
-                                   Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}}"/>
-                        <TextBlock x:Name="Languages" Padding="25,0" 
-                                   Text="{Binding Languages, Converter={StaticResource StringArrayToInt}}"
-                                   ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}}"/>
+                        <Label Padding="5,0" Content="Current Handback Status –"/>
+                        <TextBlock x:Name="Gameareas" Padding="25,0"
+                                   Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas found'}"/>
+                        <TextBlock x:Name="Languages" Padding="25,0" ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}}"
+                                   Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages loaded'}"/>
                         <TextBlock x:Name="Status" Padding="25,0" 
-                                   Text="Found 24 .rqf Fabric queries, checking now..."/>
+                                   Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='Found {0} queries to handback, checking now...'}"/>
                     </StackPanel>
                     <Button Margin="5" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"
                             Foreground="White" Background="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"
@@ -49,10 +51,9 @@
                 </Grid>
                 <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
                 <TextBlock Margin="30,0" Padding="0,5,5,5" VerticalAlignment="Bottom" FontWeight="Bold"
-                           Text="{Binding CurrentFile}"/>
-                           <!--Text="Checking Legends_UI_fr-FR.rqf ..."/>-->
+                           Text="{Binding CurrentFile, StringFormat='Checking {0}...'}"/>
                 <ProgressBar VerticalAlignment="Bottom" Height="25" Margin="0,5" BorderThickness="0,1" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
-                             Value="{Binding Progress}" ValueChanged="ProgressBar_ValueChanged"/>
+                             Value="{Binding Progress}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">

@@ -56,6 +56,7 @@ namespace Defender.Model
             else
             {
                 // TODO: LEAF location searcher
+                
                 return DefaultLeafLocation;
             }
         }

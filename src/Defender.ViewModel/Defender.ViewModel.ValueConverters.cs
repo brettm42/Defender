@@ -11,6 +11,10 @@ using Defender.Model.Extensions;
 
 namespace Defender.ViewModel
 {
+    /// <summary>
+    /// Converter class to convert a given boolean value to colour, used for indicating system/execution status.
+    /// true = green, false = red
+    /// </summary>
     public class BoolToFillConverter : IValueConverter
     {
         private static string Red = System.Windows.Media.Colors.Red.ToString();
@@ -27,6 +31,10 @@ namespace Defender.ViewModel
         }
     }
 
+    /// <summary>
+    /// Converter class to convert a given boolean value to character, used for indicating system/execution status.
+    /// true = ✓ (checkmark), false = X
+    /// </summary>
     public class BoolToCharaConverter : IValueConverter
     {
         private const string X = @"X";
@@ -42,7 +50,11 @@ namespace Defender.ViewModel
             return ((string)value == Check) ? true : false;
         }
     }
-
+    
+    /// <summary>
+    /// Converter class to convert a given string array to concatenated string.
+    /// Enumerates each item in the array and adds it to a string using ', ' (comma &amp; space) as the separator.
+    /// </summary>
     public class StringArrayToString : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -55,15 +67,20 @@ namespace Defender.ViewModel
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value as string).Split(',');
+            return (value as string)?.Split(',') ?? new string[0];
         }
     }
-
+    
+    /// <summary>
+    /// Converter class to convert a given string array to integer count.
+    /// Calculates the number of items in the given array and returns the count.
+    /// <see cref="ConvertBack(object, Type, object, CultureInfo)"/> currently not supported (not really possible :P ).
+    /// </summary>
     public class StringArrayToInt : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value as string[]).Count();
+            return (value as string[])?.Count() ?? 0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
