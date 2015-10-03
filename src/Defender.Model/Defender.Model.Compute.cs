@@ -8,7 +8,7 @@ namespace Defender.Model
 {
     public class Compute : ModelBase
     {
-        public XMLStatReader(string path, object outtable, bool deletefiles)
+        public void XMLStatReader(string path, object outtable, bool deletefiles)
         {
 
         }

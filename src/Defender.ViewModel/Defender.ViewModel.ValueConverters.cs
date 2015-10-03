@@ -12,7 +12,7 @@ using Defender.Model.Extensions;
 namespace Defender.ViewModel
 {
     /// <summary>
-    /// Converter class to convert a given boolean value to colour, used for indicating system/execution status.
+    /// Converter class to convert a given boolean value to color, used for indicating system/execution status.
     /// true = green, false = red
     /// </summary>
     public class BoolToFillConverter : IValueConverter
@@ -60,7 +60,9 @@ namespace Defender.ViewModel
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return new StringBuilder()
-                           .AppendSequence((string[])value, (sb, str) => sb.AppendFormat("{0}, ", str))
+                           .AppendSequence(
+                               (string[])value, 
+                               (sb, str) => sb.AppendFormat("{0}, ", str))
                            .ToString()
                            .TrimEnd(", ".ToCharArray());
         }
