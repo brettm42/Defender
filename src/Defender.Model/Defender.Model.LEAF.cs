@@ -23,7 +23,7 @@ namespace Defender.Model
 
         public int LeafProgress { get; set; } = 0;
         
-        public void LeafCommand(string[] filenames, string working_dir, string output_dir, string plugin = "Validate", string leaf = DefaultLeafLocation)
+        public bool LeafCommand(string[] filenames, string working_dir, string output_dir, string plugin = "Validate", string leaf = DefaultLeafLocation)
         {
             this.LeafErrors = string.Empty;
             this.LeafOutput = string.Empty;
@@ -44,6 +44,10 @@ namespace Defender.Model
                                                        (sb, file) => sb.AppendFormat("{0};", file))
                                                    .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error", output_dir)
                                                    .ToString();
+
+            
+
+            return true;  // true for success
         }
         
         internal string FindLeaf(string in_path)

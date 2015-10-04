@@ -43,7 +43,7 @@ namespace Defender.ViewModel
         }
         //private bool _success = false;
         private bool _success = true;
-     
+
         public int Progress
         {
             get
@@ -52,7 +52,7 @@ namespace Defender.ViewModel
             }
             set
             {
-                if (Enumerable.Range(0,101).Contains(value))
+                if (Enumerable.Range(0, 101).Contains(value))
                 {
                     _progr = value;
                     RaisePropertyChanged(nameof(Progress));
@@ -76,7 +76,7 @@ namespace Defender.ViewModel
         }
         //private string _curfile;
         private string _curfile = "Legends_UI_fr-FR.rqf";
-        
+
         public string LeafPath { get; set; }
 
         public string[] Gameareas
@@ -121,9 +121,10 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(FileList));
             }
         }
-        private string[] _filelist;
+        //private string[] _filelist;
+        private string[] _filelist = new string[] { "Legends_UI_fr-FR.rqf", "Legends_VO_de-DE.rqf", "Monument_UI_ko-KR.rqf", "Legends_VO_fr-FR.rqf", "Legends_UI_ru-RU.rqf", "Monument_Subtitles_it-IT.rqf"};
 
-        public object Statistics
+        public int[][] Statistics
         {
             get
             {
@@ -135,6 +136,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Statistics));
             }
         }
-        private object _stats;
+        //private object _stats;
+        private int[][] _stats = { new int[]{ 4, 5, 6 }, new int[]{ 3, 1 }, new int[]{ 6, 8, 9 } };
     }
 }
