@@ -9,10 +9,10 @@ namespace Defender.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        /// <summary>
         /// Customized Event trigger for ViewModel.
         /// </summary>
         /// <param name="property">Name of property to raise an event for.</param>
-        /// <summary>
         internal void RaisePropertyChanged(string property)
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(property));

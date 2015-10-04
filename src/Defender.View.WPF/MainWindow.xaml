@@ -62,9 +62,9 @@
                     Content="˅" Click="HidePanel_Click"/>
             <Rectangle Height="1" VerticalAlignment="Bottom"
                        Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-            <StackPanel x:Name="StatsGrid" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+            <StackPanel x:Name="StatsGrid" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
                 <TextBlock Margin="25,0" Padding="0,5,0,0"
-                           Text="Handback Statistics:"/>
+                           Text="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
                 <DataGrid x:Name="DataGrid" Margin="25,0,25,5"
                           ItemsSource="{Binding Statistics, IsAsync=True}">
                 </DataGrid>

@@ -45,12 +45,12 @@ namespace Defender.View.WPF
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openfile = new OpenFileDialog()
-            {
-                Title = "Select the RQF Folder for Handback",
-                FileName = " -----Select This Folder----- ",
-                CheckFileExists = false,
-                Filter = "Query folder (*.*)|*.rqf|RQF files (*.rqf)|*.rqf"
-            };
+                                      {
+                                          Title = "Select the RQF folder for Handback",
+                                          FileName = " -----Select This Folder----- ",
+                                          Filter = "Query folder (*.*)|*.rqf|RQF files (*.rqf)|*.rqf",
+                                          CheckFileExists = false,
+                                      };
             
             (this.DataContext as ViewModel.ViewModel).Folder = (openfile.ShowDialog() == true) 
                                                                ? openfile.FileName 
