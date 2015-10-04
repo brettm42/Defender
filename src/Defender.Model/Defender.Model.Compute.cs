@@ -8,9 +8,11 @@ namespace Defender.Model
 {
     public class Compute : ModelBase
     {
-        public void XMLStatReader(string path, object outtable, bool deletefiles)
+        public object XMLStatReader(string path, object outtable, bool deletefiles)
         {
+            // read temp directory XMLs and calculate statistics
 
+            return null;
         }
     }
 }
