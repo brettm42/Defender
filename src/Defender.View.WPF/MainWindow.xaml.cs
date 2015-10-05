@@ -26,18 +26,21 @@ namespace Defender.View.WPF
         public MainWindow()
         {
             this.InitializeComponent();
+
+            int MaxHeight = 500;
+            int MinHeight = 100;
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
         {
-            if (this.StatsGrid.Visibility == Visibility.Visible)
+            if (this.DataPanel.Visibility == Visibility.Visible)
             {
-                this.StatsGrid.Visibility = Visibility.Collapsed;
+                this.DataPanel.Visibility = Visibility.Collapsed;
                 this.HidePanel.Content = @"˄";
             }
             else
             {
-                this.StatsGrid.Visibility = Visibility.Visible;
+                this.DataPanel.Visibility = Visibility.Visible;
                 this.HidePanel.Content = @"˅";
             }
         }
@@ -56,6 +59,27 @@ namespace Defender.View.WPF
                                                                ? openfile.FileName 
                                                                : (this.DataContext as ViewModel.ViewModel).Folder;
 
+        }
+
+        private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DataPanel.MouseMove += DataPanel_MouseMove;
+        }
+
+        private void DataPanel_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ReleaseMouseCapture();
+            this.DataPanel.MouseMove -= DataPanel_MouseMove;
+        }
+
+        private void DataPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            CaptureMouse();
+            this.DataPanel.Height = (Math.Abs(e.GetPosition(null).Y) >= MinHeight)
+                                    ? ((Math.Abs(e.GetPosition(null).Y) <= MaxHeight) 
+                                        ? Math.Abs(e.GetPosition(null).Y) 
+                                        : MaxHeight)
+                                    : MinHeight;
         }
     }
 }
