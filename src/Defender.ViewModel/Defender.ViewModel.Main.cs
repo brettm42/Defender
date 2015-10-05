@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -91,7 +92,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Gameareas));
             }
         }
-        //private string[] _gameareas;
+        //private ObservableCollection<string> _gameareas;
         private string[] _gameareas = new string[] { "UI", "VO_Script" };
 
         public string[] Languages
@@ -106,7 +107,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Languages));
             }
         }
-        //private string[] _langs;
+        //private ObservableCollection<string> _langs;
         private string[] _langs = new string[] { "de-DE", "es-ES", "es-MX", "fr-FR", "fr-CA", "it-IT", "ja-JP", "ko-KR", "hi-IN", "ru-RU", "zh-TW", "zh-CN" };
 
         public string[] FileList
@@ -121,7 +122,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(FileList));
             }
         }
-        //private string[] _filelist;
+        //private ObservableCollection<string> _filelist;
         private string[] _filelist = new string[] { "Legends_UI_fr-FR.rqf", "Legends_VO_de-DE.rqf", "Monument_UI_ko-KR.rqf", "Legends_VO_fr-FR.rqf", "Legends_UI_ru-RU.rqf", "Monument_Subtitles_it-IT.rqf"};
 
         public int[][] Statistics
@@ -137,6 +138,9 @@ namespace Defender.ViewModel
             }
         }
         //private object _stats;
-        private int[][] _stats = { new int[]{ 4, 5, 6 }, new int[]{ 3, 1 }, new int[]{ 6, 8, 9 } };
+        private int[][] _stats = { new int[]{ 4, 5, 6 },
+                                   new int[]{ 3, 1 },
+                                   new int[]{ 6, 8, 9 },
+                                   new int[]{ 2, 1, 0, 8, 9 } };
     }
 }

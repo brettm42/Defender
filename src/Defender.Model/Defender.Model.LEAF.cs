@@ -13,41 +13,56 @@ namespace Defender.Model
     public class LEAF : ModelBase
     {
         private const string DefaultLeafExe = @"MSLeaf.exe";
-        private const string DefaultLeafLocation = @"C:\Program Files (x86)\Microsoft LEAF\" + DefaultLeafExe;
+        private const string DefaultLeafDir = @"Microsoft LEAF";
+        private const string DefaultLeafLocation = @"C:\Program Files (x86)\" + DefaultLeafDir + @"\" + DefaultLeafExe;
                 
         public string LeafLocation { get; set; } = DefaultLeafLocation;
 
-        public string LeafOutput { get; set; }
+        public string ProcessOutput { get; set; }
 
-        public string LeafErrors { get; set; }
+        public string ProcessErrors { get; set; }
 
         public int LeafProgress { get; set; } = 0;
         
-        public bool LeafCommand(string[] filenames, string working_dir, string output_dir, string plugin = "Validate", string leaf = DefaultLeafLocation)
+        public bool LeafCommand(string[] filenames, string workingdir, string outputdir, string plugin = "Validate", string leaf = DefaultLeafLocation)
         {
-            this.LeafErrors = string.Empty;
-            this.LeafOutput = string.Empty;
+            this.ProcessErrors = string.Empty;
+            this.ProcessOutput = string.Empty;
 
-            ProcessStartInfo process = new ProcessStartInfo()
+            ProcessStartInfo processinfo = new ProcessStartInfo()
                                        {
                                            FileName = leaf,
                                            UseShellExecute = false,
+                                           WindowStyle = ProcessWindowStyle.Hidden,
                                            RedirectStandardError = true,
                                            RedirectStandardOutput = true,
                                            CreateNoWindow = true,
-                                           WorkingDirectory = working_dir
+                                           WorkingDirectory = workingdir
                                        };
 
-            process.Arguments = new StringBuilder().Append("Run Automation OpenFile /FILENAMES")
+            processinfo.Arguments = new StringBuilder().Append("Run Automation OpenFile /FILENAMES")
                                                    .AppendSequence(
                                                        filenames,
                                                        (sb, file) => sb.AppendFormat("{0};", file))
-                                                   .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error", output_dir)
+                                                   .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error", outputdir)
                                                    .ToString();
 
-            
+            try
+            {
+                using (Process process = Process.Start(processinfo))
+                {
+                    process.WaitForExit();
+                    
+                    using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
+                    using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
 
-            return true;  // true for success
+                    return string.IsNullOrWhiteSpace(this.ProcessErrors) ? true : false;
+                }
+            }
+            catch
+            {
+                throw new Exception($"Failed to launch {DefaultLeafExe}");
+            }
         }
         
         internal string FindLeaf(string in_path)
@@ -59,17 +74,17 @@ namespace Defender.Model
             }
             else
             {
-                // TODO: LEAF location searcher
-                
-                return DefaultLeafLocation;
+                // recursively runs a directory up each pass until .exe found
+                // TODO: catch full drive searches, eg. C:\
+                return FindLeaf(Directory.GetFiles(Directory.GetParent(in_path).FullName, DefaultLeafExe, SearchOption.AllDirectories).FirstOrDefault());
             }
         }
 
-        public LEAF(string leaf_path = DefaultLeafLocation)
+        public LEAF(string leafpath = DefaultLeafLocation)
         {
-            this.LeafLocation = (File.Exists(leaf_path) && leaf_path.EndsWith(DefaultLeafExe))
-                                ? leaf_path
-                                : this.FindLeaf(leaf_path);
+            this.LeafLocation = (File.Exists(leafpath) && leafpath.EndsWith(DefaultLeafExe))
+                                ? leafpath
+                                : this.FindLeaf(leafpath);
         }
     }
 }

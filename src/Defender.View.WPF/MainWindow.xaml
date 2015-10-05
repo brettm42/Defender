@@ -6,7 +6,7 @@
         xmlns:ViewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.WPF"
         mc:Ignorable="d"
-        Title="Defender" Height="600" Width="600">
+        Title="Defender" Height="650" Width="600">
     <Window.DataContext>
         <ViewModel:ViewModel/>
     </Window.DataContext>
@@ -19,24 +19,24 @@
     <Grid>
         <StackPanel>
             <StackPanel>
-                <TextBlock Padding="5" FontSize="26.667"
+                <TextBlock Padding="10,5" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Defender"/>
-                <Rectangle Height="5" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
-                <TextBlock Padding="5,0" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
-                           Text="Pick a Translator Query folder:"/>
+                <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
+                <TextBlock Padding="5,5" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                           Text="Pick the query folder to handback:"/>
                 <Grid Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
-                    <TextBox x:Name="RQFPath" Margin="5,0,42,5" Padding="5"
+                    <TextBox x:Name="RQFPath" Margin="5,0,42,10" Padding="5"
                              ToolTip="Load Fabric query (.rqf) files from this folder"
                              Text="{Binding Folder, Mode=TwoWay}"/>
-                    <Button x:Name="LoadButton" Margin="0,0,5,5" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
-                            Content="..." Click="LoadButton_Click"/>
+                    <Button x:Name="LoadButton" Margin="0,0,5,10" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
+                            Content="..." Click="LoadButton_Click" TouchDown="LoadButton_TouchDown"/>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="210*"/>
                         <ColumnDefinition Width="86*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel  Grid.Column="0" Margin="5">
+                    <StackPanel  Grid.Column="0" Margin="5, 10">
                         <Label Padding="5,0" Content="Current Handback Status –"/>
                         <TextBlock x:Name="Gameareas" Padding="25,0"
                                    Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas found'}"/>
@@ -44,25 +44,27 @@
                                    Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages loaded'}"/>
                         <TextBlock x:Name="Status" Padding="25,0" 
                                    Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='Found {0} queries to handback, checking now...'}"/>
+                        <Rectangle Height="5"/>
                     </StackPanel>
                     <Button Margin="5" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"
                             Foreground="White" Background="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"
                             Content="{Binding Success, Converter={StaticResource BoolToCharaConverter}}"/>
                 </Grid>
                 <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-                <TextBlock Margin="30,0" Padding="0,5,5,5" VerticalAlignment="Bottom" FontWeight="Bold"
-                           Text="{Binding CurrentFile, StringFormat='Checking {0}...'}"/>
-                <ProgressBar VerticalAlignment="Bottom" Height="25" Margin="0,5" BorderThickness="0,1" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
+                <TextBlock Margin="10,0" Padding="0,10,5,10" VerticalAlignment="Bottom" FontWeight="Bold"
+                           Text="{Binding CurrentFile, StringFormat='Verifying {0}...'}"/>
+                <ProgressBar VerticalAlignment="Bottom" Height="30" Margin="0,5" BorderThickness="0,1" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
                              Value="{Binding Progress}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
-            <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Margin="200,0" Height="22" VerticalAlignment="Bottom" FontSize="18.667" FontWeight="Bold"
+            <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Width="200" Height="22" VerticalAlignment="Bottom" FontSize="18.667" FontWeight="Bold"
                     Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
-                    Content="˅" Click="HidePanel_Click"/>
+                    Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
             <Rectangle Height="1" VerticalAlignment="Bottom"
                        Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-            <StackPanel x:Name="StatsGrid" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+            <StackPanel x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" 
+                        MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
                 <TextBlock Margin="25,0" Padding="0,5,0,0"
                            Text="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
                 <DataGrid x:Name="DataGrid" Margin="25,0,25,5"

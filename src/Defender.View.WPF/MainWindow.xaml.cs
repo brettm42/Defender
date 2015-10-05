@@ -23,21 +23,27 @@ namespace Defender.View.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static int ElemMaxHeight { get; set; }
+        private static int ElemMinHeight { get; set; }
+
         public MainWindow()
         {
             this.InitializeComponent();
+            
+            ElemMinHeight = (int)this.Height / 6;
+            ElemMaxHeight = (int)this.Height - ElemMinHeight;
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
         {
-            if (this.StatsGrid.Visibility == Visibility.Visible)
+            if (this.DataPanel.Visibility == Visibility.Visible)
             {
-                this.StatsGrid.Visibility = Visibility.Collapsed;
+                this.DataPanel.Visibility = Visibility.Collapsed;
                 this.HidePanel.Content = @"˄";
             }
             else
             {
-                this.StatsGrid.Visibility = Visibility.Visible;
+                this.DataPanel.Visibility = Visibility.Visible;
                 this.HidePanel.Content = @"˅";
             }
         }
@@ -57,5 +63,59 @@ namespace Defender.View.WPF
                                                                : (this.DataContext as ViewModel.ViewModel).Folder;
 
         }
+
+        private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Mouse.Capture(this.DataPanel);
+            this.DataPanel.MouseMove += DataPanel_MouseMove;
+        }
+
+        private void DataPanel_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Mouse.Capture(null);
+            this.DataPanel.MouseMove -= DataPanel_MouseMove;
+        }
+
+        private void DataPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.DataPanel.Height = this.ActualHeight - e.GetPosition(this).Y >= ElemMinHeight
+                                    ? this.ActualHeight - e.GetPosition(this).Y <= ElemMaxHeight
+                                        ? this.ActualHeight - e.GetPosition(this).Y
+                                        : ElemMaxHeight
+                                    : ElemMinHeight;
+        }
+
+        #region TouchEvents
+        private void LoadButton_TouchDown(object sender, TouchEventArgs e)
+        {
+            LoadButton_Click(null, null);
+        }
+
+        private void HidePanel_TouchDown(object sender, TouchEventArgs e)
+        {
+            HidePanel_Click(null, null);
+        }
+
+        private void DataPanel_TouchDown(object sender, TouchEventArgs e)
+        {
+            CaptureTouch(null);
+            this.DataPanel.TouchMove += DataPanel_TouchMove;
+        }
+        
+        private void DataPanel_TouchUp(object sender, TouchEventArgs e)
+        {
+            ReleaseTouchCapture(null);
+            this.DataPanel.TouchMove -= DataPanel_TouchMove;
+        }
+
+        private void DataPanel_TouchMove(object sender, TouchEventArgs e)
+        {
+            this.DataPanel.Height = this.ActualHeight - e.GetTouchPoint(this).Position.Y >= ElemMinHeight
+                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= ElemMaxHeight
+                                        ? this.ActualHeight - e.GetTouchPoint(this).Position.Y
+                                        : ElemMaxHeight
+                                    : ElemMinHeight;
+        }
+        #endregion
     }
 }
