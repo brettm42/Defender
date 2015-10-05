@@ -19,9 +19,9 @@
     <Grid>
         <StackPanel>
             <StackPanel>
-                <TextBlock Padding="5" FontSize="26.667"
+                <TextBlock Padding="10,5" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Defender"/>
-                <Rectangle Height="5" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
+                <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
                 <TextBlock Padding="5,0" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Pick a Translator Query folder:"/>
                 <Grid Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
