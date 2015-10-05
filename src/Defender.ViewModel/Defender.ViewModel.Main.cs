@@ -138,6 +138,9 @@ namespace Defender.ViewModel
             }
         }
         //private object _stats;
-        private int[][] _stats = { new int[]{ 4, 5, 6 }, new int[]{ 3, 1 }, new int[]{ 6, 8, 9 } };
+        private int[][] _stats = { new int[]{ 4, 5, 6 },
+                                   new int[]{ 3, 1 },
+                                   new int[]{ 6, 8, 9 },
+                                   new int[]{ 2, 1, 0, 8, 9 } };
     }
 }

@@ -6,7 +6,7 @@
         xmlns:ViewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.WPF"
         mc:Ignorable="d"
-        Title="Defender" Height="600" Width="600">
+        Title="Defender" Height="650" Width="600">
     <Window.DataContext>
         <ViewModel:ViewModel/>
     </Window.DataContext>
@@ -58,7 +58,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
-            <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Margin="200,0" Height="22" VerticalAlignment="Bottom" FontSize="18.667" FontWeight="Bold"
+            <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Width="200" Height="22" VerticalAlignment="Bottom" FontSize="18.667" FontWeight="Bold"
                     Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
                     Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
             <Rectangle Height="1" VerticalAlignment="Bottom"
