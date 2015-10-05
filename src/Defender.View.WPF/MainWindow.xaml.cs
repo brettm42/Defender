@@ -23,12 +23,15 @@ namespace Defender.View.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static int ElemMaxHeight { get; set; }
+        private static int ElemMinHeight { get; set; }
+
         public MainWindow()
         {
             this.InitializeComponent();
-
-            int MaxHeight = 500;
-            int MinHeight = 100;
+            
+            ElemMinHeight = (int)this.Height / 6;
+            ElemMaxHeight = (int)this.Height - ElemMinHeight;
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
@@ -63,23 +66,23 @@ namespace Defender.View.WPF
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            Mouse.Capture(this.DataPanel);
             this.DataPanel.MouseMove += DataPanel_MouseMove;
         }
 
         private void DataPanel_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ReleaseMouseCapture();
+            Mouse.Capture(null);
             this.DataPanel.MouseMove -= DataPanel_MouseMove;
         }
 
         private void DataPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            CaptureMouse();
-            this.DataPanel.Height = (Math.Abs(e.GetPosition(null).Y) >= MinHeight)
-                                    ? ((Math.Abs(e.GetPosition(null).Y) <= MaxHeight) 
-                                        ? Math.Abs(e.GetPosition(null).Y) 
-                                        : MaxHeight)
-                                    : MinHeight;
+            this.DataPanel.Height = this.Height - e.GetPosition(this).Y >= ElemMinHeight
+                                    ? this.Height - e.GetPosition(this).Y <= ElemMaxHeight
+                                        ? this.Height - e.GetPosition(this).Y
+                                        : ElemMaxHeight
+                                    : ElemMinHeight;
         }
     }
 }
