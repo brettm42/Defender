@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Defender.Model
+namespace Defender.Data
 {
-    public class Compute : ModelBase
+    public class Compute : DataBase
     {
         public object XMLStatReader(string path, object outtable, bool deletefiles)
         {

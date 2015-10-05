@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
-using Defender.Model;
 using Defender.Model.Extensions;
 
 namespace Defender.ViewModel

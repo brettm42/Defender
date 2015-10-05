@@ -42,8 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Defender.Model.Base.cs" />
-    <Compile Include="Defender.Model.Compute.cs" />
-    <Compile Include="Defender.Model.LEAF.cs" />
     <Compile Include="Extensions\Disposable.Extensions.cs" />
     <Compile Include="Extensions\FunctionalExtensions.cs" />
     <Compile Include="Extensions\StringBuilder.Extensions.cs" />

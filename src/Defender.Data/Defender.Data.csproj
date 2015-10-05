@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9E2859B-4AC8-4426-8814-4169B0F735FA}</ProjectGuid>
+    <ProjectGuid>{9114BB96-D7DE-493D-BC89-C15E3C4E2346}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Defender.ViewModel</RootNamespace>
-    <AssemblyName>Defender.ViewModel</AssemblyName>
+    <RootNamespace>Defender.Data</RootNamespace>
+    <AssemblyName>Defender.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FSharp.Core, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <Reference Include="FSharp.Core, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,16 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Defender.ViewModel.Base.cs" />
-    <Compile Include="Defender.ViewModel.Main.cs" />
-    <Compile Include="Defender.ViewModel.ValueConverters.cs" />
+    <Compile Include="Defender.Data.Base.cs" />
+    <Compile Include="Defender.Data.Compute.cs" />
+    <Compile Include="Defender.Data.LEAF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Defender.Data\Defender.Data.csproj">
-      <Project>{9114bb96-d7de-493d-bc89-c15e3c4e2346}</Project>
-      <Name>Defender.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Defender.Model\Defender.Model.csproj">
       <Project>{d665f7c7-8011-4a62-a3d2-0ade1ac9dcc3}</Project>
       <Name>Defender.Model</Name>

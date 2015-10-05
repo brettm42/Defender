@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.FSharp;
+using Defender.Data;
 using Defender.Model;
 using Defender.Model.Extensions;
 
