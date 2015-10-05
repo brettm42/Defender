@@ -6,7 +6,7 @@
         xmlns:ViewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.WPF"
         mc:Ignorable="d"
-        Title="Defender" Height="650" Width="600">
+        Title="Defender" Height="650" Width="600" Icon="Resources/Defender.ico">
     <Window.DataContext>
         <ViewModel:ViewModel/>
     </Window.DataContext>
