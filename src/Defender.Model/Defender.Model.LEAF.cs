@@ -13,7 +13,8 @@ namespace Defender.Model
     public class LEAF : ModelBase
     {
         private const string DefaultLeafExe = @"MSLeaf.exe";
-        private const string DefaultLeafLocation = @"C:\Program Files (x86)\Microsoft LEAF\" + DefaultLeafExe;
+        private const string DefaultLeafDir = @"Microsoft LEAF";
+        private const string DefaultLeafLocation = @"C:\Program Files (x86)\" + DefaultLeafDir + @"\" + DefaultLeafExe;
                 
         public string LeafLocation { get; set; } = DefaultLeafLocation;
 
@@ -73,9 +74,9 @@ namespace Defender.Model
             }
             else
             {
-                // TODO: LEAF location searcher
-                
-                return DefaultLeafLocation;
+                // recursively runs a directory up each pass until .exe found
+                // TODO: catch full drive searches, eg. C:\
+                return FindLeaf(Directory.GetFiles(Directory.GetParent(in_path).FullName, DefaultLeafExe, SearchOption.AllDirectories).FirstOrDefault());
             }
         }
 
