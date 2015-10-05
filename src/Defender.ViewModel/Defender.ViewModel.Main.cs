@@ -126,7 +126,7 @@ namespace Defender.ViewModel
         //private ObservableCollection<string> _filelist;
         private string[] _filelist = new string[] { "Legends_UI_fr-FR.rqf", "Legends_VO_de-DE.rqf", "Monument_UI_ko-KR.rqf", "Legends_VO_fr-FR.rqf", "Legends_UI_ru-RU.rqf", "Monument_Subtitles_it-IT.rqf"};
 
-        public int[][] Statistics
+        public ObservableCollection<DataItem> Statistics
         {
             get
             {
@@ -138,10 +138,81 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Statistics));
             }
         }
-        //private object _stats;
-        private int[][] _stats = { new int[]{ 4, 5, 6 },
-                                   new int[]{ 3, 1 },
-                                   new int[]{ 6, 8, 9 },
-                                   new int[]{ 2, 1, 0, 8, 9 } };
+        //private ObservableCollection<DataItem> _stats;
+        private ObservableCollection<DataItem> _stats = new ObservableCollection<DataItem>()
+        {
+            new DataItem()
+            {
+                ItemName = "Legends_UI_fr-FR.rqf",
+                Language = "fr-FR",
+                Folder = "UI",
+                ForReview = 1,
+                Errors = 17,
+                NotFinal = 3
+            },
+            new DataItem()
+            {
+                ItemName = "Legends_UI_de-DE.rqf",
+                Language = "de-DE",
+                Folder = "UI",
+                ForReview = 1,
+                Errors = 0,
+                NotFinal = 3
+            },
+            new DataItem()
+            {
+                ItemName = "Legends_UI_es-ES.rqf",
+                Language = "es-ES",
+                Folder = "UI",
+                ForReview = 1,
+                Errors = 1,
+                NotFinal = 32
+            },
+            new DataItem()
+            {
+                ItemName = "Legends_VO_Script_de-DE.rqf",
+                Language = "de-DE",
+                Folder = "VO_Script",
+                ForReview = 21,
+                Errors = 0,
+                NotFinal = 543
+            },
+            new DataItem()
+            {
+                ItemName = "Legends_VO_Script_fr-FR.rqf",
+                Language = "fr-FR",
+                Folder = "VO_Script",
+                ForReview = 1,
+                Errors = 17,
+                NotFinal = 3
+            },
+            new DataItem()
+            {
+                ItemName = "Legends_VO_Script_es-ES.rqf",
+                Language = "es-ES",
+                Folder = "VO_Script",
+                ForReview = 21,
+                Errors = 0,
+                NotFinal = 543
+            },
+            new DataItem()
+            {
+                ItemName = "Monument_Subtitles_fr-FR.rqf",
+                Language = "fr-FR",
+                Folder = "Subtitles",
+                ForReview = 125,
+                Errors = 178,
+                NotFinal = 398
+            },
+            new DataItem()
+            {
+                ItemName = "Monument_Subtitles_de-DE.rqf",
+                Language = "de-DE",
+                Folder = "Subtitles",
+                ForReview = 216,
+                Errors = 109,
+                NotFinal = 573
+            }
+        };
     }
 }

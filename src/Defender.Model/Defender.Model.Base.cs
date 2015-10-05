@@ -8,6 +8,5 @@ namespace Defender.Model
 {
     public class ModelBase
     {
-
     }
 }

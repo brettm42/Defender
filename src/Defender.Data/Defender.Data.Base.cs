@@ -8,6 +8,5 @@ namespace Defender.Data
 {
     public class DataBase
     {
-
     }
 }
