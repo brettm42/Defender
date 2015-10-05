@@ -78,9 +78,9 @@ namespace Defender.View.WPF
 
         private void DataPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            this.DataPanel.Height = this.Height - e.GetPosition(this).Y >= ElemMinHeight
-                                    ? this.Height - e.GetPosition(this).Y <= ElemMaxHeight
-                                        ? this.Height - e.GetPosition(this).Y
+            this.DataPanel.Height = this.ActualHeight - e.GetPosition(this).Y >= ElemMinHeight
+                                    ? this.ActualHeight - e.GetPosition(this).Y <= ElemMaxHeight
+                                        ? this.ActualHeight - e.GetPosition(this).Y
                                         : ElemMaxHeight
                                     : ElemMinHeight;
         }
