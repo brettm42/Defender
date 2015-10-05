@@ -29,7 +29,7 @@
                              ToolTip="Load Fabric query (.rqf) files from this folder"
                              Text="{Binding Folder, Mode=TwoWay}"/>
                     <Button x:Name="LoadButton" Margin="0,0,5,5" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
-                            Content="..." Click="LoadButton_Click"/>
+                            Content="..." Click="LoadButton_Click" TouchDown="LoadButton_TouchDown"/>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -59,10 +59,11 @@
         <StackPanel VerticalAlignment="Bottom">
             <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Margin="200,0" Height="22" VerticalAlignment="Bottom" FontSize="18.667" FontWeight="Bold"
                     Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
-                    Content="˅" Click="HidePanel_Click"/>
+                    Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
             <Rectangle Height="1" VerticalAlignment="Bottom"
                        Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-            <StackPanel x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp">
+            <StackPanel x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" 
+                        MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
                 <TextBlock Margin="25,0" Padding="0,5,0,0"
                            Text="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
                 <DataGrid x:Name="DataGrid" Margin="25,0,25,5"

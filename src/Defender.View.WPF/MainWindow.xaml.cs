@@ -84,5 +84,38 @@ namespace Defender.View.WPF
                                         : ElemMaxHeight
                                     : ElemMinHeight;
         }
+
+        #region TouchEvents
+        private void LoadButton_TouchDown(object sender, TouchEventArgs e)
+        {
+            LoadButton_Click(null, null);
+        }
+
+        private void HidePanel_TouchDown(object sender, TouchEventArgs e)
+        {
+            HidePanel_Click(null, null);
+        }
+
+        private void DataPanel_TouchDown(object sender, TouchEventArgs e)
+        {
+            CaptureTouch(null);
+            this.DataPanel.TouchMove += DataPanel_TouchMove;
+        }
+        
+        private void DataPanel_TouchUp(object sender, TouchEventArgs e)
+        {
+            ReleaseTouchCapture(null);
+            this.DataPanel.TouchMove -= DataPanel_TouchMove;
+        }
+
+        private void DataPanel_TouchMove(object sender, TouchEventArgs e)
+        {
+            this.DataPanel.Height = this.ActualHeight - e.GetTouchPoint(this).Position.Y >= ElemMinHeight
+                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= ElemMaxHeight
+                                        ? this.ActualHeight - e.GetTouchPoint(this).Position.Y
+                                        : ElemMaxHeight
+                                    : ElemMinHeight;
+        }
+        #endregion
     }
 }
