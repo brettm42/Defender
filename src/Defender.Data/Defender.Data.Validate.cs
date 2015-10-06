@@ -15,22 +15,29 @@ namespace Defender.Data
     {
         internal const string Placeholder = @"-?-";
 
-        public string CurrentFile = string.Empty;
+        public string CurrentFile { get; set; } = string.Empty;
 
-        public ObservableCollection<DataItem> Validation(string path, bool deletefiles = true)
+        public int CurrentProgress { get; set; } = 0;
+
+        public ObservableCollection<DataItem> Validation(string path, bool deletefiles = false)
         {
             // read temp directory XMLs and calculate statistics
             if (Directory.Exists(path) && Directory.GetFiles(path).Any())
             {
+                this.CurrentProgress = 0;                
                 ObservableCollection<DataItem> datagrid = new ObservableCollection<DataItem>();
-
+                
                 foreach (var file in Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories))
                 {
+                    // TODO: proper percent logic
+                    this.CurrentProgress = this.CurrentProgress + 10;
+                    this.CurrentFile = Path.GetFileNameWithoutExtension(file);
+
                     // builds DataItem to store results
                     DataItem filedata = new DataItem()
                                         {
-                                            Id       = file.GetHashCode(),
-                                            Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(), //Folder   = Directory.GetParent(file).Name,
+                                            //Id       = file.GetHashCode(),
+                                            Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
                                             Folder   = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
                                             ItemName = Path.GetFileNameWithoutExtension(file),
                                         };
@@ -50,7 +57,12 @@ namespace Defender.Data
                     {
                         throw new FileLoadException();
                     }
+
+                    // removes file after processing
+                    if (deletefiles) File.Delete(path);
                 }
+
+                this.CurrentProgress = 99;
 
                 return datagrid;
             }

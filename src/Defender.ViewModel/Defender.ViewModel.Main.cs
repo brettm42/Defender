@@ -60,8 +60,7 @@ namespace Defender.ViewModel
                 }
             }
         }
-        //private int _progr = 0;
-        private int _progr = 43;
+        private int _progr = 0;
 
         public string CurrentFile
         {
@@ -75,8 +74,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(CurrentFile));
             }
         }
-        //private string _curfile;
-        private string _curfile = "Legends_UI_fr-FR.rqf";
+        private string _curfile;
 
         public string LeafPath { get; set; }
 
@@ -229,9 +227,11 @@ namespace Defender.ViewModel
         {
             using (Validate _validation = new Validate())
             {
-                this.Statistics = _validation.Validation(Folder);
+                this.Statistics  = _validation.Validation(Folder);
+                this.Progress    = _validation.CurrentProgress;
+                this.CurrentFile = _validation.CurrentFile;
             }
-
+            
             this.Success = (this.Statistics.Where(l => l.Errors != 0).Any()) ? false : true;
         }
     }
