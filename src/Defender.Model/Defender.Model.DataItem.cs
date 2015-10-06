@@ -38,13 +38,12 @@ namespace Defender.Model
 
         public override string ToString()
         {
-            return this.GetType()
-                       .GetProperties()
-                       .Where(p => p.Name != "Item")
-                       .Aggregate(
-                           string.Empty,
-                           (str, prop) => 
-                               str += $"{prop.Name} - {prop.GetValue(this)?.ToString() ?? string.Empty}\n");
+            return this.GetType().GetProperties()
+                                 .Where(p => p.Name != "Item")
+                                 .Aggregate(
+                                     string.Empty,
+                                     (str, prop) => 
+                                         str += $"{prop.Name} - {prop.GetValue(this)?.ToString() ?? string.Empty}\n");
         }
     }
 }
