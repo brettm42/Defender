@@ -27,7 +27,7 @@
                 <Grid Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
                     <TextBox x:Name="RQFPath" Margin="5,0,42,10" Padding="5"
                              ToolTip="Load Fabric query (.rqf) files from this folder"
-                             Text="{Binding Folder, Mode=TwoWay}"/>
+                             Text="{Binding Folder, Mode=TwoWay}" KeyDown="RQFPath_KeyDown"/>
                     <Button x:Name="LoadButton" Margin="0,0,5,10" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
                             Content="..." Click="LoadButton_Click" TouchDown="LoadButton_TouchDown"/>
                 </Grid>
@@ -39,11 +39,11 @@
                     <StackPanel  Grid.Column="0" Margin="5, 10">
                         <Label Padding="5,0" Content="Current Handback Status –"/>
                         <TextBlock x:Name="Gameareas" Padding="25,0"
-                                   Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas found'}"/>
+                                   Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas loaded', IsAsync=True}"/>
                         <TextBlock x:Name="Languages" Padding="25,0" ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}}"
-                                   Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages loaded'}"/>
+                                   Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages loaded', IsAsync=True}"/>
                         <TextBlock x:Name="Status" Padding="25,0" 
-                                   Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='Found {0} queries to handback, checking now...'}"/>
+                                   Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='Found {0} queries to handback, checking now...', IsAsync=True}"/>
                         <Rectangle Height="5"/>
                     </StackPanel>
                     <Button Margin="5" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"
@@ -51,7 +51,7 @@
                             Content="{Binding Success, Converter={StaticResource BoolToCharaConverter}}"/>
                 </Grid>
                 <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-                <TextBlock Margin="10,0" Padding="0,10,5,10" VerticalAlignment="Bottom" FontWeight="Bold"
+                <TextBlock x:Name="CurrentFile"  Margin="10,0" Padding="0,10,5,10" VerticalAlignment="Bottom" FontWeight="Bold"
                            Text="{Binding CurrentFile, StringFormat='Verifying {0}...'}"/>
                 <ProgressBar VerticalAlignment="Bottom" Height="30" Margin="0,5" BorderThickness="0,1" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
                              Value="{Binding Progress}"/>
@@ -67,8 +67,11 @@
                         MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
                 <TextBlock Margin="25,0" Padding="0,5,0,0"
                            Text="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-                <DataGrid x:Name="DataGrid" Margin="25,0,25,5"
+                <DataGrid x:Name="DataGrid" Margin="25,0,25,5" 
                           ItemsSource="{Binding Statistics, IsAsync=True}">
+                    <DataGrid.Columns>
+                        
+                    </DataGrid.Columns>
                 </DataGrid>
                 <Rectangle Height="3"/>
             </StackPanel>

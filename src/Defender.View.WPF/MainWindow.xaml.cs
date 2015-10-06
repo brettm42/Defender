@@ -29,7 +29,10 @@ namespace Defender.View.WPF
         public MainWindow()
         {
             this.InitializeComponent();
-            
+
+            this.RQFPath.Focus();
+            this.CurrentFile.Visibility = Visibility.Hidden;
+
             ElemMinHeight = (int)this.Height / 6;
             ElemMaxHeight = (int)this.Height - ElemMinHeight;
         }
@@ -62,6 +65,9 @@ namespace Defender.View.WPF
                                                                ? openfile.FileName 
                                                                : (this.DataContext as ViewModel.ViewModel).Folder;
 
+            (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+            this.CurrentFile.Visibility = Visibility.Visible;
+
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -83,6 +89,11 @@ namespace Defender.View.WPF
                                         ? this.ActualHeight - e.GetPosition(this).Y
                                         : ElemMaxHeight
                                     : ElemMinHeight;
+        }
+
+        private void RQFPath_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text)) (this.DataContext as ViewModel.ViewModel).ValidateFiles();
         }
 
         #region TouchEvents

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Defender.Model.Extensions
+namespace System
 {
-    public class Disposable
+    public static class Disposable
     {
         public static TResult Using<TDisposable, TResult>(
             Func<TDisposable> factory,

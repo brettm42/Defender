@@ -43,8 +43,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Success));
             }
         }
-        //private bool _success = false;
-        private bool _success = true;
+        private bool _success = false;
 
         public int Progress
         {
@@ -61,8 +60,7 @@ namespace Defender.ViewModel
                 }
             }
         }
-        //private int _progr = 0;
-        private int _progr = 43;
+        private int _progr = 0;
 
         public string CurrentFile
         {
@@ -76,8 +74,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(CurrentFile));
             }
         }
-        //private string _curfile;
-        private string _curfile = "Legends_UI_fr-FR.rqf";
+        private string _curfile;
 
         public string LeafPath { get; set; }
 
@@ -93,8 +90,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Gameareas));
             }
         }
-        //private ObservableCollection<string> _gameareas;
-        private string[] _gameareas = new string[] { "UI", "VO_Script" };
+        private string[] _gameareas;
 
         public string[] Languages
         {
@@ -108,8 +104,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Languages));
             }
         }
-        //private ObservableCollection<string> _langs;
-        private string[] _langs = new string[] { "de-DE", "es-ES", "es-MX", "fr-FR", "fr-CA", "it-IT", "ja-JP", "ko-KR", "hi-IN", "ru-RU", "zh-TW", "zh-CN" };
+        private string[] _langs;
 
         public string[] FileList
         {
@@ -123,8 +118,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(FileList));
             }
         }
-        //private ObservableCollection<string> _filelist;
-        private string[] _filelist = new string[] { "Legends_UI_fr-FR.rqf", "Legends_VO_de-DE.rqf", "Monument_UI_ko-KR.rqf", "Legends_VO_fr-FR.rqf", "Legends_UI_ru-RU.rqf", "Monument_Subtitles_it-IT.rqf"};
+        private string[] _filelist;
 
         public ObservableCollection<DataItem> Statistics
         {
@@ -136,83 +130,26 @@ namespace Defender.ViewModel
             {
                 _stats = value;
                 RaisePropertyChanged(nameof(Statistics));
+
+                FileList  = _stats.Select(l => l.ItemName).Distinct().ToArray();
+                Languages = _stats.Select(l => l.Language).Distinct().ToArray();
+                Gameareas = _stats.Select(l => l.Folder).Distinct().ToArray();
+
+                this.Success = (_stats.Where(l => l.Errors != 0).Any()) ? false : true;
             }
         }
-        //private ObservableCollection<DataItem> _stats;
-        private ObservableCollection<DataItem> _stats = new ObservableCollection<DataItem>()
+        private ObservableCollection<DataItem> _stats;
+
+        public void ValidateFiles()
         {
-            new DataItem()
+            using (Validate _validation = new Validate())
             {
-                ItemName = "Legends_UI_fr-FR.rqf",
-                Language = "fr-FR",
-                Folder = "UI",
-                ForReview = 1,
-                Errors = 17,
-                NotFinal = 3
-            },
-            new DataItem()
-            {
-                ItemName = "Legends_UI_de-DE.rqf",
-                Language = "de-DE",
-                Folder = "UI",
-                ForReview = 1,
-                Errors = 0,
-                NotFinal = 3
-            },
-            new DataItem()
-            {
-                ItemName = "Legends_UI_es-ES.rqf",
-                Language = "es-ES",
-                Folder = "UI",
-                ForReview = 1,
-                Errors = 1,
-                NotFinal = 32
-            },
-            new DataItem()
-            {
-                ItemName = "Legends_VO_Script_de-DE.rqf",
-                Language = "de-DE",
-                Folder = "VO_Script",
-                ForReview = 21,
-                Errors = 0,
-                NotFinal = 543
-            },
-            new DataItem()
-            {
-                ItemName = "Legends_VO_Script_fr-FR.rqf",
-                Language = "fr-FR",
-                Folder = "VO_Script",
-                ForReview = 1,
-                Errors = 17,
-                NotFinal = 3
-            },
-            new DataItem()
-            {
-                ItemName = "Legends_VO_Script_es-ES.rqf",
-                Language = "es-ES",
-                Folder = "VO_Script",
-                ForReview = 21,
-                Errors = 0,
-                NotFinal = 543
-            },
-            new DataItem()
-            {
-                ItemName = "Monument_Subtitles_fr-FR.rqf",
-                Language = "fr-FR",
-                Folder = "Subtitles",
-                ForReview = 125,
-                Errors = 178,
-                NotFinal = 398
-            },
-            new DataItem()
-            {
-                ItemName = "Monument_Subtitles_de-DE.rqf",
-                Language = "de-DE",
-                Folder = "Subtitles",
-                ForReview = 216,
-                Errors = 109,
-                NotFinal = 573
+                this.Statistics  = _validation.Validation(Folder);
+                this.Progress    = _validation.CurrentProgress;
+                this.CurrentFile = _validation.CurrentFile;
             }
-        };
+            
+            this.Success = (this.Statistics.Where(l => l.Errors != 0).Any()) ? false : true;
+        }
     }
 }
