@@ -13,6 +13,8 @@ namespace Defender.Model
 
         public string ItemName { get; set; }
         
+        public string Project { get; set; }
+
         public string Folder { get; set; }
 
         public string Language { get; set; }

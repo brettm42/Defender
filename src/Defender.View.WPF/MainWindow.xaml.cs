@@ -62,6 +62,8 @@ namespace Defender.View.WPF
                                                                ? openfile.FileName 
                                                                : (this.DataContext as ViewModel.ViewModel).Folder;
 
+            (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -117,5 +119,10 @@ namespace Defender.View.WPF
                                     : ElemMinHeight;
         }
         #endregion
+
+        private void RQFPath_KeyDown(object sender, KeyEventArgs e)
+        {
+            (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+        }
     }
 }

@@ -58,10 +58,12 @@ namespace Defender.ViewModel
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) return "no";
+
             return new StringBuilder()
                            .AppendSequence(
-                               (string[])value, 
-                               (sb, str) => sb.AppendFormat("{0}, ", str))
+                               (string[])value,
+                               (sb, str) => sb.AppendFormat("{0}, ", str))?
                            .ToString()
                            .TrimEnd(", ".ToCharArray());
         }

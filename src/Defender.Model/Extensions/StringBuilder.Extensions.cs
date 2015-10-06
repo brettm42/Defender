@@ -13,7 +13,7 @@ namespace System.Text
             IEnumerable<T> seq,
             Func<StringBuilder, T, StringBuilder> fn)
         {
-            return seq.Aggregate(@this, fn);
+            return seq?.Aggregate(@this, fn);
         }
     }
 }

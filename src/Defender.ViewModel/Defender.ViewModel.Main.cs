@@ -43,8 +43,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Success));
             }
         }
-        //private bool _success = false;
-        private bool _success = true;
+        private bool _success = false;
 
         public int Progress
         {
@@ -93,8 +92,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Gameareas));
             }
         }
-        //private ObservableCollection<string> _gameareas;
-        private string[] _gameareas = new string[] { "UI", "VO_Script" };
+        private string[] _gameareas;
 
         public string[] Languages
         {
@@ -108,8 +106,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Languages));
             }
         }
-        //private ObservableCollection<string> _langs;
-        private string[] _langs = new string[] { "de-DE", "es-ES", "es-MX", "fr-FR", "fr-CA", "it-IT", "ja-JP", "ko-KR", "hi-IN", "ru-RU", "zh-TW", "zh-CN" };
+        private string[] _langs;
 
         public string[] FileList
         {
@@ -123,8 +120,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(FileList));
             }
         }
-        //private ObservableCollection<string> _filelist;
-        private string[] _filelist = new string[] { "Legends_UI_fr-FR.rqf", "Legends_VO_de-DE.rqf", "Monument_UI_ko-KR.rqf", "Legends_VO_fr-FR.rqf", "Legends_UI_ru-RU.rqf", "Monument_Subtitles_it-IT.rqf"};
+        private string[] _filelist;
 
         public ObservableCollection<DataItem> Statistics
         {
@@ -136,6 +132,10 @@ namespace Defender.ViewModel
             {
                 _stats = value;
                 RaisePropertyChanged(nameof(Statistics));
+
+                FileList  = _stats.Select(l => l.ItemName).Distinct().ToArray();
+                Languages = _stats.Select(l => l.Language).Distinct().ToArray();
+                Gameareas = _stats.Select(l => l.Folder).Distinct().ToArray();
             }
         }
         //private ObservableCollection<DataItem> _stats;
@@ -143,6 +143,7 @@ namespace Defender.ViewModel
         {
             new DataItem()
             {
+                Id = 123451,
                 ItemName = "Legends_UI_fr-FR.rqf",
                 Language = "fr-FR",
                 Folder = "UI",
@@ -152,6 +153,7 @@ namespace Defender.ViewModel
             },
             new DataItem()
             {
+                Id = 12345187,
                 ItemName = "Legends_UI_de-DE.rqf",
                 Language = "de-DE",
                 Folder = "UI",
@@ -161,6 +163,7 @@ namespace Defender.ViewModel
             },
             new DataItem()
             {
+                Id = -34123451,
                 ItemName = "Legends_UI_es-ES.rqf",
                 Language = "es-ES",
                 Folder = "UI",
@@ -170,6 +173,7 @@ namespace Defender.ViewModel
             },
             new DataItem()
             {
+                Id = -678123451,
                 ItemName = "Legends_VO_Script_de-DE.rqf",
                 Language = "de-DE",
                 Folder = "VO_Script",
@@ -179,6 +183,7 @@ namespace Defender.ViewModel
             },
             new DataItem()
             {
+                Id = 45100012,
                 ItemName = "Legends_VO_Script_fr-FR.rqf",
                 Language = "fr-FR",
                 Folder = "VO_Script",
@@ -188,6 +193,7 @@ namespace Defender.ViewModel
             },
             new DataItem()
             {
+                Id = 12388451,
                 ItemName = "Legends_VO_Script_es-ES.rqf",
                 Language = "es-ES",
                 Folder = "VO_Script",
@@ -197,6 +203,7 @@ namespace Defender.ViewModel
             },
             new DataItem()
             {
+                Id = -1123451,
                 ItemName = "Monument_Subtitles_fr-FR.rqf",
                 Language = "fr-FR",
                 Folder = "Subtitles",
@@ -206,6 +213,7 @@ namespace Defender.ViewModel
             },
             new DataItem()
             {
+                Id = 823451,
                 ItemName = "Monument_Subtitles_de-DE.rqf",
                 Language = "de-DE",
                 Folder = "Subtitles",
@@ -214,5 +222,13 @@ namespace Defender.ViewModel
                 NotFinal = 573
             }
         };
+
+        public void ValidateFiles()
+        {
+            using (Validate _validation = new Validate())
+            {
+                Statistics = _validation.Validation(Folder);
+            }
+        }
     }
 }
