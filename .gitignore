@@ -229,3 +229,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/src/Defender.View.WPF/Resources/Defender_Icon.xcf

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Defender.Model
+namespace Defender.Data
 {
-    public class ModelBase
+    public class DataBase
     {
     }
 }

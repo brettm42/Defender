@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D665F7C7-8011-4A62-A3D2-0ADE1AC9DCC3}</ProjectGuid>
+    <ProjectGuid>{9114BB96-D7DE-493D-BC89-C15E3C4E2346}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Defender.Model</RootNamespace>
-    <AssemblyName>Defender.Model</AssemblyName>
+    <RootNamespace>Defender.Data</RootNamespace>
+    <AssemblyName>Defender.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,12 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Defender.Model.Base.cs" />
-    <Compile Include="Defender.Model.DataItem.cs" />
-    <Compile Include="Extensions\Disposable.Extensions.cs" />
-    <Compile Include="Extensions\FunctionalExtensions.cs" />
-    <Compile Include="Extensions\StringBuilder.Extensions.cs" />
+    <Compile Include="Defender.Data.Base.cs" />
+    <Compile Include="Defender.Data.Compute.cs" />
+    <Compile Include="Defender.Data.LEAF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Defender.Model\Defender.Model.csproj">
+      <Project>{d665f7c7-8011-4a62-a3d2-0ade1ac9dcc3}</Project>
+      <Name>Defender.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

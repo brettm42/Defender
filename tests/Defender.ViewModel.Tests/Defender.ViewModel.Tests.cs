@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Defender.Model
+namespace Defender.ViewModel.Tests
 {
-    public class ModelBase
+    [TestClass]
+    public class ViewModelTests
     {
     }
 }

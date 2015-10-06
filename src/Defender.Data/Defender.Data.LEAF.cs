@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.FSharp;
 using Defender.Model.Extensions;
 
-namespace Defender.Model
+namespace Defender.Data
 {
-    public class LEAF : ModelBase
+    public class LEAF : DataBase
     {
         private const string DefaultLeafExe = @"MSLeaf.exe";
         private const string DefaultLeafDir = @"Microsoft LEAF";
