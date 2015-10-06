@@ -29,6 +29,8 @@ namespace Defender.View.WPF
         public MainWindow()
         {
             this.InitializeComponent();
+
+            this.RQFPath.Focus();
             
             ElemMinHeight = (int)this.Height / 6;
             ElemMaxHeight = (int)this.Height - ElemMinHeight;

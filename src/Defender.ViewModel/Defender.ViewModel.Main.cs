@@ -136,10 +136,12 @@ namespace Defender.ViewModel
                 FileList  = _stats.Select(l => l.ItemName).Distinct().ToArray();
                 Languages = _stats.Select(l => l.Language).Distinct().ToArray();
                 Gameareas = _stats.Select(l => l.Folder).Distinct().ToArray();
+
+                this.Success = (_stats.Where(l => l.Errors != 0).Any()) ? false : true;
             }
         }
-        //private ObservableCollection<DataItem> _stats;
-        private ObservableCollection<DataItem> _stats = new ObservableCollection<DataItem>()
+        private ObservableCollection<DataItem> _stats;
+        /*private ObservableCollection<DataItem> _stats = new ObservableCollection<DataItem>()
         {
             new DataItem()
             {
@@ -221,14 +223,16 @@ namespace Defender.ViewModel
                 Errors = 109,
                 NotFinal = 573
             }
-        };
+        };*/
 
         public void ValidateFiles()
         {
             using (Validate _validation = new Validate())
             {
-                Statistics = _validation.Validation(Folder);
+                this.Statistics = _validation.Validation(Folder);
             }
+
+            this.Success = (this.Statistics.Where(l => l.Errors != 0).Any()) ? false : true;
         }
     }
 }

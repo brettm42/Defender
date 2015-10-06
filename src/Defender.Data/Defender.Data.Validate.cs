@@ -30,8 +30,8 @@ namespace Defender.Data
                     DataItem filedata = new DataItem()
                                         {
                                             Id       = file.GetHashCode(),
-                                            Project = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(), //Folder   = Directory.GetParent(file).Name,
-                                            Folder = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
+                                            Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(), //Folder   = Directory.GetParent(file).Name,
+                                            Folder   = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
                                             ItemName = Path.GetFileNameWithoutExtension(file),
                                         };
                     try
@@ -62,7 +62,18 @@ namespace Defender.Data
         {
             if (!string.IsNullOrWhiteSpace(filename))
             {
-                return Path.GetFileNameWithoutExtension(filename).Split(delim);
+                string[] path   = Path.GetFileNameWithoutExtension(filename).Split(delim);
+                string[] chunks = new string[3];
+
+                chunks[0] = path[0];
+                chunks[2] = path[path.Length - 1];
+
+                for (int i = 1; i < path.Length - 1; i++)
+                {
+                    chunks[1] = (chunks[1] + delim + path[i]).TrimStart(delim);
+                }
+
+                return chunks;
             }
 
             throw new ArgumentNullException();
