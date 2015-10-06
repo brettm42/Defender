@@ -9,7 +9,7 @@ namespace Defender.Model
 {
     public class DataItem
     {
-        internal string Id { get; set; }
+        public int Id { get; set; }
 
         public string ItemName { get; set; }
         
@@ -22,6 +22,8 @@ namespace Defender.Model
         public int ForReview { get; set; }
 
         public int Errors { get; set; }
+
+        public int Warnings { get; set; }
 
         public object this[string prop]
         {
