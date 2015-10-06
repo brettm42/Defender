@@ -5,15 +5,25 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Defender.Model;
+using Defender.Model.Extensions;
 
 namespace Defender.Data
 {
-    public class Compute : IDisposable
+    public class Validate : IDisposable
     {
-        public ObservableCollection<DataItem> XMLStatReader(string path, object outtable, bool deletefiles)
+        public ObservableCollection<DataItem> XMLStatReader(string path, bool deletefiles = true)
         {
             // read temp directory XMLs and calculate statistics
+            if (Directory.Exists(path) && Directory.GetFiles(path).Any())
+            {
+                foreach (var file in Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories))
+                {
+                    XDocument xdoc = XDocument.Load(file);
+
+                }
+            }
 
             return null;
         }
