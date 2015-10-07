@@ -41,12 +41,13 @@ namespace Defender.Data
                                            WorkingDirectory = workingdir
                                        };
 
-            processinfo.Arguments = new StringBuilder().Append("Run Automation OpenFile /FILENAMES")
-                                                   .AppendSequence(
-                                                       filenames,
-                                                       (sb, file) => sb.AppendFormat("{0};", file))
-                                                   .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error", outputdir)
-                                                   .ToString();
+            processinfo.Arguments = new StringBuilder()
+                                        .Append("Run Automation OpenFile /FILENAMES")
+                                        .AppendSequence(
+                                            filenames,
+                                            (sb, file) => sb.AppendFormat("{0};", file))
+                                        .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error", outputdir)
+                                        .ToString();
 
             try
             {

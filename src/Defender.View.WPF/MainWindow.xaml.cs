@@ -31,6 +31,7 @@ namespace Defender.View.WPF
             this.InitializeComponent();
 
             this.RQFPath.Focus();
+
             this.CurrentFile.Visibility = Visibility.Hidden;
 
             ElemMinHeight = (int)this.Height / 6;
@@ -55,9 +56,9 @@ namespace Defender.View.WPF
         {
             OpenFileDialog openfile = new OpenFileDialog()
                                       {
-                                          Title = "Select the RQF folder for Handback",
-                                          FileName = " -----Select This Folder----- ",
-                                          Filter = "Query folder (*.*)|*.rqf|RQF files (*.rqf)|*.rqf",
+                                          Title    = "Select the RQF folder for Handback",
+                                          FileName = "-----Select This Folder-----",
+                                          Filter   = "Query folder (*.*)|*.rqf|RQF files (*.rqf)|*.rqf",
                                           CheckFileExists = false,
                                       };
             
@@ -66,6 +67,7 @@ namespace Defender.View.WPF
                                                                : (this.DataContext as ViewModel.ViewModel).Folder;
 
             (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+
             this.CurrentFile.Visibility = Visibility.Visible;
 
         }
@@ -93,7 +95,10 @@ namespace Defender.View.WPF
 
         private void RQFPath_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text)) (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+            if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
+            {
+                (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+            }
         }
 
         #region TouchEvents

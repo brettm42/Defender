@@ -10,9 +10,7 @@ namespace Defender.Model
     public class DataItem
     {
         internal int Id { get; set; }
-
-        public string ItemName { get; set; }
-        
+                
         public string Project { get; set; }
 
         public string Folder { get; set; }
@@ -26,6 +24,23 @@ namespace Defender.Model
         public int Errors { get; set; }
 
         public int Warnings { get; set; }
+
+        public string ItemName
+        {
+            get
+            {
+                return _item;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    this.Id = value.GetHashCode();
+                    _item = value;
+                }
+            }
+        }
+        private string _item;
 
         public object this[string prop]
         {
