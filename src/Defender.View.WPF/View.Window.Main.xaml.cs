@@ -19,14 +19,14 @@ using Defender.ViewModel;
 namespace Defender.View.WPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for View.Window.Main.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WindowMain : Window
     {
         private static int ElemMaxHeight { get; set; }
         private static int ElemMinHeight { get; set; }
 
-        public MainWindow()
+        public WindowMain()
         {
             this.InitializeComponent();
 
