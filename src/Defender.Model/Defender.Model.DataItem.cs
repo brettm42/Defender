@@ -26,6 +26,8 @@ namespace Defender.Model
 
         public int Warnings { get; set; }
 
+        public DateTime Date { get; set; }
+
         public string ItemName
         {
             get
