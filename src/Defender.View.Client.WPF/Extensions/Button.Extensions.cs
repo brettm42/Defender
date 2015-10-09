@@ -17,18 +17,15 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using Defender.ViewModel;
 
-namespace Defender.View.Client.WPF
+namespace System.Windows.Controls
 {
-    public class ViewBase
+    public static class ButtonExtensions
     {
-        public void ToggleVisibility<T>(T[] fields)
+        public static void ToggleVisibility(this Button @this)
         {
-            foreach (T item in fields)
-            {
-                (item as System.Windows.Controls.Control).Visibility = ((item as System.Windows.Controls.Control).Visibility == Visibility.Visible)
-                                                                       ? Visibility.Collapsed
-                                                                       : Visibility.Visible;
-            }
+            @this.Visibility = (@this.Visibility == Visibility.Visible)
+                               ? Visibility.Collapsed
+                               : Visibility.Visible;
         }
 
     }

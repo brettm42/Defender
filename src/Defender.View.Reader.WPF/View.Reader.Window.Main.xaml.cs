@@ -26,12 +26,13 @@ namespace Defender.View.Reader.WPF
         private static int ElemMaxHeight { get; set; }
         private static int ElemMinHeight { get; set; }
 
+        private static string DownArrow = @"˅";
+        private static string UpArrow = @"˄";
+
         public WindowMain()
         {
             this.InitializeComponent();
-
-            this.RQFPath.Focus();
-
+            
             this.CurrentFile.Visibility = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
 
@@ -39,20 +40,15 @@ namespace Defender.View.Reader.WPF
 
             ElemMinHeight = (int)this.Height / 6;
             ElemMaxHeight = (int)this.Height - (ElemMinHeight / 2);
+
+            this.RQFPath.Focus();
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
         {
-            if (this.DataPanel.Visibility == Visibility.Visible)
-            {
-                this.DataPanel.Visibility = Visibility.Collapsed;
-                this.HidePanel.Content = @"˄";
-            }
-            else
-            {
-                this.DataPanel.Visibility = Visibility.Visible;
-                this.HidePanel.Content = @"˅";
-            }
+            this.DataPanel.ToggleVisibility();
+
+            this.HidePanel.Content = (this.DataPanel.Visibility == Visibility.Visible) ? DownArrow : UpArrow;
         }
         
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -69,7 +65,7 @@ namespace Defender.View.Reader.WPF
             this.SuccessButton.Visibility = Visibility.Visible;
 
             this.DataPanel.Visibility = Visibility.Visible;
-            this.HidePanel.Content = @"˅";
+            this.HidePanel.Content = DownArrow;
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -103,7 +99,7 @@ namespace Defender.View.Reader.WPF
                 this.SuccessButton.Visibility = Visibility.Visible;
 
                 this.DataPanel.Visibility = Visibility.Visible;
-                this.HidePanel.Content = @"˅";
+                this.HidePanel.Content = DownArrow;
             }
         }
 
