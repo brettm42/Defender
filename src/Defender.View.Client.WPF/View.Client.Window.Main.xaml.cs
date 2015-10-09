@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -73,6 +74,9 @@ namespace Defender.View.Client.WPF
 
             this.CurrentFile.Visibility = Visibility.Visible;
             this.SuccessButton.Visibility = Visibility.Visible;
+
+            this.DataPanel.Visibility = Visibility.Visible;
+            this.HidePanel.Content = @"˅";
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -106,6 +110,9 @@ namespace Defender.View.Client.WPF
                 
                 this.CurrentFile.Visibility = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
+
+                this.DataPanel.Visibility = Visibility.Visible;
+                this.HidePanel.Content = @"˅";
             }
         }
 
@@ -113,8 +120,9 @@ namespace Defender.View.Client.WPF
         {
             SaveFileDialog savefile = new SaveFileDialog()
                                       {
-                                          Title = "Save Handback file as...",
-                                          Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                                          Title    = "Save Handback file as...",
+                                          Filter   = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                                          FileName = $"{(this.DataContext as ViewModel.ViewModel).Folder}.hback",
                                           AddExtension = true,
                                       };
 

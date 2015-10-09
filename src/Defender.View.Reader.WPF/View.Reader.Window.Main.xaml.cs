@@ -59,7 +59,7 @@ namespace Defender.View.Reader.WPF
         {
             OpenFileDialog openfile = new OpenFileDialog()
                                       {
-                                          Title    = "Select the Handback file to verify",
+                                          Title  = "Select the Handback file to verify",
                                           Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
                                       };
 
@@ -67,6 +67,9 @@ namespace Defender.View.Reader.WPF
             
             this.CurrentFile.Visibility = Visibility.Visible;
             this.SuccessButton.Visibility = Visibility.Visible;
+
+            this.DataPanel.Visibility = Visibility.Visible;
+            this.HidePanel.Content = @"˅";
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -98,6 +101,9 @@ namespace Defender.View.Reader.WPF
 
                 this.CurrentFile.Visibility = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
+
+                this.DataPanel.Visibility = Visibility.Visible;
+                this.HidePanel.Content = @"˅";
             }
         }
 
