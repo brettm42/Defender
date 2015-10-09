@@ -35,6 +35,8 @@ namespace Defender.View.Client.WPF
             this.CurrentFile.Visibility = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
 
+            HidePanel_Click(null, null);
+
             ElemMinHeight = (int)this.Height / 6;
             ElemMaxHeight = (int)this.Height - (ElemMinHeight / 2);
         }
@@ -110,11 +112,11 @@ namespace Defender.View.Client.WPF
         private void SuccessButton_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog savefile = new SaveFileDialog()
-            {
-                Title = "Save Handback file as...",
-                Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
-                AddExtension = true,
-            };
+                                      {
+                                          Title = "Save Handback file as...",
+                                          Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                                          AddExtension = true,
+                                      };
 
             (this.DataContext as ViewModel.ViewModel).ExportResults(
                                                          (savefile.ShowDialog() == true)

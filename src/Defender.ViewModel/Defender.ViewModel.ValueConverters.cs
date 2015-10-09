@@ -83,6 +83,8 @@ namespace Defender.ViewModel
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) return "no";
+
             return (value as string[])?.Count() ?? 0;
         }
 

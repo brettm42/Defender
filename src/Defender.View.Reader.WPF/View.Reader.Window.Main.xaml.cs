@@ -35,6 +35,8 @@ namespace Defender.View.Reader.WPF
             this.CurrentFile.Visibility = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
 
+            HidePanel_Click(null, null);
+
             ElemMinHeight = (int)this.Height / 6;
             ElemMaxHeight = (int)this.Height - (ElemMinHeight / 2);
         }
