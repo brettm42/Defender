@@ -24,12 +24,14 @@ namespace Defender.View.Client.WPF
     /// </summary>
     public partial class WindowMain : Window
     {
+        private const string DownArrow = @"˅";
+
+        private const string UpArrow = @"˄";
+
         private static int ElemMaxHeight { get; set; }
+
         private static int ElemMinHeight { get; set; }
-
-        private static string DownArrow = @"˅";
-        private static string UpArrow = @"˄";
-
+        
         public WindowMain()
         {
             this.InitializeComponent();
@@ -71,6 +73,7 @@ namespace Defender.View.Client.WPF
             this.CurrentFile.Visibility = Visibility.Visible;
             this.SuccessButton.Visibility = Visibility.Visible;
 
+            // expands DataPanel
             this.DataPanel.Visibility = Visibility.Visible;
             this.HidePanel.Content = DownArrow;
         }
@@ -107,6 +110,7 @@ namespace Defender.View.Client.WPF
                 this.CurrentFile.Visibility = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
 
+                // expands DataPanel
                 this.DataPanel.Visibility = Visibility.Visible;
                 this.HidePanel.Content = DownArrow;
             }
