@@ -41,7 +41,7 @@ namespace Defender.View.Reader.WPF
             HidePanel_Click(null, null);
 
             ElemMinHeight = (int)this.Height / 6;
-            ElemMaxHeight = (int)this.Height - (ElemMinHeight / 2);
+            ElemMaxHeight = (int)this.Height - ElemMinHeight;
 
             this.RQFPath.Focus();
         }
@@ -142,14 +142,15 @@ namespace Defender.View.Reader.WPF
                                     : ElemMinHeight;
         }
         #endregion
-
+        
         private void Maximise(StackPanel control)
         {
             // unhides if hidden
             (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
 
             // increases height to maximum
-            (control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
+            //(control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
+            (control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight;
         }
     }
 }
