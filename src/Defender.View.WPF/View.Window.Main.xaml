@@ -46,9 +46,9 @@
                                    Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='Found {0} queries to handback, checking now...', IsAsync=True}"/>
                         <Rectangle Height="5"/>
                     </StackPanel>
-                    <Button Margin="5" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"
+                    <Button x:Name="SuccessButton" Margin="5" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"
                             Foreground="White" Background="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"
-                            Content="{Binding Success, Converter={StaticResource BoolToCharaConverter}}"/>
+                            Content="{Binding Success, Converter={StaticResource BoolToCharaConverter}}" Click="SuccessButton_Click"/>
                 </Grid>
                 <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
                 <TextBlock x:Name="CurrentFile"  Margin="10,0" Padding="0,10,5,10" VerticalAlignment="Bottom" FontWeight="Bold"

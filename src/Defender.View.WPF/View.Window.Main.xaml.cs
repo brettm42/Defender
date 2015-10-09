@@ -35,7 +35,7 @@ namespace Defender.View.WPF
             this.CurrentFile.Visibility = Visibility.Hidden;
 
             ElemMinHeight = (int)this.Height / 6;
-            ElemMaxHeight = (int)this.Height - ElemMinHeight;
+            ElemMaxHeight = (int)this.Height - (ElemMinHeight / 2);
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
@@ -87,7 +87,7 @@ namespace Defender.View.WPF
         private void DataPanel_MouseMove(object sender, MouseEventArgs e)
         {
             this.DataPanel.Height = this.ActualHeight - e.GetPosition(this).Y >= ElemMinHeight
-                                    ? this.ActualHeight - e.GetPosition(this).Y <= ElemMaxHeight
+                                    ? this.ActualHeight - e.GetPosition(this).Y <= this.ActualHeight
                                         ? this.ActualHeight - e.GetPosition(this).Y
                                         : ElemMaxHeight
                                     : ElemMinHeight;
@@ -99,6 +99,21 @@ namespace Defender.View.WPF
             {
                 (this.DataContext as ViewModel.ViewModel).ValidateFiles();
             }
+        }
+
+        private void SuccessButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog()
+            {
+                Title = "Save Handback file as...",
+                Filter = "Handback file (*.hndbk)|*.hndbk|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                AddExtension = true,
+            };
+
+            (this.DataContext as ViewModel.ViewModel).ExportResults(
+                                                         (savefile.ShowDialog() == true)
+                                                         ? savefile.FileName
+                                                         : null);
         }
 
         #region TouchEvents
@@ -127,7 +142,7 @@ namespace Defender.View.WPF
         private void DataPanel_TouchMove(object sender, TouchEventArgs e)
         {
             this.DataPanel.Height = this.ActualHeight - e.GetTouchPoint(this).Position.Y >= ElemMinHeight
-                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= ElemMaxHeight
+                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= this.ActualHeight
                                         ? this.ActualHeight - e.GetTouchPoint(this).Position.Y
                                         : ElemMaxHeight
                                     : ElemMinHeight;
