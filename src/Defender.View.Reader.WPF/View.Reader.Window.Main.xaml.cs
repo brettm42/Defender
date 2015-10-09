@@ -33,6 +33,7 @@ namespace Defender.View.Reader.WPF
             this.RQFPath.Focus();
 
             this.CurrentFile.Visibility = Visibility.Hidden;
+            this.SuccessButton.Visibility = Visibility.Hidden;
 
             ElemMinHeight = (int)this.Height / 6;
             ElemMaxHeight = (int)this.Height - (ElemMinHeight / 2);
@@ -63,6 +64,7 @@ namespace Defender.View.Reader.WPF
             (this.DataContext as ViewModel.ViewModel).ImportResults((openfile.ShowDialog() == true) ? openfile.FileName : null);
             
             this.CurrentFile.Visibility = Visibility.Visible;
+            this.SuccessButton.Visibility = Visibility.Visible;
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -82,7 +84,7 @@ namespace Defender.View.Reader.WPF
             this.DataPanel.Height = this.ActualHeight - e.GetPosition(this).Y >= ElemMinHeight
                                     ? this.ActualHeight - e.GetPosition(this).Y <= this.ActualHeight
                                         ? this.ActualHeight - e.GetPosition(this).Y
-                                        : ElemMaxHeight
+                                        : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
         }
 
@@ -91,6 +93,9 @@ namespace Defender.View.Reader.WPF
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
                 (this.DataContext as ViewModel.ViewModel).ImportResults(this.RQFPath.Text);
+
+                this.CurrentFile.Visibility = Visibility.Visible;
+                this.SuccessButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -122,7 +127,7 @@ namespace Defender.View.Reader.WPF
             this.DataPanel.Height = this.ActualHeight - e.GetTouchPoint(this).Position.Y >= ElemMinHeight
                                     ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= this.ActualHeight
                                         ? this.ActualHeight - e.GetTouchPoint(this).Position.Y
-                                        : ElemMaxHeight
+                                        : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
         }
         #endregion

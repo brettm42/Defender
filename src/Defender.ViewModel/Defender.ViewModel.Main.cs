@@ -14,6 +14,8 @@ namespace Defender.ViewModel
 {
     public class ViewModel : ViewModelBase
     {
+        public string LeafPath { get; set; }
+
         public string Folder
         {
             get
@@ -75,8 +77,6 @@ namespace Defender.ViewModel
             }
         }
         private string _curfile;
-
-        public string LeafPath { get; set; }
 
         public string[] Gameareas
         {
@@ -170,15 +170,17 @@ namespace Defender.ViewModel
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
+                this.CurrentFile = Path.GetFileName(path);
+
                 Serializer reader = new Serializer(this.Statistics);
 
                 this.Statistics = reader.DeserialiseFromString(reader.Open(path));
 
-                return (this.Statistics != null) ? true : false;
+                return this.Success = (this.Statistics != null) ? true : false;
             }
             else
             {
-                return false;
+                return this.Success = false;
             }
         }
     }
