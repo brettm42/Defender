@@ -31,15 +31,15 @@ namespace Defender.Data
             this.ProcessOutput = string.Empty;
 
             ProcessStartInfo processinfo = new ProcessStartInfo()
-                                       {
-                                           FileName = leaf,
-                                           UseShellExecute = false,
-                                           WindowStyle = ProcessWindowStyle.Hidden,
-                                           RedirectStandardError = true,
-                                           RedirectStandardOutput = true,
-                                           CreateNoWindow = true,
-                                           WorkingDirectory = workingdir
-                                       };
+                                           {
+                                               FileName = leaf,
+                                               UseShellExecute = false,
+                                               WindowStyle = ProcessWindowStyle.Hidden,
+                                               RedirectStandardError = true,
+                                               RedirectStandardOutput = true,
+                                               CreateNoWindow = true,
+                                               WorkingDirectory = workingdir
+                                           };
 
             processinfo.Arguments = new StringBuilder()
                                         .Append("Run Automation OpenFile /FILENAMES")
