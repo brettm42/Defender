@@ -64,18 +64,19 @@ namespace Defender.View.Client.WPF
                                           CheckFileExists = false,
                                       };
             
-            (this.DataContext as ViewModel.ViewModel).Folder = (openfile.ShowDialog() == true)
-                                                               ? openfile.FileName 
-                                                               : (this.DataContext as ViewModel.ViewModel).Folder;
+            if (openfile.ShowDialog() == true)
+            {
+                (this.DataContext as ViewModel.ViewModel).Folder = openfile.FileName;
 
-            (this.DataContext as ViewModel.ViewModel).ValidateFiles();
-            
-            this.CurrentFile.Visibility   = Visibility.Visible;
-            this.SuccessButton.Visibility = Visibility.Visible;
+                (this.DataContext as ViewModel.ViewModel).ValidateFiles();
 
-            // expands DataPanel
-            this.HidePanel.Content = DownArrow;
-            Maximise(this.DataPanel);
+                this.CurrentFile.Visibility   = Visibility.Visible;
+                this.SuccessButton.Visibility = Visibility.Visible;
+
+                // expands DataPanel
+                this.HidePanel.Content = DownArrow;
+                Maximise(this.DataPanel);
+            }
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)

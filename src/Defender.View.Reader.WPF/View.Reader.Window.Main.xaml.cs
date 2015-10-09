@@ -61,15 +61,17 @@ namespace Defender.View.Reader.WPF
                                           Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
                                       };
 
-            (this.DataContext as ViewModel.ViewModel).ImportResults(
-                                                         (openfile.ShowDialog() == true) ? openfile.FileName : null);
-            
-            this.CurrentFile.Visibility   = Visibility.Visible;
-            this.SuccessButton.Visibility = Visibility.Visible;
+            if (openfile.ShowDialog() == true)
+            {
+                (this.DataContext as ViewModel.ViewModel).ImportResults(openfile.FileName);
 
-            // expands DataPanel
-            this.HidePanel.Content = DownArrow;
-            Maximise(this.DataPanel);
+                this.CurrentFile.Visibility = Visibility.Visible;
+                this.SuccessButton.Visibility = Visibility.Visible;
+
+                // expands DataPanel
+                this.HidePanel.Content = DownArrow;
+                Maximise(this.DataPanel);
+            }
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
