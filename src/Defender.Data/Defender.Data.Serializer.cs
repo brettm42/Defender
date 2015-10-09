@@ -20,7 +20,7 @@ namespace Defender.Data
             return SerialiseToString<ObservableCollection<DataItem>>(this.DataGrid);
         }
 
-        public string SerialiseToString<TData>(TData dataitems)
+        public string SerialiseToString<T>(T dataitems)
         {
             using (var stream = new MemoryStream())
             {
@@ -37,7 +37,7 @@ namespace Defender.Data
             return this.DataGrid = DeserialiseFromString<ObservableCollection<DataItem>>(binarystring);
         }
 
-        public TData DeserialiseFromString<TData>(string dataitems)
+        public T DeserialiseFromString<T>(string dataitems)
         {
             byte[] bytearray = Convert.FromBase64String(dataitems);
 
@@ -45,7 +45,7 @@ namespace Defender.Data
             {
                 var formatter = new BinaryFormatter();
                 stream.Seek(0, SeekOrigin.Begin);
-                return (TData)formatter.Deserialize(stream);
+                return (T)formatter.Deserialize(stream);
             }
         }
         

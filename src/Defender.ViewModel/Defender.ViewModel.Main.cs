@@ -170,6 +170,7 @@ namespace Defender.ViewModel
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
+                this.Folder = path;
                 this.CurrentFile = Path.GetFileName(path);
 
                 Serializer reader = new Serializer(this.Statistics);

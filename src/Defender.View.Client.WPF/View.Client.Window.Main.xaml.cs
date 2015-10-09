@@ -24,36 +24,34 @@ namespace Defender.View.Client.WPF
     /// </summary>
     public partial class WindowMain : Window
     {
-        private static int ElemMaxHeight { get; set; }
-        private static int ElemMinHeight { get; set; }
+        private const string DownArrow = @"˅";
 
+        private const string UpArrow = @"˄";
+
+        private static int ElemMaxHeight { get; set; }
+
+        private static int ElemMinHeight { get; set; }
+        
         public WindowMain()
         {
             this.InitializeComponent();
-
-            this.RQFPath.Focus();
-
-            this.CurrentFile.Visibility = Visibility.Hidden;
+            
+            this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
 
             HidePanel_Click(null, null);
 
             ElemMinHeight = (int)this.Height / 6;
-            ElemMaxHeight = (int)this.Height - (ElemMinHeight / 2);
+            ElemMaxHeight = (int)this.Height - ElemMinHeight;
+
+            this.RQFPath.Focus();
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
         {
-            if (this.DataPanel.Visibility == Visibility.Visible)
-            {
-                this.DataPanel.Visibility = Visibility.Collapsed;
-                this.HidePanel.Content = @"˄";
-            }
-            else
-            {
-                this.DataPanel.Visibility = Visibility.Visible;
-                this.HidePanel.Content = @"˅";
-            }
+            this.DataPanel.ToggleVisibility();
+
+            this.HidePanel.Content = (this.DataPanel.Visibility == Visibility.Visible) ? DownArrow : UpArrow;
         }
         
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -66,17 +64,19 @@ namespace Defender.View.Client.WPF
                                           CheckFileExists = false,
                                       };
             
-            (this.DataContext as ViewModel.ViewModel).Folder = (openfile.ShowDialog() == true)
-                                                               ? openfile.FileName 
-                                                               : (this.DataContext as ViewModel.ViewModel).Folder;
+            if (openfile.ShowDialog() == true)
+            {
+                (this.DataContext as ViewModel.ViewModel).Folder = openfile.FileName;
 
-            (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+                (this.DataContext as ViewModel.ViewModel).ValidateFiles();
 
-            this.CurrentFile.Visibility = Visibility.Visible;
-            this.SuccessButton.Visibility = Visibility.Visible;
+                this.CurrentFile.Visibility   = Visibility.Visible;
+                this.SuccessButton.Visibility = Visibility.Visible;
 
-            this.DataPanel.Visibility = Visibility.Visible;
-            this.HidePanel.Content = @"˅";
+                // expands DataPanel
+                this.HidePanel.Content = DownArrow;
+                Maximise(this.DataPanel);
+            }
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -108,11 +108,12 @@ namespace Defender.View.Client.WPF
 
                 (this.DataContext as ViewModel.ViewModel).ValidateFiles();
                 
-                this.CurrentFile.Visibility = Visibility.Visible;
+                this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
 
-                this.DataPanel.Visibility = Visibility.Visible;
-                this.HidePanel.Content = @"˅";
+                // expands DataPanel
+                this.HidePanel.Content = DownArrow;
+                Maximise(this.DataPanel);
             }
         }
 
@@ -164,5 +165,15 @@ namespace Defender.View.Client.WPF
                                     : ElemMinHeight;
         }
         #endregion
+
+        private void Maximise(StackPanel control)
+        {
+            // unhides if hidden
+            (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
+
+            // increases height to maximum
+            //(control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
+            (control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight;
+        }
     }
 }
