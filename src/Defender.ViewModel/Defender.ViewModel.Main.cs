@@ -166,17 +166,19 @@ namespace Defender.ViewModel
             }
         }
 
-        public ObservableCollection<DataItem> ImportResults(string path)
+        public bool ImportResults(string path)
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
                 Serializer reader = new Serializer(this.Statistics);
 
-                return this.Statistics = reader.DeserialiseFromString(reader.Open(path));
+                this.Statistics = reader.DeserialiseFromString(reader.Open(path));
+
+                return (this.Statistics != null) ? true : false;
             }
             else
             {
-                return this.Statistics;
+                return false;
             }
         }
     }

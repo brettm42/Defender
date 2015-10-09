@@ -56,18 +56,12 @@ namespace Defender.View.Reader.WPF
         {
             OpenFileDialog openfile = new OpenFileDialog()
                                       {
-                                          Title    = "Select the RQF folder for Handback",
-                                          FileName = "-----Select This Folder-----",
-                                          Filter   = "Query folder (*.*)|*.rqf|RQF files (*.rqf)|*.rqf",
-                                          CheckFileExists = false,
+                                          Title    = "Select the Handback file to verify",
+                                          Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
                                       };
+
+            (this.DataContext as ViewModel.ViewModel).ImportResults((openfile.ShowDialog() == true) ? openfile.FileName : null);
             
-            (this.DataContext as ViewModel.ViewModel).Folder = (openfile.ShowDialog() == true)
-                                                               ? openfile.FileName 
-                                                               : (this.DataContext as ViewModel.ViewModel).Folder;
-
-            (this.DataContext as ViewModel.ViewModel).ValidateFiles();
-
             this.CurrentFile.Visibility = Visibility.Visible;
         }
 
@@ -96,23 +90,8 @@ namespace Defender.View.Reader.WPF
         {
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
-                (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+                (this.DataContext as ViewModel.ViewModel).ImportResults(this.RQFPath.Text);
             }
-        }
-
-        private void SuccessButton_Click(object sender, RoutedEventArgs e)
-        {
-            SaveFileDialog savefile = new SaveFileDialog()
-            {
-                Title = "Save Handback file as...",
-                Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
-                AddExtension = true,
-            };
-
-            (this.DataContext as ViewModel.ViewModel).ExportResults(
-                                                         (savefile.ShowDialog() == true)
-                                                         ? savefile.FileName
-                                                         : null);
         }
 
         #region TouchEvents

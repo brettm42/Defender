@@ -23,7 +23,7 @@
                            Text="Defender"/>
                 <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
                 <TextBlock Padding="5,5" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
-                           Text="Pick the query folder to handback:"/>
+                           Text="Verify a Handback file:"/>
                 <Grid Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
                     <TextBox x:Name="RQFPath" Margin="5,0,42,10" Padding="5"
                              ToolTip="Load Fabric query (.rqf) files from this folder"
