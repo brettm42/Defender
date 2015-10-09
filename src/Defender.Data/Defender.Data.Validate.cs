@@ -40,6 +40,8 @@ namespace Defender.Data
                                             Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
                                             Folder   = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
                                             ItemName = Path.GetFileNameWithoutExtension(file),
+                                            Date     = DateTime.Now,
+                                            User     = Environment.UserName,
                                         };
                     try
                     {

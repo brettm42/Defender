@@ -7,7 +7,7 @@
     <ProjectGuid>{7F152FF7-0759-4189-A3DA-F9FE91366BC8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Defender.View.WPF</RootNamespace>
+    <RootNamespace>Defender.View.Client.WPF</RootNamespace>
     <AssemblyName>Defender</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -62,7 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View.Window.Main.xaml">
+    <Page Include="View.Client.Window.Main.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -70,8 +70,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View.Window.Main.xaml.cs">
-      <DependentUpon>View.Window.Main.xaml</DependentUpon>
+    <Compile Include="View.Client.Window.Main.xaml.cs">
+      <DependentUpon>View.Client.Window.Main.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
