@@ -35,7 +35,7 @@ namespace Defender.View.Reader.WPF
         {
             this.InitializeComponent();
             
-            this.CurrentFile.Visibility = Visibility.Hidden;
+            this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
 
             HidePanel_Click(null, null);
@@ -61,14 +61,15 @@ namespace Defender.View.Reader.WPF
                                           Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
                                       };
 
-            (this.DataContext as ViewModel.ViewModel).ImportResults((openfile.ShowDialog() == true) ? openfile.FileName : null);
+            (this.DataContext as ViewModel.ViewModel).ImportResults(
+                                                         (openfile.ShowDialog() == true) ? openfile.FileName : null);
             
-            this.CurrentFile.Visibility = Visibility.Visible;
+            this.CurrentFile.Visibility   = Visibility.Visible;
             this.SuccessButton.Visibility = Visibility.Visible;
 
             // expands DataPanel
-            this.DataPanel.Visibility = Visibility.Visible;
             this.HidePanel.Content = DownArrow;
+            Maximise(this.DataPanel);
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -98,12 +99,12 @@ namespace Defender.View.Reader.WPF
             {
                 (this.DataContext as ViewModel.ViewModel).ImportResults(this.RQFPath.Text);
 
-                this.CurrentFile.Visibility = Visibility.Visible;
+                this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
 
                 // expands DataPanel
-                this.DataPanel.Visibility = Visibility.Visible;
                 this.HidePanel.Content = DownArrow;
+                Maximise(this.DataPanel);
             }
         }
 
@@ -139,5 +140,14 @@ namespace Defender.View.Reader.WPF
                                     : ElemMinHeight;
         }
         #endregion
+        
+        private void Maximise(object obj)
+        {
+            // unhides if hidden
+            (obj as System.Windows.Controls.Control).Visibility = Visibility.Visible;
+
+            // increases height to maximum
+            (obj as System.Windows.Controls.Control).Height = this.ActualHeight - ElemMinHeight;
+        }
     }
 }

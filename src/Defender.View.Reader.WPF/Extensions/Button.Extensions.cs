@@ -27,6 +27,5 @@ namespace System.Windows.Controls
                                ? Visibility.Collapsed
                                : Visibility.Visible;
         }
-
     }
 }
