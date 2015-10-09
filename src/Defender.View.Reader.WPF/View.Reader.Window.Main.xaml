@@ -17,10 +17,10 @@
         <ViewModel:StringArrayToInt x:Key="StringArrayToInt"/>
     </Window.Resources>
     <Grid>
-        <StackPanel>
-            <StackPanel>
+        <StackPanel Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+            <StackPanel Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" >
                 <TextBlock Padding="10,5" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
-                           Text="Defender"/>
+                           Text="Defender Reader"/>
                 <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
                 <TextBlock Padding="5,5" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Verify a Handback file:"/>

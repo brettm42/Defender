@@ -65,7 +65,7 @@ namespace Defender.View.Reader.WPF
             {
                 (this.DataContext as ViewModel.ViewModel).ImportResults(openfile.FileName);
 
-                this.CurrentFile.Visibility = Visibility.Visible;
+                this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
 
                 // expands DataPanel
@@ -142,14 +142,14 @@ namespace Defender.View.Reader.WPF
                                     : ElemMinHeight;
         }
         #endregion
-        
-        private void Maximise(object obj)
+
+        private void Maximise(StackPanel control)
         {
             // unhides if hidden
-            (obj as System.Windows.Controls.Control).Visibility = Visibility.Visible;
+            (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
 
             // increases height to maximum
-            (obj as System.Windows.Controls.Control).Height = this.ActualHeight - ElemMinHeight;
+            (control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
         }
     }
 }

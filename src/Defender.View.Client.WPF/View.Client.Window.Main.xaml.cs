@@ -166,13 +166,13 @@ namespace Defender.View.Client.WPF
         }
         #endregion
 
-        private void Maximise(object obj)
+        private void Maximise(StackPanel control)
         {
             // unhides if hidden
-            (obj as System.Windows.Controls.Control).Visibility = Visibility.Visible;
+            (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
 
             // increases height to maximum
-            (obj as System.Windows.Controls.Control).Height = this.ActualHeight - ElemMinHeight;
+            (control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
         }
     }
 }
