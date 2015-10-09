@@ -154,16 +154,30 @@ namespace Defender.ViewModel
 
         public bool ExportResults(string path)
         {
-            Serializer writer = new Serializer(this.Statistics);
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                Serializer writer = new Serializer(this.Statistics);
 
-            return this.Success = writer.Save(writer.SerialiseToString(), path);
+                return this.Success = writer.Save(writer.SerialiseToString(), path);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public ObservableCollection<DataItem> ImportResults(string path)
         {
-            Serializer reader = new Serializer(this.Statistics);
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                Serializer reader = new Serializer(this.Statistics);
 
-            return this.Statistics = reader.DeserialiseFromString(reader.Open(path));
+                return this.Statistics = reader.DeserialiseFromString(reader.Open(path));
+            }
+            else
+            {
+                return this.Statistics;
+            }
         }
     }
 }

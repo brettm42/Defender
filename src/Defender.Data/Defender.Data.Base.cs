@@ -26,20 +26,28 @@ namespace Defender.Data
 
         public bool Save(string file, string path)
         {
-            File.WriteAllText(path, file, UTF8Encoding.UTF8);
+            if (!string.IsNullOrWhiteSpace(path) && Path.HasExtension(path) && !string.IsNullOrWhiteSpace(file))
+            {
+                File.WriteAllText(path, file, UTF8Encoding.UTF8);
 
-            return File.Exists(path) ? true : false;
+                return File.Exists(path) ? true : false;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public string Open(string path)
         {
-            if (File.Exists(path))
+            if (!string.IsNullOrWhiteSpace(path) && File.Exists(path))
             {
                 return File.ReadAllText(path);
             }
             else
             {
-                throw new FileLoadException();
+                //throw new FileLoadException();
+                return null;
             }
         }
     }

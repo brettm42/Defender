@@ -101,6 +101,21 @@ namespace Defender.View.WPF
             }
         }
 
+        private void SuccessButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog()
+            {
+                Title = "Save Handback file as...",
+                Filter = "Handback file (*.hndbk)|*.hndbk|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                AddExtension = true,
+            };
+
+            (this.DataContext as ViewModel.ViewModel).ExportResults(
+                                                         (savefile.ShowDialog() == true)
+                                                         ? savefile.FileName
+                                                         : null);
+        }
+
         #region TouchEvents
         private void LoadButton_TouchDown(object sender, TouchEventArgs e)
         {

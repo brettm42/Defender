@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Defender.Model
 {
+    [Serializable]
     public class DataItem
     {
         internal int Id { get; set; }
