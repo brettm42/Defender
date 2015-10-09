@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,5 +23,24 @@ namespace Defender.Data
         /// Fires property changed event delegate.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool Save(string file, string path)
+        {
+            File.WriteAllText(path, file, UTF8Encoding.UTF8);
+
+            return File.Exists(path) ? true : false;
+        }
+
+        public string Open(string path)
+        {
+            if (File.Exists(path))
+            {
+                return File.ReadAllText(path);
+            }
+            else
+            {
+                throw new FileLoadException();
+            }
+        }
     }
 }
