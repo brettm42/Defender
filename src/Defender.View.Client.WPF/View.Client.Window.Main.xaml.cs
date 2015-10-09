@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,9 @@ namespace Defender.View.Client.WPF
             this.RQFPath.Focus();
 
             this.CurrentFile.Visibility = Visibility.Hidden;
+            this.SuccessButton.Visibility = Visibility.Hidden;
+
+            HidePanel_Click(null, null);
 
             ElemMinHeight = (int)this.Height / 6;
             ElemMaxHeight = (int)this.Height - (ElemMinHeight / 2);
@@ -69,6 +73,10 @@ namespace Defender.View.Client.WPF
             (this.DataContext as ViewModel.ViewModel).ValidateFiles();
 
             this.CurrentFile.Visibility = Visibility.Visible;
+            this.SuccessButton.Visibility = Visibility.Visible;
+
+            this.DataPanel.Visibility = Visibility.Visible;
+            this.HidePanel.Content = @"˅";
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -88,7 +96,7 @@ namespace Defender.View.Client.WPF
             this.DataPanel.Height = this.ActualHeight - e.GetPosition(this).Y >= ElemMinHeight
                                     ? this.ActualHeight - e.GetPosition(this).Y <= this.ActualHeight
                                         ? this.ActualHeight - e.GetPosition(this).Y
-                                        : ElemMaxHeight
+                                        : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
         }
 
@@ -96,18 +104,27 @@ namespace Defender.View.Client.WPF
         {
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
+                (this.DataContext as ViewModel.ViewModel).Folder = this.RQFPath.Text;
+
                 (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+                
+                this.CurrentFile.Visibility = Visibility.Visible;
+                this.SuccessButton.Visibility = Visibility.Visible;
+
+                this.DataPanel.Visibility = Visibility.Visible;
+                this.HidePanel.Content = @"˅";
             }
         }
 
         private void SuccessButton_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog savefile = new SaveFileDialog()
-            {
-                Title = "Save Handback file as...",
-                Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
-                AddExtension = true,
-            };
+                                      {
+                                          Title    = "Save Handback file as...",
+                                          Filter   = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                                          FileName = $"{(this.DataContext as ViewModel.ViewModel).Folder}.hback",
+                                          AddExtension = true,
+                                      };
 
             (this.DataContext as ViewModel.ViewModel).ExportResults(
                                                          (savefile.ShowDialog() == true)
@@ -143,7 +160,7 @@ namespace Defender.View.Client.WPF
             this.DataPanel.Height = this.ActualHeight - e.GetTouchPoint(this).Position.Y >= ElemMinHeight
                                     ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= this.ActualHeight
                                         ? this.ActualHeight - e.GetTouchPoint(this).Position.Y
-                                        : ElemMaxHeight
+                                        : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
         }
         #endregion
