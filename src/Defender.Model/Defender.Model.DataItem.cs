@@ -10,11 +10,11 @@ namespace Defender.Model
     [Serializable]
     public class DataItem
     {
-        internal int Id { get; set; }
-                
-        public string Project { get; set; }
+        public int Id { get; set; }
 
         public string Folder { get; set; }
+        
+        public string Project { get; set; }
 
         public string Language { get; set; }
 
@@ -27,6 +27,8 @@ namespace Defender.Model
         public int Warnings { get; set; }
 
         public DateTime Date { get; set; }
+
+        public string User { get; set; }
 
         public string ItemName
         {

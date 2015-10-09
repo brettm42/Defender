@@ -16,10 +16,10 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using Defender.ViewModel;
 
-namespace Defender.View.WPF
+namespace Defender.View.Client.WPF
 {
     /// <summary>
-    /// Interaction logic for View.Window.Main.xaml
+    /// Interaction logic for View.Client.Window.Main.xaml
     /// </summary>
     public partial class WindowMain : Window
     {
@@ -62,14 +62,13 @@ namespace Defender.View.WPF
                                           CheckFileExists = false,
                                       };
             
-            (this.DataContext as ViewModel.ViewModel).Folder = (openfile.ShowDialog() == true) 
+            (this.DataContext as ViewModel.ViewModel).Folder = (openfile.ShowDialog() == true)
                                                                ? openfile.FileName 
                                                                : (this.DataContext as ViewModel.ViewModel).Folder;
 
             (this.DataContext as ViewModel.ViewModel).ValidateFiles();
 
             this.CurrentFile.Visibility = Visibility.Visible;
-
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -106,7 +105,7 @@ namespace Defender.View.WPF
             SaveFileDialog savefile = new SaveFileDialog()
             {
                 Title = "Save Handback file as...",
-                Filter = "Handback file (*.hndbk)|*.hndbk|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
                 AddExtension = true,
             };
 
