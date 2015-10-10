@@ -66,9 +66,9 @@
             
             if (openfile.ShowDialog() == true)
             {
-                (this.DataContext as ViewModel.ViewModel).Folder = openfile.FileName;
+                (this.DataContext as ViewModel).Folder = openfile.FileName;
 
-                (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+                (this.DataContext as ViewModel).ValidateFiles();
 
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
@@ -104,9 +104,9 @@
         {
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
-                (this.DataContext as ViewModel.ViewModel).Folder = this.RQFPath.Text;
+                (this.DataContext as ViewModel).Folder = this.RQFPath.Text;
 
-                (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+                (this.DataContext as ViewModel).ValidateFiles();
                 
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
@@ -123,11 +123,11 @@
                                       {
                                           Title    = "Save Handback file as...",
                                           Filter   = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
-                                          FileName = $"{(this.DataContext as ViewModel.ViewModel).Folder}.hback",
+                                          FileName = $"{(this.DataContext as ViewModel).Folder}.hback",
                                           AddExtension = true,
                                       };
 
-            (this.DataContext as ViewModel.ViewModel).ExportResults(
+            (this.DataContext as ViewModel).ExportResults(
                                                          (savefile.ShowDialog() == true)
                                                          ? savefile.FileName
                                                          : null);

@@ -177,7 +177,7 @@
 
                 this.Statistics = reader.DeserialiseFromString(reader.Open(path));
 
-                return this.Success = (this.Statistics != null) ? true : false;
+                return (this.Statistics != null) ? true : false;
             }
             else
             {

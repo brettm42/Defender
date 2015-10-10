@@ -63,7 +63,7 @@
 
             if (openfile.ShowDialog() == true)
             {
-                (this.DataContext as ViewModel.ViewModel).ImportResults(openfile.FileName);
+                (this.DataContext as ViewModel).ImportResults(openfile.FileName);
 
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
@@ -99,7 +99,7 @@
         {
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
-                (this.DataContext as ViewModel.ViewModel).ImportResults(this.RQFPath.Text);
+                (this.DataContext as ViewModel).ImportResults(this.RQFPath.Text);
 
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
