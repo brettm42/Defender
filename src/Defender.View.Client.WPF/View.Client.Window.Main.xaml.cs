@@ -1,32 +1,32 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using Defender.ViewModel;
-
-namespace Defender.View.Client.WPF
+﻿namespace Defender.View.Client.WPF
 {
+    using System;
+    using System.IO;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Animation;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+    using Microsoft.Win32;
+    using Defender.ViewModel;
+
     /// <summary>
     /// Interaction logic for View.Client.Window.Main.xaml
     /// </summary>
     public partial class WindowMain : Window
     {
-        private const string DownArrow = @"˅";
+        internal const string DownArrow = @"˅";
 
-        private const string UpArrow = @"˄";
+        internal const string UpArrow = @"˄";
 
         private static int ElemMaxHeight { get; set; }
 

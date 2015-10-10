@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.FSharp;
-using Defender.Data;
-using Defender.Model;
-using Defender.Model.Extensions;
-
-namespace Defender.ViewModel
+﻿namespace Defender.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Microsoft.FSharp;
+    using Defender.Data;
+    using Defender.Model;
+    using Defender.Model.Extensions;
+
     public class ViewModel : ViewModelBase
     {
         public string LeafPath { get; set; }

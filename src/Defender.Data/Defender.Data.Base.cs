@@ -1,13 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Defender.Data
+﻿namespace Defender.Data
 {
+    using System;
+    using System.IO;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class DataBase : INotifyPropertyChanged
     {
         /// <summary>

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Defender.Model.Extensions;
-
-namespace Defender.ViewModel
+﻿namespace Defender.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Defender.Model.Extensions;
+
     public class ViewModelBase : INotifyPropertyChanged
     {
         /// <summary>

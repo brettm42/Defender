@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace System.Text
+﻿namespace System.Text
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public static class StringBuilderExtensions
     {
         public static StringBuilder AppendSequence<T>(

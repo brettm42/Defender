@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
-using System.Windows.Media;
-using Defender.Model.Extensions;
-
-namespace Defender.ViewModel
+﻿namespace Defender.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Data;
+    using System.Windows.Media;
+    using Defender.Model.Extensions;
+
     /// <summary>
     /// Converter class to convert a given boolean value to color, used for indicating system/execution status.
     /// true = green, false = red

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.FSharp;
-using Defender.Model;
-using Defender.Model.Extensions;
-
-namespace Defender.Data
+﻿namespace Defender.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.IO;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Microsoft.FSharp;
+    using Defender.Model;
+    using Defender.Model.Extensions;
+
     public class LEAF : DataBase
     {
         private const string DefaultLeafExe = @"MSLeaf.exe";
