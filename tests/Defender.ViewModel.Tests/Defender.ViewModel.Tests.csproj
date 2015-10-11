@@ -44,6 +44,19 @@
     <Compile Include="Defender.ViewModel.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Defender.Model\Defender.Model.csproj">
+      <Project>{d665f7c7-8011-4a62-a3d2-0ade1ac9dcc3}</Project>
+      <Name>Defender.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Defender.ViewModel\Defender.ViewModel.csproj">
+      <Project>{f9e2859b-4ac8-4426-8814-4169b0f735fa}</Project>
+      <Name>Defender.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

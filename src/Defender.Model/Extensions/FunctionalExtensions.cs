@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Defender.Model.Extensions
+﻿namespace Defender.Model.Extensions
 {
+    using System;
+
     public static class FunctionalExtensions
     {
         public static T Tee<T>(this T @this, Action<T> action)

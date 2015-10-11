@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.FSharp;
-using Defender.Data;
-using Defender.Model;
-using Defender.Model.Extensions;
-
-namespace Defender.ViewModel
+﻿namespace Defender.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Microsoft.FSharp;
+    using Defender.Data;
+    using Defender.Model;
+    using Defender.Model.Extensions;
+
     public class ViewModel : ViewModelBase
     {
         public string LeafPath { get; set; }
@@ -45,7 +45,7 @@ namespace Defender.ViewModel
                 RaisePropertyChanged(nameof(Success));
             }
         }
-        private bool _success = false;
+        private bool _success = true;
 
         public int Progress
         {
@@ -177,7 +177,7 @@ namespace Defender.ViewModel
 
                 this.Statistics = reader.DeserialiseFromString(reader.Open(path));
 
-                return this.Success = (this.Statistics != null) ? true : false;
+                return (this.Statistics != null) ? true : false;
             }
             else
             {

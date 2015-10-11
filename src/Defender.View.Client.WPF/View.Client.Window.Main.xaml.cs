@@ -1,32 +1,32 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using Defender.ViewModel;
-
-namespace Defender.View.Client.WPF
+﻿namespace Defender.View.Client.WPF
 {
+    using System;
+    using System.IO;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Animation;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
+    using System.Windows.Shapes;
+    using Microsoft.Win32;
+    using Defender.ViewModel;
+
     /// <summary>
     /// Interaction logic for View.Client.Window.Main.xaml
     /// </summary>
     public partial class WindowMain : Window
     {
-        private const string DownArrow = @"˅";
+        internal const string DownArrow = @"˅";
 
-        private const string UpArrow = @"˄";
+        internal const string UpArrow = @"˄";
 
         private static int ElemMaxHeight { get; set; }
 
@@ -38,6 +38,7 @@ namespace Defender.View.Client.WPF
             
             this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
+            //StackPanelExtensions.HideFields(new object[] { this.CurrentFile, this.SuccessButton });
 
             HidePanel_Click(null, null);
 
@@ -58,20 +59,21 @@ namespace Defender.View.Client.WPF
         {
             OpenFileDialog openfile = new OpenFileDialog()
                                       {
-                                          Title    = "Select the RQF folder for Handback",
-                                          FileName = "-----Select This Folder-----",
+                                          Title    = "Open a folder of queries for Handback",
+                                          FileName = "--This Folder--",
                                           Filter   = "Query folder (*.*)|*.rqf|RQF files (*.rqf)|*.rqf",
                                           CheckFileExists = false,
                                       };
             
             if (openfile.ShowDialog() == true)
             {
-                (this.DataContext as ViewModel.ViewModel).Folder = openfile.FileName;
+                (this.DataContext as ViewModel).Folder = openfile.FileName;
 
-                (this.DataContext as ViewModel.ViewModel).ValidateFiles();
-
+                (this.DataContext as ViewModel).ValidateFiles();
+                
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
+                //StackPanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
@@ -104,12 +106,13 @@ namespace Defender.View.Client.WPF
         {
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
-                (this.DataContext as ViewModel.ViewModel).Folder = this.RQFPath.Text;
+                (this.DataContext as ViewModel).Folder = this.RQFPath.Text;
 
-                (this.DataContext as ViewModel.ViewModel).ValidateFiles();
+                (this.DataContext as ViewModel).ValidateFiles();
                 
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
+                //StackPanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
@@ -123,14 +126,14 @@ namespace Defender.View.Client.WPF
                                       {
                                           Title    = "Save Handback file as...",
                                           Filter   = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
-                                          FileName = $"{(this.DataContext as ViewModel.ViewModel).Folder}.hback",
+                                          FileName = $"{(this.DataContext as ViewModel).Folder}.hback",
                                           AddExtension = true,
                                       };
 
-            (this.DataContext as ViewModel.ViewModel).ExportResults(
-                                                         (savefile.ShowDialog() == true)
-                                                         ? savefile.FileName
-                                                         : null);
+            (this.DataContext as ViewModel).ExportResults(
+                                               (savefile.ShowDialog() == true)
+                                               ? savefile.FileName
+                                               : null);
         }
 
         #region TouchEvents
@@ -172,8 +175,9 @@ namespace Defender.View.Client.WPF
             (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
 
             // increases height to maximum
+            // TODO: find a smarter way of constraining the panel expansion/maximising
             //(control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
-            (control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight;
+            //(control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight - ElemMinHeight;
         }
     }
 }
