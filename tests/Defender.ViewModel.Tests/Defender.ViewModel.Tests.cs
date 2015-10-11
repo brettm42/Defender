@@ -11,5 +11,18 @@
     [TestClass]
     public class ViewModelTests
     {
+        [TestMethod]
+        [TestCategory("FunctionalTest")]
+        void LoadFile()
+        {
+
+        }
+
+        [TestMethod]
+        [TestCategory("FunctionalTest")]
+        void SaveFile()
+        {
+
+        }
     }
 }
