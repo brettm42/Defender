@@ -58,7 +58,7 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null) return "no";
+            if (value == null || !(value as string[]).Any()) return "no";
 
             return new StringBuilder()
                            .AppendSequence(
@@ -83,7 +83,7 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null) return "no";
+            if (value == null || !(value as string[]).Any()) return "no";
 
             return (value as string[])?.Count() ?? 0;
         }

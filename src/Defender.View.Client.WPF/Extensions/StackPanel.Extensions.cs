@@ -19,5 +19,20 @@
                                : Visibility.Visible;
         }
 
+        public static void HideFields(object[] fields)
+        {
+            foreach (object field in fields)
+            {
+                (field as Control).Visibility = Visibility.Collapsed;
+            }
+        }
+
+        public static void ShowFields(object[] fields)
+        {
+            foreach (object field in fields)
+            {
+                (field as Control).Visibility = Visibility.Visible;
+            }
+        }
     }
 }

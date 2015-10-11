@@ -38,6 +38,7 @@
             
             this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
+            //StackPanelExtensions.HideFields(new object[] { this.CurrentFile, this.SuccessButton });
 
             HidePanel_Click(null, null);
 
@@ -58,8 +59,8 @@
         {
             OpenFileDialog openfile = new OpenFileDialog()
                                       {
-                                          Title    = "Select the RQF folder for Handback",
-                                          FileName = "-----Select This Folder-----",
+                                          Title    = "Open a folder of queries for Handback",
+                                          FileName = "--This Folder--",
                                           Filter   = "Query folder (*.*)|*.rqf|RQF files (*.rqf)|*.rqf",
                                           CheckFileExists = false,
                                       };
@@ -69,9 +70,10 @@
                 (this.DataContext as ViewModel).Folder = openfile.FileName;
 
                 (this.DataContext as ViewModel).ValidateFiles();
-
+                
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
+                //StackPanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
@@ -110,6 +112,7 @@
                 
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
+                //StackPanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
@@ -128,9 +131,9 @@
                                       };
 
             (this.DataContext as ViewModel).ExportResults(
-                                                         (savefile.ShowDialog() == true)
-                                                         ? savefile.FileName
-                                                         : null);
+                                               (savefile.ShowDialog() == true)
+                                               ? savefile.FileName
+                                               : null);
         }
 
         #region TouchEvents
@@ -172,8 +175,9 @@
             (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
 
             // increases height to maximum
+            // TODO: find a smarter way of constraining the panel expansion/maximising
             //(control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
-            (control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight;
+            //(control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight - ElemMinHeight;
         }
     }
 }

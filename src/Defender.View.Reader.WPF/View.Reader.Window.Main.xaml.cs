@@ -149,8 +149,9 @@
             (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
 
             // increases height to maximum
+            // TODO: find a smarter way of constraining the panel expansion/maximising
             //(control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
-            (control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight;
+            //(control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight - ElemMinHeight;
         }
     }
 }

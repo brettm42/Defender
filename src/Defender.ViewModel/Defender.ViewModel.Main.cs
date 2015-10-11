@@ -45,7 +45,7 @@
                 RaisePropertyChanged(nameof(Success));
             }
         }
-        private bool _success = false;
+        private bool _success = true;
 
         public int Progress
         {
