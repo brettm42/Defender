@@ -30,6 +30,10 @@
 
         public string User { get; set; }
 
+        public string Station { get; set; }
+
+        public string Domain { get; set; }
+
         public string ItemName
         {
             get

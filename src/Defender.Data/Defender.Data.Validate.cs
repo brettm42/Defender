@@ -42,6 +42,8 @@
                                             ItemName = Path.GetFileNameWithoutExtension(file),
                                             Date     = DateTime.Now,
                                             User     = Environment.UserName,
+                                            Station  = Environment.MachineName,
+                                            Domain   = Environment.UserDomainName,
                                         };
                     try
                     {
