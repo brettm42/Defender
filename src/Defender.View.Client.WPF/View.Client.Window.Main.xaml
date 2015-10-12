@@ -62,17 +62,20 @@
             <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Width="200" Height="24" VerticalAlignment="Bottom" FontSize="18.667"
                     Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
                     Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
-            <Rectangle Height="1" VerticalAlignment="Bottom"
-                       Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-            <StackPanel x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" 
+            <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+            <Grid x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" 
                         MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
-                <TextBlock Margin="25,0" Padding="0,5,0,0"
-                           Text="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-                <DataGrid x:Name="DataGrid" Margin="25,0,25,5" 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                <Label Margin="25,0" Padding="0,5,0,0" Grid.Row="0"
+                           Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                <DataGrid x:Name="DataGrid" Margin="25,0,25,5" Grid.Row="1"
                           ItemsSource="{Binding Statistics, IsAsync=True}">
                 </DataGrid>
-                <Rectangle Height="3"/>
-            </StackPanel>
+            </Grid>
+            <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
         </StackPanel>
     </Grid>
 </Window>

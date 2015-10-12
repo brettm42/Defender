@@ -77,7 +77,7 @@
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
-                Maximise(this.DataPanel);
+                this.DataPanel.Maximise();
             }
         }
 
@@ -116,7 +116,7 @@
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
-                Maximise(this.DataPanel);
+                this.DataPanel.Maximise();
             }
         }
 

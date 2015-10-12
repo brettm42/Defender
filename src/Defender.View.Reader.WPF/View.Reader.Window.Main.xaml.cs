@@ -30,12 +30,12 @@
         private static int ElemMaxHeight { get; set; }
 
         private static int ElemMinHeight { get; set; }
-        
+
         public WindowMain()
         {
             this.InitializeComponent();
-            
-            this.CurrentFile.Visibility   = Visibility.Hidden;
+
+            this.CurrentFile.Visibility = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
 
             HidePanel_Click(null, null);
@@ -52,25 +52,25 @@
 
             this.HidePanel.Content = (this.DataPanel.Visibility == Visibility.Visible) ? DownArrow : UpArrow;
         }
-        
+
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openfile = new OpenFileDialog()
-                                      {
-                                          Title  = "Select the Handback file to verify",
-                                          Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
-                                      };
+            {
+                Title = "Select the Handback file to verify",
+                Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+            };
 
             if (openfile.ShowDialog() == true)
             {
                 (this.DataContext as ViewModel).ImportResults(openfile.FileName);
 
-                this.CurrentFile.Visibility   = Visibility.Visible;
+                this.CurrentFile.Visibility = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
-                Maximise(this.DataPanel);
+                this.DataPanel.Maximise();
             }
         }
 
@@ -101,12 +101,12 @@
             {
                 (this.DataContext as ViewModel).ImportResults(this.RQFPath.Text);
 
-                this.CurrentFile.Visibility   = Visibility.Visible;
+                this.CurrentFile.Visibility = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
-                Maximise(this.DataPanel);
+                this.DataPanel.Maximise();
             }
         }
 
@@ -126,7 +126,7 @@
             CaptureTouch(null);
             this.DataPanel.TouchMove += DataPanel_TouchMove;
         }
-        
+
         private void DataPanel_TouchUp(object sender, TouchEventArgs e)
         {
             ReleaseTouchCapture(null);
@@ -142,16 +142,5 @@
                                     : ElemMinHeight;
         }
         #endregion
-        
-        private void Maximise(StackPanel control)
-        {
-            // unhides if hidden
-            (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
-
-            // increases height to maximum
-            // TODO: find a smarter way of constraining the panel expansion/maximising
-            //(control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
-            //(control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight - ElemMinHeight;
-        }
     }
 }
