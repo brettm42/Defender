@@ -38,7 +38,7 @@
             
             this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
-            //StackPanelExtensions.HideFields(new object[] { this.CurrentFile, this.SuccessButton });
+            //PanelExtensions.HideFields(new object[] { this.CurrentFile, this.SuccessButton });
 
             HidePanel_Click(null, null);
 
@@ -73,7 +73,7 @@
                 
                 this.CurrentFile.Visibility   = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
-                //StackPanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
+                //PanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;

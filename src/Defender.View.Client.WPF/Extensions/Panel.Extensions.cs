@@ -1,6 +1,6 @@
 ﻿namespace System.Windows.Controls
 {
-    public static class StackPanelExtensions
+    public static class PanelExtensions
     {
         public static void ToggleVisibility<T>(T[] fields)
         {
@@ -48,9 +48,7 @@
             @this.Visibility = Visibility.Visible;
 
             // increases height to maximum
-            // TODO: find a smarter way of constraining the panel expansion/maximising
-            //@this.Height = this.ActualHeight - (ElemMinHeight * 2);
-            @this.Height = maxheight - 100;
+            @this.Height = maxheight - (maxheight / 8);
         }
 
         public static void Maximise(this Grid @this, double maxheight)
@@ -59,9 +57,7 @@
             @this.Visibility = Visibility.Visible;
 
             // increases height to maximum
-            // TODO: find a smarter way of constraining the panel expansion/maximising
-            //@this.Height = this.ActualHeight - (ElemMinHeight * 2);
-            @this.Height = maxheight - 100;
+            @this.Height = maxheight - (maxheight / 8);
         }
     }
 }
