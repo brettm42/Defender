@@ -42,7 +42,7 @@
 
             HidePanel_Click(null, null);
 
-            ElemMinHeight = (int)this.Height / 6;
+            ElemMinHeight = (int)this.Height / 8;
             ElemMaxHeight = (int)this.Height - ElemMinHeight;
 
             this.RQFPath.Focus();
@@ -77,7 +77,7 @@
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
-                this.DataPanel.Maximise();
+                this.DataPanel.Maximise(this.ActualHeight);
             }
         }
 
@@ -96,7 +96,7 @@
         private void DataPanel_MouseMove(object sender, MouseEventArgs e)
         {
             this.DataPanel.Height = this.ActualHeight - e.GetPosition(this).Y >= ElemMinHeight
-                                    ? this.ActualHeight - e.GetPosition(this).Y <= this.ActualHeight
+                                    ? this.ActualHeight - e.GetPosition(this).Y <= (this.ActualHeight - 20)
                                         ? this.ActualHeight - e.GetPosition(this).Y
                                         : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
@@ -116,7 +116,7 @@
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
-                this.DataPanel.Maximise();
+                this.DataPanel.Maximise(this.ActualHeight);
             }
         }
 
@@ -162,22 +162,11 @@
         private void DataPanel_TouchMove(object sender, TouchEventArgs e)
         {
             this.DataPanel.Height = this.ActualHeight - e.GetTouchPoint(this).Position.Y >= ElemMinHeight
-                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= this.ActualHeight
+                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= (this.ActualHeight - 20)
                                         ? this.ActualHeight - e.GetTouchPoint(this).Position.Y
                                         : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
         }
         #endregion
-
-        private void Maximise(StackPanel control)
-        {
-            // unhides if hidden
-            (control as System.Windows.Controls.StackPanel).Visibility = Visibility.Visible;
-
-            // increases height to maximum
-            // TODO: find a smarter way of constraining the panel expansion/maximising
-            //(control as System.Windows.Controls.StackPanel).Height = this.ActualHeight - (ElemMinHeight * 2);
-            //(control as System.Windows.Controls.StackPanel).Height = ElemMaxHeight - ElemMinHeight;
-        }
     }
 }

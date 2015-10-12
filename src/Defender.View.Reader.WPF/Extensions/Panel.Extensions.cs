@@ -35,7 +35,7 @@
             }
         }
 
-        public static void Maximise(this StackPanel @this)
+        public static void Maximise(this StackPanel @this, double maxheight)
         {
             // unhides if hidden
             @this.Visibility = Visibility.Visible;
@@ -43,10 +43,10 @@
             // increases height to maximum
             // TODO: find a smarter way of constraining the panel expansion/maximising
             //@this.Height = this.ActualHeight - (ElemMinHeight * 2);
-            //@this.Height = ElemMaxHeight - ElemMinHeight;
+            @this.Height = maxheight 
         }
         
-        public static void Maximise(this Grid @this)
+        public static void Maximise(this Grid @this, double maxheight)
         {
             // unhides if hidden
             @this.Visibility = Visibility.Visible;
@@ -54,7 +54,7 @@
             // increases height to maximum
             // TODO: find a smarter way of constraining the panel expansion/maximising
             //@this.Height = this.ActualHeight - (ElemMinHeight * 2);
-            //@this.Height = ElemMaxHeight - ElemMinHeight;
+            @this.Height = maxheight - 100;
         }
     }
 }

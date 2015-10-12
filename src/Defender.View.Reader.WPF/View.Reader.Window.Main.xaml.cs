@@ -23,9 +23,9 @@
     /// </summary>
     public partial class WindowMain : Window
     {
-        private const string DownArrow = @"˅";
+        internal const string DownArrow = @"˅";
 
-        private const string UpArrow = @"˄";
+        internal const string UpArrow = @"˄";
 
         private static int ElemMaxHeight { get; set; }
 
@@ -37,10 +37,11 @@
 
             this.CurrentFile.Visibility = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
+            //StackPanelExtensions.HideFields(new object[] { this.CurrentFile, this.SuccessButton });
 
             HidePanel_Click(null, null);
 
-            ElemMinHeight = (int)this.Height / 6;
+            ElemMinHeight = (int)this.Height / 8;
             ElemMaxHeight = (int)this.Height - ElemMinHeight;
 
             this.RQFPath.Focus();
@@ -56,10 +57,10 @@
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openfile = new OpenFileDialog()
-            {
-                Title = "Select the Handback file to verify",
-                Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
-            };
+                                      {
+                                          Title = "Select the Handback file to verify",
+                                          Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                                      };
 
             if (openfile.ShowDialog() == true)
             {
@@ -67,10 +68,11 @@
 
                 this.CurrentFile.Visibility = Visibility.Visible;
                 this.SuccessButton.Visibility = Visibility.Visible;
+                //StackPanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
-                this.DataPanel.Maximise();
+                this.DataPanel.Maximise(this.ActualHeight);
             }
         }
 
@@ -89,7 +91,7 @@
         private void DataPanel_MouseMove(object sender, MouseEventArgs e)
         {
             this.DataPanel.Height = this.ActualHeight - e.GetPosition(this).Y >= ElemMinHeight
-                                    ? this.ActualHeight - e.GetPosition(this).Y <= this.ActualHeight
+                                    ? this.ActualHeight - e.GetPosition(this).Y <= (this.ActualHeight - 20)
                                         ? this.ActualHeight - e.GetPosition(this).Y
                                         : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
@@ -106,7 +108,7 @@
 
                 // expands DataPanel
                 this.HidePanel.Content = DownArrow;
-                this.DataPanel.Maximise();
+                this.DataPanel.Maximise(this.ActualHeight);
             }
         }
 
@@ -136,7 +138,7 @@
         private void DataPanel_TouchMove(object sender, TouchEventArgs e)
         {
             this.DataPanel.Height = this.ActualHeight - e.GetTouchPoint(this).Position.Y >= ElemMinHeight
-                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= this.ActualHeight
+                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= (this.ActualHeight - 20)
                                         ? this.ActualHeight - e.GetTouchPoint(this).Position.Y
                                         : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
