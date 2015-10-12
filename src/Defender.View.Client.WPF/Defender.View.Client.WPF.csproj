@@ -71,7 +71,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Extensions\Button.Extensions.cs" />
-    <Compile Include="Extensions\StackPanel.Extensions.cs" />
+    <Compile Include="Extensions\Panel.Extensions.cs" />
     <Compile Include="View.Client.Window.Main.xaml.cs">
       <DependentUpon>View.Client.Window.Main.xaml</DependentUpon>
       <SubType>Code</SubType>
