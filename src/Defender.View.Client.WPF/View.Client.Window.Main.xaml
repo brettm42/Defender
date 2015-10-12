@@ -22,16 +22,19 @@
                 <TextBlock Padding="10,5" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Defender"/>
                 <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
-                <TextBlock Padding="5,5" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+                <TextBlock Padding="5,5"
                            Text="Pick the query folder to handback:"/>
-                <Grid Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+                <Grid>
                     <TextBox x:Name="RQFPath" Margin="5,0,42,10" Padding="5"
                              ToolTip="Load Fabric query (.rqf) files from this folder"
                              Text="{Binding Folder, Mode=TwoWay}" KeyDown="RQFPath_KeyDown"/>
                     <Button x:Name="LoadButton" Margin="0,0,5,10" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
                             Content="..." Click="LoadButton_Click" TouchDown="LoadButton_TouchDown"/>
                 </Grid>
-                <Grid  Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
+                <Rectangle Height="1" Margin="-5,0,-5,0"
+                           Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+                <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Margin="-5,0,-5,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="210*"/>
                         <ColumnDefinition Width="86*"/>
@@ -50,12 +53,14 @@
                             Foreground="White" Background="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"
                             Content="{Binding Success, Converter={StaticResource BoolToCharaConverter}, IsAsync=True}" Click="SuccessButton_Click"/>
                 </Grid>
-                <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+                <Rectangle Height="1" Margin="-5,0,-5,0"
+                           Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
                 <TextBlock x:Name="CurrentFile"  Margin="10,0" Padding="0,10,5,10" VerticalAlignment="Bottom" FontWeight="Bold"
                            Text="{Binding CurrentFile, StringFormat='Verifying {0}...'}"/>
                 <ProgressBar VerticalAlignment="Bottom" Height="30" Margin="-2,5,-2,0" BorderThickness="0,1" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
                              Value="{Binding Progress}"/>
-                <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+                <Rectangle Height="1" Margin="-5,0,-5,0"
+                           Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
@@ -64,10 +69,10 @@
                     Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
             <Grid x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="55"
-                        MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
-                <Label Margin="25,0" Padding="0,5,0,0" VerticalAlignment="Top"
-                           Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-                <DataGrid x:Name="DataGrid" Margin="25,25,25,5"
+                  MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
+                <Label Margin="20,0" Padding="0,5,0,0" VerticalAlignment="Top"
+                       Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                <DataGrid x:Name="DataGrid" Margin="20,25,20,5"
                           ItemsSource="{Binding Statistics, IsAsync=True}"/>
             </Grid>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
