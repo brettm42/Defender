@@ -86,42 +86,35 @@
                         <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}"/>
                         <DataGridTextColumn Header="Gamearea" Binding="{Binding Path=Folder}"/>
                         <DataGridTextColumn Header="Language" Binding="{Binding Path=Language}"/>
-                        <DataGridTextColumn Header="Errors" Binding="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
-                        <DataGridTextColumn Header="Not&#xA;Final" Binding="{Binding Path=NotFinal}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
-                        <DataGridTextColumn Header="Not&#xA;Reviewed" Binding="{Binding Path=ForReview}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
-                        <DataGridTextColumn Header="Warnings" Binding="{Binding Path=Warnings}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
-                    </DataGrid.Columns>
-                    <!--<DataGrid.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
+                        <DataGridTemplateColumn Header="Errors">
+                            <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Name}"/>
-                                    </StackPanel>
+                                    <TextBlock Text="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                            <GroupStyle.ContainerStyle>
-                                <Style TargetType="{x:Type GroupItem}">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                <Expander>
-                                                    <Expander.Header>
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="{Binding Name}"/>
-                                                            <TextBlock Text="{Binding ItemCount}"/>
-                                                            <TextBlock Text="Items"/>
-                                                        </StackPanel>
-                                                    </Expander.Header>
-                                                </Expander>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    
-                                </Style>
-                            </GroupStyle.ContainerStyle>
-                        </GroupStyle>
-                    </DataGrid.GroupStyle>-->
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Not&#xA;Final">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=NotFinal}" FontWeight="{Binding Path=NotFinal, Converter={StaticResource IntToFontWeight}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Not&#xA;Reviewed">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ForReview}" FontWeight="{Binding Path=ForReview, Converter={StaticResource IntToFontWeight}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Warnings">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Warnings}" FontWeight="{Binding Path=Warnings, Converter={StaticResource IntToFontWeight}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
                 </DataGrid>
             </Grid>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
