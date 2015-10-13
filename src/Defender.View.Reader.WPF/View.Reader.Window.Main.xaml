@@ -20,12 +20,12 @@
         <StackPanel Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
             <StackPanel Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
                 <StackPanel.Effect>
-                    <DropShadowEffect BlurRadius="5" Direction="180" Color="Gray" ShadowDepth="1" Opacity="0.5"/>
+                    <DropShadowEffect BlurRadius="5" Direction="180" Color="Gray" ShadowDepth="1" Opacity="0.5" RenderingBias="Quality"/>
                 </StackPanel.Effect>
                 <TextBlock Padding="10,5" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Defender Reader"/>
                 <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
-	    	<Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
+	    	    <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
                 <TextBlock Padding="5,5" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Verify a Handback file:"/>
                 <Grid Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
@@ -70,16 +70,16 @@
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
             <StackPanel.Effect>
-                <DropShadowEffect BlurRadius="5" Direction="0" Color="Gray" ShadowDepth="1" Opacity="0.5"/>
+                <DropShadowEffect BlurRadius="5" Direction="90" Color="Gray" ShadowDepth="1" Opacity="0.5" RenderingBias="Quality"/>
             </StackPanel.Effect>
             <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Width="200" Height="24" VerticalAlignment="Bottom" FontSize="18.667"
                     Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
                     Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
             <Grid x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="55"
-                        MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
+                  MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
                 <Label Margin="20,0" Padding="0,5,0,0" VerticalAlignment="Top"
-                           Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                       Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
                 <DataGrid x:Name="DataGrid" Margin="20,25,20,5"
                           ItemsSource="{Binding Statistics, IsAsync=True}"/>
             </Grid>

@@ -158,7 +158,7 @@
             {
                 Serializer writer = new Serializer(this.Statistics);
 
-                return this.Success = writer.Save(writer.SerialiseToString(), path);
+                return writer.Save(writer.SerialiseToString(), path);
             }
             else
             {
