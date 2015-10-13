@@ -77,19 +77,21 @@
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
             <Grid x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="55"
                   MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
-                <Label Margin="20,0" Padding="0,5,0,0" VerticalAlignment="Top"
+                <Label Margin="15,0" Padding="0,5,0,0" VerticalAlignment="Top"
                        Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-                <DataGrid x:Name="DataGrid" Margin="20,25,20,5" FrozenColumnCount="1" AutoGenerateColumns="False" IsReadOnly="True"
+                <DataGrid x:Name="DataGrid" Margin="15,22,15,5" FrozenColumnCount="1" AutoGenerateColumns="False" IsReadOnly="True"
                           ItemsSource="{Binding Statistics, IsAsync=True}">
-                    <DataGridTextColumn Header="Query Name" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Project" Binding="{Binding Project}"/>
-                    <DataGridTextColumn Header="Gamearea" Binding="{Binding Folder}"/>
-                    <DataGridTextColumn Header="Language" Binding="{Binding Language}"/>
-                    <DataGridTextColumn Header="Errors" Binding="{Binding Errors}" SortDirection="Descending" FontWeight="{Binding Errors, Converter={StaticResource IntToFontWeight}}"/>
-                    <DataGridTextColumn Header="Warnings" Binding="{Binding Warnings}" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Not 7-Final" Binding="{Binding NotFinal}" FontWeight="Bold"/>
-                    <DataGridTextColumn Header="Not Reviewed" Binding="{Binding ForReview}" FontWeight="Bold"/>
-                        <!--<DataGrid.GroupStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Query Name" Binding="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}"/>
+                        <DataGridTextColumn Header="Gamearea" Binding="{Binding Path=Folder}"/>
+                        <DataGridTextColumn Header="Language" Binding="{Binding Path=Language}"/>
+                        <DataGridTextColumn Header="Errors" Binding="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
+                        <DataGridTextColumn Header="Not Final" Binding="{Binding Path=NotFinal}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
+                        <DataGridTextColumn Header="Not Reviewed" Binding="{Binding Path=ForReview}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
+                        <DataGridTextColumn Header="Warnings" Binding="{Binding Path=Warnings}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
+                    </DataGrid.Columns>
+                    <!--<DataGrid.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>

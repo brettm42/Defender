@@ -14,18 +14,18 @@
         {
             get
             {
-                return _item;
+                return _name;
             }
             set
             {
                 if (value != null)
                 {
                     this._Id = value.GetHashCode();
-                    _item = value;
+                    _name = value;
                 }
             }
         }
-        private string _item;
+        private string _name;
 
         public string Project { get; set; }
 
