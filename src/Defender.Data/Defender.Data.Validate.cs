@@ -36,14 +36,14 @@
                     // builds DataItem to store results
                     DataItem filedata = new DataItem()
                                         {
-                                            Id       = file.GetHashCode(),
                                             Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
                                             Folder   = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
-                                            ItemName = Path.GetFileNameWithoutExtension(file),
+                                            Name     = Path.GetFileNameWithoutExtension(file),
                                             Date     = DateTime.Now,
-                                            User     = Environment.UserName,
-                                            Station  = Environment.MachineName,
-                                            Domain   = Environment.UserDomainName,
+                                            _Id      = file.GetHashCode(),
+                                            _User    = Environment.UserName,
+                                            _Station = Environment.MachineName,
+                                            _Domain  = Environment.UserDomainName,
                                         };
                     try
                     {

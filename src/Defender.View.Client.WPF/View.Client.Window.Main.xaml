@@ -6,7 +6,7 @@
         xmlns:ViewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.Client.WPF"
         mc:Ignorable="d"
-        Title="Defender" Height="750" Width="600" Icon="Resources/Defender.ico">
+        Title="Defender" Height="750" Width="700" Icon="Resources/Defender.ico">
     <Window.DataContext>
         <ViewModel:ViewModel/>
     </Window.DataContext>
@@ -15,10 +15,14 @@
         <ViewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
         <ViewModel:StringArrayToString x:Key="StringArrayToString"/>
         <ViewModel:StringArrayToInt x:Key="StringArrayToInt"/>
+        <ViewModel:IntToFontWeight x:Key="IntToFontWeight"/>
     </Window.Resources>
     <Grid>
         <StackPanel>
             <StackPanel Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                <StackPanel.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="180" Color="Gray" ShadowDepth="1" Opacity="0.5" RenderingBias="Quality"/>
+                </StackPanel.Effect>
                 <TextBlock Padding="10,5" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Defender"/>
                 <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
@@ -64,16 +68,54 @@
             </StackPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="5" Direction="90" Color="Gray" ShadowDepth="1" Opacity="0.5" RenderingBias="Quality"/>
+            </StackPanel.Effect>
             <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Width="200" Height="24" VerticalAlignment="Bottom" FontSize="18.667"
                     Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
                     Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
             <Grid x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="55"
                   MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
-                <Label Margin="20,0" Padding="0,5,0,0" VerticalAlignment="Top"
+                <Label Margin="15,0" Padding="0,5,0,0" VerticalAlignment="Top"
                        Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-                <DataGrid x:Name="DataGrid" Margin="20,25,20,5"
-                          ItemsSource="{Binding Statistics, IsAsync=True}"/>
+                <DataGrid x:Name="DataGrid" Margin="15,22,15,5" FrozenColumnCount="1" AutoGenerateColumns="False" IsReadOnly="True"
+                          ItemsSource="{Binding Statistics, IsAsync=True}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Query Name" Binding="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}"/>
+                        <DataGridTextColumn Header="Gamearea" Binding="{Binding Path=Folder}"/>
+                        <DataGridTextColumn Header="Language" Binding="{Binding Path=Language}"/>
+                        <DataGridTemplateColumn Header="Errors">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Not&#xA;Final">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=NotFinal}" FontWeight="{Binding Path=NotFinal, Converter={StaticResource IntToFontWeight}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Not&#xA;Reviewed">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ForReview}" FontWeight="{Binding Path=ForReview, Converter={StaticResource IntToFontWeight}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Warnings">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Warnings}" FontWeight="{Binding Path=Warnings, Converter={StaticResource IntToFontWeight}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
         </StackPanel>

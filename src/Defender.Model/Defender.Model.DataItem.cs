@@ -10,46 +10,46 @@
     [Serializable]
     public class DataItem
     {
-        public int Id { get; set; }
-
-        public string Folder { get; set; }
-        
-        public string Project { get; set; }
-
-        public string Language { get; set; }
-
-        public int NotFinal { get; set; }
-
-        public int ForReview { get; set; }
-
-        public int Errors { get; set; }
-
-        public int Warnings { get; set; }
-
-        public DateTime Date { get; set; }
-
-        public string User { get; set; }
-
-        public string Station { get; set; }
-
-        public string Domain { get; set; }
-
-        public string ItemName
+        public string Name
         {
             get
             {
-                return _item;
+                return _name;
             }
             set
             {
                 if (value != null)
                 {
-                    this.Id = value.GetHashCode();
-                    _item = value;
+                    this._Id = value.GetHashCode();
+                    _name = value;
                 }
             }
         }
-        private string _item;
+        private string _name;
+
+        public string Project { get; set; }
+
+        public string Folder { get; set; }
+        
+        public string Language { get; set; }
+
+        public int Errors { get; set; }
+
+        public int Warnings { get; set; }
+
+        public int NotFinal { get; set; }
+
+        public int ForReview { get; set; }
+        
+        public DateTime Date { get; set; }
+
+        public string _User { get; set; }
+        
+        public string _Domain { get; set; }
+
+        public string _Station { get; set; }
+
+        public int _Id { get; set; }
 
         public object this[string prop]
         {
