@@ -19,6 +19,9 @@
     <Grid>
         <StackPanel Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
             <StackPanel Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+                <StackPanel.Effect>
+                    <DropShadowEffect BlurRadius="5" Direction="180" Color="Gray" ShadowDepth="1" Opacity="0.5"/>
+                </StackPanel.Effect>
                 <TextBlock Padding="10,5" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
                            Text="Defender Reader"/>
                 <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
@@ -66,6 +69,9 @@
             </StackPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="5" Direction="0" Color="Gray" ShadowDepth="1" Opacity="0.5"/>
+            </StackPanel.Effect>
             <Button x:Name="HidePanel" BorderThickness="1,1,1,0" Width="200" Height="24" VerticalAlignment="Bottom" FontSize="18.667"
                     Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
                     Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
