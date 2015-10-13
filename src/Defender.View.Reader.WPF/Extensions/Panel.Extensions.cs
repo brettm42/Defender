@@ -18,7 +18,14 @@
                                ? Visibility.Collapsed
                                : Visibility.Visible;
         }
-        
+
+        public static void ToggleVisibility(this Grid @this)
+        {
+            @this.Visibility = (@this.Visibility == Visibility.Visible)
+                               ? Visibility.Collapsed
+                               : Visibility.Visible;
+        }
+
         public static void HideFields(object[] fields)
         {
             foreach (object field in fields)

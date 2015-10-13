@@ -131,7 +131,7 @@
                 _stats = value;
                 RaisePropertyChanged(nameof(Statistics));
 
-                FileList  = _stats.Select(l => l.ItemName).Distinct().ToArray();
+                FileList  = _stats.Select(l => l.Name).Distinct().ToArray();
                 Languages = _stats.Select(l => l.Language).Distinct().ToArray();
                 Gameareas = _stats.Select(l => l.Folder).Distinct().ToArray();
 

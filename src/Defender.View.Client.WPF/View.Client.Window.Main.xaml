@@ -15,6 +15,7 @@
         <ViewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
         <ViewModel:StringArrayToString x:Key="StringArrayToString"/>
         <ViewModel:StringArrayToInt x:Key="StringArrayToInt"/>
+        <ViewModel:IntToFontWeight x:Key="IntToFontWeight"/>
     </Window.Resources>
     <Grid>
         <StackPanel>
@@ -78,8 +79,48 @@
                   MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
                 <Label Margin="20,0" Padding="0,5,0,0" VerticalAlignment="Top"
                        Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-                <DataGrid x:Name="DataGrid" Margin="20,25,20,5"
-                          ItemsSource="{Binding Statistics, IsAsync=True}"/>
+                <DataGrid x:Name="DataGrid" Margin="20,25,20,5" FrozenColumnCount="1" AutoGenerateColumns="False" IsReadOnly="True"
+                          ItemsSource="{Binding Statistics, IsAsync=True}">
+                    <DataGridTextColumn Header="Query Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Project" Binding="{Binding Project}"/>
+                    <DataGridTextColumn Header="Gamearea" Binding="{Binding Folder}"/>
+                    <DataGridTextColumn Header="Language" Binding="{Binding Language}"/>
+                    <DataGridTextColumn Header="Errors" Binding="{Binding Errors}" SortDirection="Descending" FontWeight="{Binding Errors, Converter={StaticResource IntToFontWeight}}"/>
+                    <DataGridTextColumn Header="Warnings" Binding="{Binding Warnings}" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Not 7-Final" Binding="{Binding NotFinal}" FontWeight="Bold"/>
+                    <DataGridTextColumn Header="Not Reviewed" Binding="{Binding ForReview}" FontWeight="Bold"/>
+                        <!--<DataGrid.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="{x:Type GroupItem}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                <Expander>
+                                                    <Expander.Header>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding Name}"/>
+                                                            <TextBlock Text="{Binding ItemCount}"/>
+                                                            <TextBlock Text="Items"/>
+                                                        </StackPanel>
+                                                    </Expander.Header>
+                                                </Expander>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                        </GroupStyle>
+                    </DataGrid.GroupStyle>-->
+                </DataGrid>
             </Grid>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
         </StackPanel>
