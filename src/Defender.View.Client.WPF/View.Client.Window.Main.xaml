@@ -6,7 +6,7 @@
         xmlns:ViewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.Client.WPF"
         mc:Ignorable="d"
-        Title="Defender" Height="750" Width="600" Icon="Resources/Defender.ico">
+        Title="Defender" Height="750" Width="700" Icon="Resources/Defender.ico">
     <Window.DataContext>
         <ViewModel:ViewModel/>
     </Window.DataContext>
@@ -87,8 +87,8 @@
                         <DataGridTextColumn Header="Gamearea" Binding="{Binding Path=Folder}"/>
                         <DataGridTextColumn Header="Language" Binding="{Binding Path=Language}"/>
                         <DataGridTextColumn Header="Errors" Binding="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
-                        <DataGridTextColumn Header="Not Final" Binding="{Binding Path=NotFinal}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
-                        <DataGridTextColumn Header="Not Reviewed" Binding="{Binding Path=ForReview}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
+                        <DataGridTextColumn Header="Not&#xA;Final" Binding="{Binding Path=NotFinal}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
+                        <DataGridTextColumn Header="Not&#xA;Reviewed" Binding="{Binding Path=ForReview}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
                         <DataGridTextColumn Header="Warnings" Binding="{Binding Path=Warnings}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
                     </DataGrid.Columns>
                     <!--<DataGrid.GroupStyle>
