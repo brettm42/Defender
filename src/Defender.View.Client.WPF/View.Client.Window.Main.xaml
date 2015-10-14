@@ -23,17 +23,22 @@
                 <StackPanel.Effect>
                     <DropShadowEffect BlurRadius="5" Direction="180" Color="Gray" ShadowDepth="1" Opacity="0.5" RenderingBias="Quality"/>
                 </StackPanel.Effect>
-                <TextBlock Padding="10,5" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
-                           Text="Defender"/>
-                <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
+                <StackPanel>
+                    <StackPanel.Effect>
+                        <DropShadowEffect BlurRadius="5" Direction="180" Color="Gray" ShadowDepth="1" Opacity="0.5" RenderingBias="Quality"/>
+                    </StackPanel.Effect>
+                    <TextBlock Padding="15,10" FontSize="29.333" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                               Text="Defender"/>
+                    <Rectangle Height="7" Fill="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"/>
+                </StackPanel>
                 <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
                 <TextBlock Padding="5,5"
-                           Text="Pick the query folder to handback:"/>
+                           Text="Pick the query folder to handback:" Margin="15,0"/>
                 <Grid>
-                    <TextBox x:Name="RQFPath" Margin="5,0,42,10" Padding="5"
+                    <TextBox x:Name="RQFPath" Margin="15,0,52,15" Padding="5"
                              ToolTip="Load Fabric query (.rqf) files from this folder"
                              Text="{Binding Folder, Mode=TwoWay}" KeyDown="RQFPath_KeyDown"/>
-                    <Button x:Name="LoadButton" Margin="0,0,5,10" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
+                    <Button x:Name="LoadButton" Margin="0,0,15,10" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
                             Content="..." Click="LoadButton_Click" TouchDown="LoadButton_TouchDown"/>
                 </Grid>
                 <Rectangle Height="1" Margin="-5,0,-5,0"
@@ -43,23 +48,23 @@
                         <ColumnDefinition Width="210*"/>
                         <ColumnDefinition Width="86*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel  Grid.Column="0" Margin="5, 10">
-                        <Label Padding="5,0" Content="Current Handback Status –"/>
-                        <TextBlock x:Name="Gameareas" Padding="25,0"
+                    <StackPanel  Grid.Column="0" Margin="5, 15">
+                        <Label Padding="5,0" Content="Current Handback Status –" Margin="15,0,0,0"/>
+                        <TextBlock x:Name="Gameareas" Padding="30,0"
                                    Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas loaded', IsAsync=True}"/>
-                        <TextBlock x:Name="Languages" Padding="25,0" ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}, IsAsync=True}"
+                        <TextBlock x:Name="Languages" Padding="30,0" ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}, IsAsync=True}"
                                    Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages loaded', IsAsync=True}"/>
-                        <TextBlock x:Name="Status" Padding="25,0" 
+                        <TextBlock x:Name="Status" Padding="30,0" 
                                    Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='found {0} queries, checking now...', IsAsync=True}"/>
                         <Rectangle Height="5"/>
                     </StackPanel>
-                    <Button x:Name="SuccessButton" Margin="5" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"
+                    <Button x:Name="SuccessButton" Margin="5,15,20,15" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"
                             Foreground="White" Background="{Binding Success, IsAsync=True, Converter={StaticResource BoolToFillConverter}}"
                             Content="{Binding Success, Converter={StaticResource BoolToCharaConverter}, IsAsync=True}" Click="SuccessButton_Click"/>
                 </Grid>
                 <Rectangle Height="1" Margin="-5,0,-5,0"
                            Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-                <TextBlock x:Name="CurrentFile"  Margin="10,0" Padding="0,10,5,10" VerticalAlignment="Bottom" FontWeight="Bold"
+                <TextBlock x:Name="CurrentFile"  Margin="15,0" Padding="0,10,5,10" VerticalAlignment="Bottom" FontWeight="Bold"
                            Text="{Binding CurrentFile, StringFormat='Verifying {0}...'}"/>
                 <ProgressBar VerticalAlignment="Bottom" Height="30" Margin="-2,5,-2,0" BorderThickness="0,1" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
                              Value="{Binding Progress}"/>
