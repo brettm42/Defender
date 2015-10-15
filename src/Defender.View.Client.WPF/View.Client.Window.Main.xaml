@@ -38,7 +38,7 @@
                     <TextBox x:Name="RQFPath" Margin="15,0,52,15" Padding="5"
                              ToolTip="Load Fabric query (.rqf) files from this folder"
                              Text="{Binding Folder, Mode=TwoWay}" KeyDown="RQFPath_KeyDown"/>
-                    <Button x:Name="LoadButton" Margin="0,0,15,10" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
+                    <Button x:Name="LoadButton" Margin="0,0,15,15" Padding="5,0" HorizontalAlignment="Right" FontFamily="Consolas"
                             Content="..." Click="LoadButton_Click" TouchDown="LoadButton_TouchDown"/>
                 </Grid>
                 <Rectangle Height="1" Margin="-5,0,-5,0"
