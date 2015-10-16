@@ -7,13 +7,46 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Input;
     using Microsoft.FSharp;
+    using Microsoft.Win32;
     using Defender.Data;
     using Defender.Model;
     using Defender.Model.Extensions;
 
     public class ViewModel : ViewModelBase
     {
+        public ICommand ToggleExecute
+        {
+            get
+            {
+                return _toggleexecute;
+            }
+            set
+            {
+                _toggleexecute = value;
+            }
+        }
+        private ICommand _toggleexecute { get; set; }
+        
+        public bool CanExecute
+        {
+            get
+            {
+                return _canexecute;
+            }
+            set
+            {
+                if (_canexecute == value) return;
+                _canexecute = value;
+                RaisePropertyChanged(nameof(CanExecute));
+            }
+        }
+        private bool _canexecute = true;
+
+        public ICommand SaveCommand { get; set; }
+
+
         public string LeafPath { get; set; }
 
         public string Folder
@@ -131,14 +164,13 @@
                 _stats = value;
                 RaisePropertyChanged(nameof(Statistics));
 
-                FileList  = _stats.Select(l => l.Name).Distinct().ToArray();
-                Languages = _stats.Select(l => l.Language).Distinct().ToArray();
-                Gameareas = _stats.Select(l => l.Folder).Distinct().ToArray();
+                UpdateStringLists(_stats);
 
                 this.Success = (_stats.Where(l => l.Errors != 0).Any()) ? false : true;
             }
         }
         private ObservableCollection<DataItem> _stats;
+
 
         public void ValidateFiles()
         {
@@ -150,6 +182,13 @@
             }
             
             this.Success = (this.Statistics.Where(l => l.Errors != 0).Any()) ? false : true;
+        }
+
+        public void UpdateStringLists(ObservableCollection<DataItem> results)
+        {
+            FileList  = results.Select(l => l.Name).Distinct().ToArray();
+            Languages = results.Select(l => l.Language).Distinct().ToArray();
+            Gameareas = results.Select(l => l.Folder).Distinct().ToArray();
         }
 
         public bool ExportResults(string path)
@@ -164,6 +203,22 @@
             {
                 return false;
             }
+        }
+
+        internal void SaveResults()
+        {
+            SaveFileDialog savefile = new SaveFileDialog()
+                                      {
+                                          Title = "Save Handback file as...",
+                                          Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
+                                          FileName = $"{this.Folder}.hback",
+                                          AddExtension = true,
+                                      };
+
+            this.ExportResults(
+                (savefile.ShowDialog() == true)
+                ? savefile.FileName
+                : null);
         }
 
         public bool ImportResults(string path)
@@ -183,6 +238,11 @@
             {
                 return this.Success = false;
             }
+        }
+
+        public ViewModel()
+        {
+            SaveCommand = new RelayCommand(() => SaveResults, e => CanExecute);
         }
     }
 }
