@@ -85,8 +85,10 @@
                   MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
                 <Label Margin="15,0" Padding="0,5,0,0" VerticalAlignment="Top"
                        Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-                <DataGrid x:Name="DataGrid" Margin="15,22,15,5" IsReadOnly="True"
-                          ItemsSource="{Binding Statistics, IsAsync=True}"/>
+                <DataGrid x:Name="DataGrid" Margin="15,22,15,5" IsReadOnly="True" FrozenColumnCount="1"
+                          ItemsSource="{Binding Statistics, IsAsync=True}" 
+                          HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" 
+                          VerticalGridLinesBrush="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"/>
             </Grid>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
         </StackPanel>

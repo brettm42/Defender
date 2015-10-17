@@ -26,52 +26,57 @@
             {
                 this.CurrentProgress = 0;                
                 ObservableCollection<DataItem> datagrid = new ObservableCollection<DataItem>();
-                
-                foreach (var file in Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories))
-                {
-                    // TODO: proper percent logic
-                    this.CurrentProgress = this.CurrentProgress + 10;
-                    this.CurrentFile = Path.GetFileNameWithoutExtension(file);
 
-                    // builds DataItem to store results
-                    DataItem filedata = new DataItem()
-                                        {
-                                            Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
-                                            Folder   = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
-                                            Name     = Path.GetFileNameWithoutExtension(file),
-                                            Date     = DateTime.Now,
-                                            _Id      = file.GetHashCode(),
-                                            _User    = Environment.UserName,
-                                            _Station = Environment.MachineName,
-                                            _Domain  = Environment.UserDomainName,
-                                        };
-                    try
+                try {
+                    foreach (var file in Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories))
                     {
-                        XDocument xdoc = XDocument.Load(file);
-                        var read = xdoc.Descendants("Provider").Where(n => n.Element("Name").Value == "LocVer").Descendants("AutomationResult");
+                        // TODO: proper percent logic
+                        this.CurrentProgress = this.CurrentProgress + 10;
+                        this.CurrentFile = Path.GetFileNameWithoutExtension(file);
 
-                        filedata.Errors   = read.Where(n => n.Element("messagetype").Value == "Error")?.Count() ?? 0;
-                        filedata.Warnings = read.Where(n => n.Element("messagetype").Value == "Warning")?.Count() ?? 0;
-                        filedata.Language = read.Descendants("culture").FirstOrDefault()?.Value
-                                                ?? ParseFilename(Path.GetFileNameWithoutExtension(file), '_').LastOrDefault();
+                        // builds DataItem to store results
+                        DataItem filedata = new DataItem()
+                        {
+                            Project = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
+                            Folder = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
+                            Name = Path.GetFileNameWithoutExtension(file),
+                            Date = DateTime.Now,
+                            _Id = file.GetHashCode(),
+                            _User = Environment.UserName,
+                            _Station = Environment.MachineName,
+                            _Domain = Environment.UserDomainName,
+                        };
+                        try
+                        {
+                            XDocument xdoc = XDocument.Load(file);
+                            var read = xdoc.Descendants("Provider").Where(n => n.Element("Name").Value == "LocVer").Descendants("AutomationResult");
 
-                        datagrid.Add(filedata);
+                            filedata.Errors = read.Where(n => n.Element("messagetype").Value == "Error")?.Count() ?? 0;
+                            filedata.Warnings = read.Where(n => n.Element("messagetype").Value == "Warning")?.Count() ?? 0;
+                            filedata.Language = read.Descendants("culture").FirstOrDefault()?.Value
+                                                    ?? ParseFilename(Path.GetFileNameWithoutExtension(file), '_').LastOrDefault();
+
+                            datagrid.Add(filedata);
+                        }
+                        catch
+                        {
+                            throw new FileLoadException();
+                        }
+
+                        // removes file after processing
+                        if (deletefiles) File.Delete(path);
                     }
-                    catch
-                    {
-                        throw new FileLoadException();
-                    }
-
-                    // removes file after processing
-                    if (deletefiles) File.Delete(path);
                 }
-
+                catch
+                {
+                    //throw new DirectoryNotFoundException();
+                }
                 this.CurrentProgress = 99;
 
                 return datagrid;
             }
 
-            throw new FileNotFoundException();
+            return null;
         }
 
         internal string[] ParseFilename(string filename, char delim)
