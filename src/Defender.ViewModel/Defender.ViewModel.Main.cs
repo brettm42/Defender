@@ -193,7 +193,7 @@
 
         public bool ExportResults(string path)
         {
-            if (!string.IsNullOrWhiteSpace(path))
+            if (!string.IsNullOrWhiteSpace(path) && this.FileList.Any())
             {
                 Serializer writer = new Serializer(this.Statistics);
 
@@ -242,7 +242,7 @@
 
         public ViewModel()
         {
-            SaveCommand = new RelayCommand(() => SaveResults, e => CanExecute);
+            //SaveCommand = new RelayCommand(() => SaveResults, e => CanExecute);
         }
     }
 }
