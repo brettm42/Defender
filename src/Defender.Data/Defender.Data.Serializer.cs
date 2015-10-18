@@ -15,7 +15,7 @@
     {
         public ObservableCollection<DataItem> DataGrid { get; set; }
         
-        public string SerialiseToString()
+        public string SerialiseTobString()
         {
             return SerialiseToString<ObservableCollection<DataItem>>(this.DataGrid);
         }
@@ -45,6 +45,7 @@
             {
                 var formatter = new BinaryFormatter();
                 stream.Seek(0, SeekOrigin.Begin);
+
                 return (T)formatter.Deserialize(stream);
             }
         }

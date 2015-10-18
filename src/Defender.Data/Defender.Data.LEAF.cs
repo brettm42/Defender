@@ -25,7 +25,7 @@
 
         public int LeafProgress { get; set; } = 0;
         
-        public bool LeafCommand(string[] filenames, string workingdir, string outputdir, string plugin = "Validate", string leaf = DefaultLeafLocation)
+        public bool LeafCommand(string[] filenames, string workingdir, string outputdir = @"_temp", string plugin = "Validate", string leaf = DefaultLeafLocation)
         {
             this.ProcessErrors = string.Empty;
             this.ProcessOutput = string.Empty;
@@ -38,16 +38,15 @@
                                                RedirectStandardError = true,
                                                RedirectStandardOutput = true,
                                                CreateNoWindow = true,
-                                               WorkingDirectory = workingdir
+                                               WorkingDirectory = workingdir,
+                                               Arguments = new StringBuilder()
+                                                               .Append("Run Automation OpenFile /FILENAMES")
+                                                               .AppendSequence(
+                                                                   filenames,
+                                                                   (sb, file) => sb.AppendFormat("{0};", file))
+                                                               .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error", outputdir)
+                                                               .ToString(),
                                            };
-
-            processinfo.Arguments = new StringBuilder()
-                                        .Append("Run Automation OpenFile /FILENAMES")
-                                        .AppendSequence(
-                                            filenames,
-                                            (sb, file) => sb.AppendFormat("{0};", file))
-                                        .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error", outputdir)
-                                        .ToString();
 
             try
             {
@@ -78,7 +77,12 @@
             {
                 // recursively runs a directory up each pass until .exe found
                 // TODO: catch full drive searches, eg. C:\
-                return FindLeaf(Directory.GetFiles(Directory.GetParent(in_path).FullName, DefaultLeafExe, SearchOption.AllDirectories).FirstOrDefault());
+                return FindLeaf(
+                           Directory.GetFiles(
+                               Directory.GetParent(in_path).FullName, 
+                               DefaultLeafExe, 
+                               SearchOption.AllDirectories)
+                           .FirstOrDefault());
             }
         }
 

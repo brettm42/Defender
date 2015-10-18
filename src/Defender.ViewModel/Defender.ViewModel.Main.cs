@@ -38,6 +38,7 @@
             set
             {
                 if (_canexecute == value) return;
+
                 _canexecute = value;
                 RaisePropertyChanged(nameof(CanExecute));
             }
@@ -166,29 +167,35 @@
 
                 UpdateStringLists(_stats);
 
-                this.Success = (_stats.Where(l => l.Errors != 0).Any()) ? false : true;
+                this.Success = AnyErrors(_stats);
             }
         }
         private ObservableCollection<DataItem> _stats;
-
+        
 
         public void ValidateFiles()
         {
             using (Validate _validation = new Validate())
             {
-                this.Statistics  = _validation.Validation(Folder);
                 this.Progress    = _validation.CurrentProgress;
                 this.CurrentFile = _validation.CurrentFile;
+
+                this.Statistics  = _validation.Validation(Folder);
             }
-            
-            this.Success = (this.Statistics.Where(l => l.Errors != 0).Any()) ? false : true;
+
+            this.Success = AnyErrors(this.Statistics);
         }
 
-        public void UpdateStringLists(ObservableCollection<DataItem> results)
+        private void UpdateStringLists(ObservableCollection<DataItem> results)
         {
             FileList  = results.Select(l => l.Name).Distinct().ToArray();
             Languages = results.Select(l => l.Language).Distinct().ToArray();
             Gameareas = results.Select(l => l.Folder).Distinct().ToArray();
+        }
+
+        internal bool AnyErrors(ObservableCollection<DataItem> results)
+        {
+            return (_stats.Where(l => l.Errors != 0).Any()) ? false : true;
         }
 
         public bool ExportResults(string path)
@@ -239,6 +246,7 @@
                 return this.Success = false;
             }
         }
+
 
         public ViewModel()
         {
