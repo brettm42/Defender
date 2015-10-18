@@ -77,7 +77,12 @@
             {
                 // recursively runs a directory up each pass until .exe found
                 // TODO: catch full drive searches, eg. C:\
-                return FindLeaf(Directory.GetFiles(Directory.GetParent(in_path).FullName, DefaultLeafExe, SearchOption.AllDirectories).FirstOrDefault());
+                return FindLeaf(
+                           Directory.GetFiles(
+                               Directory.GetParent(in_path).FullName, 
+                               DefaultLeafExe, 
+                               SearchOption.AllDirectories)
+                           .FirstOrDefault());
             }
         }
 

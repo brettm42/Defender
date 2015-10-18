@@ -98,7 +98,9 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((int)value > 0) ? System.Windows.FontWeights.Bold : System.Windows.FontWeights.Regular;
+            return ((int)value > 0) 
+                   ? System.Windows.FontWeights.Bold 
+                   : System.Windows.FontWeights.Regular;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
