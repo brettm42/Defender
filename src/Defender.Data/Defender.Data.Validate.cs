@@ -28,7 +28,8 @@
                               
                 ObservableCollection<DataItem> datagrid = new ObservableCollection<DataItem>();
 
-                try {
+                try
+                {
                     IEnumerable<string> files = Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories);
 
                     foreach (var file in files)

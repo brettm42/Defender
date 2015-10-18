@@ -45,6 +45,7 @@
             {
                 var formatter = new BinaryFormatter();
                 stream.Seek(0, SeekOrigin.Begin);
+
                 return (T)formatter.Deserialize(stream);
             }
         }
