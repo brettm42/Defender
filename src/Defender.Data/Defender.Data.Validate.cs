@@ -24,34 +24,39 @@
             // read temp directory XMLs and calculate statistics
             if (Directory.Exists(path) && Directory.GetFiles(path).Any())
             {
-                this.CurrentProgress = 0;                
+                this.CurrentProgress = 0;  
+                              
                 ObservableCollection<DataItem> datagrid = new ObservableCollection<DataItem>();
 
                 try {
-                    foreach (var file in Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories))
+                    IEnumerable<string> files = Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories);
+
+                    foreach (var file in files)
                     {
-                        // TODO: proper percent logic
-                        this.CurrentProgress = this.CurrentProgress + 10;
+                        this.CurrentProgress = this.CurrentProgress + (100 / files.Count());
+
                         this.CurrentFile = Path.GetFileNameWithoutExtension(file);
 
                         // builds DataItem to store results
                         DataItem filedata = new DataItem()
-                        {
-                            Project = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
-                            Folder = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
-                            Name = Path.GetFileNameWithoutExtension(file),
-                            Date = DateTime.Now,
-                            _Id = file.GetHashCode(),
-                            _User = Environment.UserName,
-                            _Station = Environment.MachineName,
-                            _Domain = Environment.UserDomainName,
-                        };
+                                            {
+                                                Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
+                                                Folder   = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
+                                                Name     = Path.GetFileNameWithoutExtension(file),
+                                                Date     = DateTime.Now,
+                                                _Id      = file.GetHashCode(),
+                                                _User    = Environment.UserName,
+                                                _Station = Environment.MachineName,
+                                                _Domain  = Environment.UserDomainName,
+                                            };
                         try
                         {
-                            XDocument xdoc = XDocument.Load(file);
-                            var read = xdoc.Descendants("Provider").Where(n => n.Element("Name").Value == "LocVer").Descendants("AutomationResult");
+                            var read = XDocument.Load(file)
+                                                .Descendants("Provider")
+                                                .Where(n => n.Element("Name").Value == "LocVer")
+                                                .Descendants("AutomationResult");
 
-                            filedata.Errors = read.Where(n => n.Element("messagetype").Value == "Error")?.Count() ?? 0;
+                            filedata.Errors   = read.Where(n => n.Element("messagetype").Value == "Error")?.Count() ?? 0;
                             filedata.Warnings = read.Where(n => n.Element("messagetype").Value == "Warning")?.Count() ?? 0;
                             filedata.Language = read.Descendants("culture").FirstOrDefault()?.Value
                                                     ?? ParseFilename(Path.GetFileNameWithoutExtension(file), '_').LastOrDefault();
@@ -71,7 +76,6 @@
                 {
                     //throw new DirectoryNotFoundException();
                 }
-                this.CurrentProgress = 99;
 
                 return datagrid;
             }
