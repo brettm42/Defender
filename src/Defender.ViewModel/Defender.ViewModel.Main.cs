@@ -183,7 +183,7 @@
                 this.Statistics  = _validation.Validation(Folder);
             }
 
-            this.Success = AnyErrors(_stats);
+            this.Success = AnyErrors(this.Statistics);
         }
 
         private void UpdateStringLists(ObservableCollection<DataItem> results)
