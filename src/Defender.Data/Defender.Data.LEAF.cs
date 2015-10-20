@@ -46,20 +46,22 @@
                         CreateNoWindow = true,
                         WorkingDirectory = workingdir,
                         Arguments = new StringBuilder()
-                                        .Append("Run Automation OpenFile /FILENAMES")
+                                        .Append("Run Automation OpenFile /FILENAMES ")
                                         .AppendSequence(
                                             filenames,
                                             (sb, file) => sb.AppendFormat("{0};", file))
-                                        .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {0} /RETURN Error", outputdir)
+                                        .AppendFormat(" Validate /OUTPUTPATH {0} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {0} /RETURN Error", outputdir)
                                         .ToString(),
                     };
+
+                    processinfo.Arguments = $"Run Automation OpenFile /FILENAMES {path} Validate /OUTPUTPATH {outputdir} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {outputdir} /RETURN Error";
 
                     try
                     {
                         using (Process process = Process.Start(processinfo))
                         {
-                            process.WaitForExit();
-
+                            process.WaitForExit(9000);
+                            
                             using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
                             using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
 

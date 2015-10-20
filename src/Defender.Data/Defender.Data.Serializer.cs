@@ -15,7 +15,7 @@
     {
         public ObservableCollection<DataItem> DataGrid { get; set; }
         
-        public string SerialiseTobString()
+        public string SerialiseToString()
         {
             return SerialiseToString<ObservableCollection<DataItem>>(this.DataGrid);
         }

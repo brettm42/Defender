@@ -69,6 +69,7 @@
             {
                 (this.DataContext as ViewModel).Folder = openfile.FileName;
 
+                (this.DataContext as ViewModel).RunQueries();
                 (this.DataContext as ViewModel).ValidateFiles();
                 
                 this.CurrentFile.Visibility   = Visibility.Visible;
