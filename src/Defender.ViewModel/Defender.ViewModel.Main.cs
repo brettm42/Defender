@@ -169,6 +169,47 @@
         }
         private ObservableCollection<DataItem> _stats;
         
+        public string Errors
+        {
+            get
+            {
+                return _err;
+            }
+            set
+            {
+                _err = value;
+                RaisePropertyChanged(nameof(Errors));
+            }
+        }
+        private string _err;
+
+        public string Output
+        {
+            get
+            {
+                return _out;
+            }
+            set
+            {
+                _out = value;
+                RaisePropertyChanged(nameof(Output));
+            }
+        }
+        private string _out;
+
+
+        public void RunQueries()
+        {
+            var _leaf = new Leaf();
+
+            this.Progress = _leaf.LeafProgress;
+            this.Output = _leaf.ProcessOutput;
+            this.Errors = _leaf.ProcessErrors;
+
+            this.Success = _leaf.LeafQuery(this.Folder);
+
+            //this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
+        }
 
         public void ValidateFiles()
         {

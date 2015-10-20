@@ -108,6 +108,7 @@
             {
                 (this.DataContext as ViewModel).Folder = this.RQFPath.Text;
 
+                (this.DataContext as ViewModel).RunQueries();
                 (this.DataContext as ViewModel).ValidateFiles();
                 
                 this.CurrentFile.Visibility   = Visibility.Visible;
