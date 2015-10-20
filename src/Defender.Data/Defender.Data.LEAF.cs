@@ -11,7 +11,7 @@
     using Defender.Model;
     using Defender.Model.Extensions;
 
-    public class LEAF : DataBase
+    public class Leaf : DataBase
     {
         private const string DefaultLeafExe = @"MSLeaf.exe";
         private const string DefaultLeafDir = @"Microsoft LEAF";
@@ -24,45 +24,63 @@
         public string ProcessErrors { get; set; }
 
         public int LeafProgress { get; set; } = 0;
-        
-        public bool LeafCommand(string[] filenames, string workingdir, string outputdir = @"_temp", string plugin = "Validate", string leaf = DefaultLeafLocation)
+
+        public bool LeafQuery(string path, string workingdir = @"\", string outputdir = @"_temp", string plugin = "Validate", string leaf = DefaultLeafLocation)
         {
-            this.ProcessErrors = string.Empty;
-            this.ProcessOutput = string.Empty;
-
-            ProcessStartInfo processinfo = new ProcessStartInfo()
-                                           {
-                                               FileName = leaf,
-                                               UseShellExecute = false,
-                                               WindowStyle = ProcessWindowStyle.Hidden,
-                                               RedirectStandardError = true,
-                                               RedirectStandardOutput = true,
-                                               CreateNoWindow = true,
-                                               WorkingDirectory = workingdir,
-                                               Arguments = new StringBuilder()
-                                                               .Append("Run Automation OpenFile /FILENAMES")
-                                                               .AppendSequence(
-                                                                   filenames,
-                                                                   (sb, file) => sb.AppendFormat("{0};", file))
-                                                               .AppendFormat("Validate /OUTPUTPATH {0} /RETURN Error", outputdir)
-                                                               .ToString(),
-                                           };
-
-            try
+            if (!string.IsNullOrWhiteSpace(path))
             {
-                using (Process process = Process.Start(processinfo))
-                {
-                    process.WaitForExit();
-                    
-                    using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
-                    using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
+                IEnumerable<string> filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories);
 
-                    return string.IsNullOrWhiteSpace(this.ProcessErrors) ? true : false;
+                if (filenames.Any())
+                {
+                    this.ProcessErrors = string.Empty;
+                    this.ProcessOutput = string.Empty;
+
+                    ProcessStartInfo processinfo = new ProcessStartInfo()
+                    {
+                        FileName = leaf,
+                        UseShellExecute = false,
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        RedirectStandardError = true,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true,
+                        WorkingDirectory = workingdir,
+                        Arguments = new StringBuilder()
+                                        .Append("Run Automation OpenFile /FILENAMES ")
+                                        .AppendSequence(
+                                            filenames,
+                                            (sb, file) => sb.AppendFormat("{0};", file))
+                                        .AppendFormat(" Validate /OUTPUTPATH {0} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {0} /RETURN Error", outputdir)
+                                        .ToString(),
+                    };
+
+                    processinfo.Arguments = $"Run Automation OpenFile /FILENAMES {path} Validate /OUTPUTPATH {outputdir} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {outputdir} /RETURN Error";
+
+                    try
+                    {
+                        using (Process process = Process.Start(processinfo))
+                        {
+                            process.WaitForExit(9000);
+                            
+                            using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
+                            using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
+
+                            return string.IsNullOrWhiteSpace(this.ProcessErrors) ? true : false;
+                        }
+                    }
+                    catch
+                    {
+                        throw new Exception($"Failed to launch {DefaultLeafExe}");
+                    }
+                }
+                else
+                {
+                    return true;
                 }
             }
-            catch
+            else
             {
-                throw new Exception($"Failed to launch {DefaultLeafExe}");
+                throw new ArgumentNullException();
             }
         }
         
@@ -86,7 +104,7 @@
             }
         }
 
-        public LEAF(string leafpath = DefaultLeafLocation)
+        public Leaf(string leafpath = DefaultLeafLocation)
         {
             this.LeafLocation = (File.Exists(leafpath) && leafpath.EndsWith(DefaultLeafExe))
                                 ? leafpath

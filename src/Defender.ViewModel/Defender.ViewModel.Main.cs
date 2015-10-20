@@ -169,6 +169,47 @@
         }
         private ObservableCollection<DataItem> _stats;
         
+        public string Errors
+        {
+            get
+            {
+                return _err;
+            }
+            set
+            {
+                _err = value;
+                RaisePropertyChanged(nameof(Errors));
+            }
+        }
+        private string _err;
+
+        public string Output
+        {
+            get
+            {
+                return _out;
+            }
+            set
+            {
+                _out = value;
+                RaisePropertyChanged(nameof(Output));
+            }
+        }
+        private string _out;
+
+
+        public void RunQueries()
+        {
+            var _leaf = new Leaf();
+
+            this.Progress = _leaf.LeafProgress;
+            this.Output   = _leaf.ProcessOutput;
+            this.Errors   = _leaf.ProcessErrors;
+
+            this.Success  = _leaf.LeafQuery(this.Folder, this.Folder);
+
+            //this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
+        }
 
         public void ValidateFiles()
         {
@@ -185,14 +226,14 @@
 
         private void UpdateStringLists(ObservableCollection<DataItem> results)
         {
-            FileList  = results.Select(l => l.Name).Distinct().ToArray();
-            Languages = results.Select(l => l.Language).Distinct().ToArray();
-            Gameareas = results.Select(l => l.Folder).Distinct().ToArray();
+            FileList  = results?.Select(l => l.Name).Distinct().ToArray();
+            Languages = results?.Select(l => l.Language).Distinct().ToArray();
+            Gameareas = results?.Select(l => l.Folder).Distinct().ToArray();
         }
 
         internal bool AnyErrors(ObservableCollection<DataItem> results)
         {
-            return (_stats.Where(l => l.Errors != 0).Any()) ? false : true;
+            return (_stats?.Where(l => l.Errors != 0).Any() ?? true) ? false : true;
         }
 
         public bool ExportResults(string path)
