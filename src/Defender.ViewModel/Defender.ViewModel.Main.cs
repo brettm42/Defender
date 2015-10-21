@@ -245,7 +245,7 @@
 
         public bool ExportResults(string path)
         {
-            if (!string.IsNullOrWhiteSpace(path) && this.FileList.Any())
+            if (!string.IsNullOrWhiteSpace(path) && (this.FileList?.Any() ?? false))
             {
                 Serializer writer = new Serializer(this.Statistics);
 

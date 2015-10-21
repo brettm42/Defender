@@ -35,9 +35,8 @@
         {
             this.InitializeComponent();
 
-            this.CurrentFile.Visibility = Visibility.Hidden;
+            this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
-            //PanelExtensions.HideFields(new object[] { this.CurrentFile, this.SuccessButton });
 
             HidePanel_Click(null, null);
 
@@ -45,6 +44,22 @@
             ElemMaxHeight = (int)this.Height - ElemMinHeight;
 
             this.RQFPath.Focus();
+        }
+
+        private void Process(string path)
+        {
+            this.LoadingDialog.Visibility = Visibility.Visible;
+            this.CurrentFile.Visibility   = Visibility.Visible;
+            this.SuccessButton.Visibility = Visibility.Visible;
+
+            // TODO: progress dialogue? or taskbar progress tracking
+            (this.DataContext as ViewModel).ImportResults(path);
+
+            // expands DataPanel
+            this.HidePanel.Content = DownArrow;
+            this.DataPanel.Maximise(this.ActualHeight);
+
+            this.LoadingDialog.Visibility = Visibility.Collapsed;
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
@@ -62,18 +77,7 @@
                                           Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
                                       };
 
-            if (openfile.ShowDialog() == true)
-            {
-                (this.DataContext as ViewModel).ImportResults(openfile.FileName);
-
-                this.CurrentFile.Visibility = Visibility.Visible;
-                this.SuccessButton.Visibility = Visibility.Visible;
-                //PanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
-
-                // expands DataPanel
-                this.HidePanel.Content = DownArrow;
-                this.DataPanel.Maximise(this.ActualHeight);
-            }
+            if (openfile.ShowDialog() == true) this.Process(openfile.FileName);
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -99,17 +103,7 @@
 
         private void RQFPath_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
-            {
-                (this.DataContext as ViewModel).ImportResults(this.RQFPath.Text);
-
-                this.CurrentFile.Visibility = Visibility.Visible;
-                this.SuccessButton.Visibility = Visibility.Visible;
-
-                // expands DataPanel
-                this.HidePanel.Content = DownArrow;
-                this.DataPanel.Maximise(this.ActualHeight);
-            }
+            if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text)) this.Process(this.RQFPath.Text);
         }
 
         #region TouchEvents
