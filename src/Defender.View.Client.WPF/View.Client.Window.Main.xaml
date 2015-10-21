@@ -91,7 +91,7 @@
                         <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}"/>
                         <DataGridTextColumn Header="Gamearea" Binding="{Binding Path=Folder}"/>
                         <DataGridTextColumn Header="Language" Binding="{Binding Path=Language}"/>
-                        <DataGridTemplateColumn Header="Errors" SortDirection="Descending">
+                        <DataGridTemplateColumn Header="Errors">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
