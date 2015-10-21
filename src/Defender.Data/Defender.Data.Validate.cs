@@ -41,11 +41,12 @@
                         // builds DataItem to store results
                         DataItem filedata = new DataItem()
                                             {
+                                                Date     = DateTime.Now,
                                                 Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
                                                 Folder   = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
                                                 Name     = Path.GetFileNameWithoutExtension(file),
-                                                Date     = DateTime.Now,
                                                 _Id      = file.GetHashCode(),
+                                                _File    = Path.GetFullPath(file),
                                                 _User    = Environment.UserName,
                                                 _Station = Environment.MachineName,
                                                 _Domain  = Environment.UserDomainName,

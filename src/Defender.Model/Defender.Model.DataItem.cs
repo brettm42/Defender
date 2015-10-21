@@ -44,6 +44,8 @@
         public DateTime Date { get; set; }
 
         public string _User { get; set; }
+
+        public string _File { get; set; }
         
         public string _Domain { get; set; }
 
