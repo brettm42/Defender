@@ -198,6 +198,8 @@
         private string _out;
 
 
+        private const string tempxml = @".\_temp.xml";
+
         public void RunQueries()
         {
             var _leaf = new Leaf();
@@ -206,7 +208,7 @@
             this.Output   = _leaf.ProcessOutput;
             this.Errors   = _leaf.ProcessErrors;
 
-            this.Success  = _leaf.LeafQuery(this.Folder, this.Folder);
+            this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
             //this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
         }
@@ -218,7 +220,7 @@
                 this.Progress    = _validation.CurrentProgress;
                 this.CurrentFile = _validation.CurrentFile;
 
-                this.Statistics  = _validation.Validation(Folder);
+                this.Statistics  = _validation.Validation(Path.Combine(this.Folder, tempxml));
             }
 
             this.Success = AnyErrors(this.Statistics);

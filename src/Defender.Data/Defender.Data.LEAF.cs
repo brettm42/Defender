@@ -25,7 +25,7 @@
 
         public int LeafProgress { get; set; } = 0;
 
-        public bool LeafQuery(string path, string workingdir = @"\", string outputdir = @"_temp", string plugin = "Validate", string leaf = DefaultLeafLocation)
+        public bool LeafQuery(string path, string workingdir = @".\", string outputxml = @".\_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
@@ -35,7 +35,7 @@
                 {
                     this.ProcessErrors = string.Empty;
                     this.ProcessOutput = string.Empty;
-
+                    
                     ProcessStartInfo processinfo = new ProcessStartInfo()
                     {
                         FileName = leaf,
@@ -50,22 +50,28 @@
                                         .AppendSequence(
                                             filenames,
                                             (sb, file) => sb.AppendFormat("{0};", file))
-                                        .AppendFormat(" Validate /OUTPUTPATH {0} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {0} /RETURN Error", outputdir)
+                                        .AppendFormat(" Validate /OUTPUTPATH {0} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {0} /RETURN Error", outputxml)
                                         .ToString(),
                     };
 
-                    processinfo.Arguments = $"Run Automation OpenFile /FILENAMES {path} Validate /OUTPUTPATH {outputdir} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {outputdir} /RETURN Error";
+                    processinfo.Arguments = $"Run Automation OpenFile /FILENAMES {path} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {outputxml} /RETURN Error";
+
+                    DateTime start = DateTime.Now;
 
                     try
                     {
                         using (Process process = Process.Start(processinfo))
                         {
-                            process.WaitForExit(9000);
+                            process.WaitForExit();
                             
                             using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
                             using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
 
-                            return string.IsNullOrWhiteSpace(this.ProcessErrors) ? true : false;
+                            DateTime end = DateTime.Now;
+
+                            return File.Exists(outputxml)
+                                   ? string.IsNullOrWhiteSpace(this.ProcessErrors) ? true : false
+                                   : false;
                         }
                     }
                     catch
