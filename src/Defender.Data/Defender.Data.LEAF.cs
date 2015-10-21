@@ -35,15 +35,16 @@
                 {
                     this.ProcessErrors = string.Empty;
                     this.ProcessOutput = string.Empty;
-                    
+
                     ProcessStartInfo processinfo = new ProcessStartInfo()
                     {
                         FileName = leaf,
-                        UseShellExecute = false,
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        RedirectStandardError = true,
-                        RedirectStandardOutput = true,
-                        CreateNoWindow = true,
+                        UseShellExecute = true,
+                        //UseShellExecute = false,
+                        //WindowStyle = ProcessWindowStyle.Hidden,
+                        //RedirectStandardError = true,
+                        //RedirectStandardOutput = true,
+                        ErrorDialog = true,
                         WorkingDirectory = workingdir,
                         Arguments = new StringBuilder()
                                         .Append("Run Automation OpenFile /FILENAMES ")
@@ -64,8 +65,8 @@
                         {
                             process.WaitForExit();
                             
-                            using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
-                            using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
+                            //using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
+                            //using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
 
                             DateTime end = DateTime.Now;
 

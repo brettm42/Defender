@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Defender.Data.Base.cs" />
+    <Compile Include="Defender.Data.Constants.cs" />
     <Compile Include="Defender.Data.Validate.cs" />
     <Compile Include="Defender.Data.Leaf.cs" />
     <Compile Include="Defender.Data.Serializer.cs" />
