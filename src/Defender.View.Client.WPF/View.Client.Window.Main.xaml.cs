@@ -48,6 +48,24 @@
             this.RQFPath.Focus();
         }
 
+        private void Process()
+        {
+            // unhides status elements
+            this.LoadingDialog.Visibility = Visibility.Visible;
+            this.CurrentFile.Visibility   = Visibility.Visible;
+            this.SuccessButton.Visibility = Visibility.Visible;
+
+            // TODO: add loading or wait dialog
+            (this.DataContext as ViewModel).RunQueries();
+            (this.DataContext as ViewModel).ValidateFiles();
+            
+            // expands DataPanel
+            this.HidePanel.Content = DownArrow;
+            this.DataPanel.Maximise(this.ActualHeight);
+
+            this.LoadingDialog.Visibility = Visibility.Collapsed;
+        }
+
         private void HidePanel_Click(object sender, RoutedEventArgs e)
         {
             this.DataPanel.ToggleVisibility();
@@ -69,16 +87,7 @@
             {
                 (this.DataContext as ViewModel).Folder = openfile.FileName;
 
-                (this.DataContext as ViewModel).RunQueries();
-                (this.DataContext as ViewModel).ValidateFiles();
-                
-                this.CurrentFile.Visibility   = Visibility.Visible;
-                this.SuccessButton.Visibility = Visibility.Visible;
-                //PanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
-
-                // expands DataPanel
-                this.HidePanel.Content = DownArrow;
-                this.DataPanel.Maximise(this.ActualHeight);
+                this.Process();
             }
         }
 
@@ -109,16 +118,7 @@
             {
                 (this.DataContext as ViewModel).Folder = this.RQFPath.Text;
 
-                (this.DataContext as ViewModel).RunQueries();
-                (this.DataContext as ViewModel).ValidateFiles();
-                
-                this.CurrentFile.Visibility   = Visibility.Visible;
-                this.SuccessButton.Visibility = Visibility.Visible;
-                //StackPanelExtensions.ShowFields(new object[] { this.CurrentFile, this.SuccessButton });
-
-                // expands DataPanel
-                this.HidePanel.Content = DownArrow;
-                this.DataPanel.Maximise(this.ActualHeight);
+                this.Process();
             }
         }
 
