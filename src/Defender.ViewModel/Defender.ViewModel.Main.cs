@@ -206,9 +206,9 @@
 
             while (!_leaf.ProcessComplete)
             {
+                this.Output   = _leaf.ProcessOutput;
+                this.Errors   = _leaf.ProcessErrors;
                 this.Progress = _leaf.LeafProgress;
-                this.Output = _leaf.ProcessOutput;
-                this.Errors = _leaf.ProcessErrors;
                 this.CurrentFile = _leaf.CurrentFile;
 
                 //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
@@ -225,7 +225,7 @@
                 this.Progress    = _validation.CurrentProgress;
                 this.CurrentFile = _validation.CurrentFile;
 
-                this.Statistics  = _validation.Validation(Path.Combine(this.Folder, tempxml));
+                this.Statistics  = _validation.Validation(this.Folder);
             }
 
             this.Success = AnyErrors(this.Statistics);
