@@ -58,6 +58,7 @@
             // TODO: add loading or wait dialog
             // TODO: add icon progress in taskbar
             (this.DataContext as ViewModel).RunQueries();
+
             (this.DataContext as ViewModel).ValidateFiles();
             
             // expands DataPanel

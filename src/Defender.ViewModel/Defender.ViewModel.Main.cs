@@ -4,6 +4,7 @@
     using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Microsoft.FSharp;
     using Microsoft.Win32;
@@ -200,7 +201,7 @@
 
         private const string tempxml = @".\_temp.xml";
 
-        public async void RunQueries()
+        public async Task RunQueries()
         {
             var _leaf = new Leaf();
 
@@ -213,7 +214,9 @@
 
                 //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
                 //_leaf.LeafFileQuery(this.Folder, this.Folder);
-                await _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
+
+                Task runquery = _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
+                await runquery;
             }
 
             //this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
