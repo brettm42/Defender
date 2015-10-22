@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
@@ -58,7 +59,7 @@
             // TODO: add loading or wait dialog
             // TODO: add icon progress in taskbar
             await (this.DataContext as ViewModel).RunQueriesAsync();
-
+            
             this.Validate();
         }
 
