@@ -92,5 +92,13 @@
             </Grid>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
         </StackPanel>
+        <Border x:Name="LoadingDialog" CornerRadius="2" Visibility="Collapsed"
+                Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Width="150" Height="80">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Loading..." FontSize="18.667"
+                           Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

@@ -91,28 +91,28 @@
                         <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}"/>
                         <DataGridTextColumn Header="Gamearea" Binding="{Binding Path=Folder}"/>
                         <DataGridTextColumn Header="Language" Binding="{Binding Path=Language}"/>
-                        <DataGridTemplateColumn Header="Errors" SortDirection="Descending">
+                        <DataGridTemplateColumn Header="Errors" SortMemberPath="Errors">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Not&#xA;Final">
+                        <DataGridTemplateColumn Header="Not&#xA;Final" SortMemberPath="NotFinal">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=NotFinal}" FontWeight="{Binding Path=NotFinal, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Not&#xA;Reviewed">
+                        <DataGridTemplateColumn Header="Not&#xA;Reviewed" SortMemberPath="ForReview">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=ForReview}" FontWeight="{Binding Path=ForReview, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Warnings">
+                        <DataGridTemplateColumn Header="Warnings" SortMemberPath="Warnings">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Warnings}" FontWeight="{Binding Path=Warnings, Converter={StaticResource IntToFontWeight}}"/>
@@ -124,13 +124,14 @@
             </Grid>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
         </StackPanel>
-        <Border x:Name="LoadingDialog" CornerRadius="2" Visibility="Collapsed"
-                Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Width="150" Height="100">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Querying..." FontSize="18.667"
-                       Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" 
-                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </StackPanel>
+        
+        <Border x:Name="LoadingDialog" CornerRadius="2" Visibility="Hidden"
+        	Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Width="150" Height="80">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Querying..." FontSize="18.667"
+        			Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" 
+        			HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
         </Border>
     </Grid>
 </Window>

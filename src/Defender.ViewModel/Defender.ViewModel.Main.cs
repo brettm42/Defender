@@ -4,6 +4,7 @@
     using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Microsoft.FSharp;
     using Microsoft.Win32;
@@ -200,19 +201,22 @@
 
         private const string tempxml = @".\_temp.xml";
 
-        public void RunQueries()
+        public async Task RunQueries()
         {
             var _leaf = new Leaf();
 
             while (!_leaf.ProcessComplete)
             {
+                this.Output   = _leaf.ProcessOutput;
+                this.Errors   = _leaf.ProcessErrors;
                 this.Progress = _leaf.LeafProgress;
-                this.Output = _leaf.ProcessOutput;
-                this.Errors = _leaf.ProcessErrors;
                 this.CurrentFile = _leaf.CurrentFile;
 
                 //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
-                _leaf.LeafFileQuery(this.Folder, this.Folder);
+                //_leaf.LeafFileQuery(this.Folder, this.Folder);
+
+                Task runquery = _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
+                await runquery;
             }
 
             //this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
@@ -225,7 +229,7 @@
                 this.Progress    = _validation.CurrentProgress;
                 this.CurrentFile = _validation.CurrentFile;
 
-                this.Statistics  = _validation.Validation(Path.Combine(this.Folder, tempxml));
+                this.Statistics  = _validation.Validation(this.Folder);
             }
 
             this.Success = AnyErrors(this.Statistics);
@@ -245,7 +249,7 @@
 
         public bool ExportResults(string path)
         {
-            if (!string.IsNullOrWhiteSpace(path) && this.FileList.Any())
+            if (!string.IsNullOrWhiteSpace(path) && (this.FileList?.Any() ?? false))
             {
                 Serializer writer = new Serializer(this.Statistics);
 
