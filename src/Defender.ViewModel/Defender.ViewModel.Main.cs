@@ -201,7 +201,7 @@
 
         private const string tempxml = @".\_temp.xml";
 
-        public async Task RunQueries()
+        public async Task RunQueriesAsync()
         {
             var _leaf = new Leaf();
 
@@ -213,13 +213,11 @@
                 this.CurrentFile = _leaf.CurrentFile;
 
                 //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
-                //_leaf.LeafFileQuery(this.Folder, this.Folder);
 
-                Task runquery = _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
-                await runquery;
+                await _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
             }
 
-            //this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
+            this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
         }
 
         public void ValidateFiles()

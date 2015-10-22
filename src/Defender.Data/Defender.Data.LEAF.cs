@@ -6,6 +6,7 @@
     using System.Linq;
     using System.IO;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.FSharp;
     using Defender.Model;
@@ -109,39 +110,38 @@
                     await Task.Run(
                         () => 
                         {
-                        
-
-                    foreach (string filename in filenames)
-                    {
-                        this.CurrentFile = Path.GetFileName(filename);
-
-                        ProcessStartInfo processinfo = new ProcessStartInfo()
-                        {
-                            FileName = leaf,
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            WorkingDirectory = workingdir,
-                            Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
-                        };
-
-                        DateTime start = DateTime.Now;
-
-                        try
-                        {
-                            using (Process process = Process.Start(processinfo))
+                            foreach (string filename in filenames)
                             {
-                                process.WaitForExit();
+                                this.CurrentFile = Path.GetFileName(filename);
 
-                                DateTime end = DateTime.Now;
+                                ProcessStartInfo processinfo = new ProcessStartInfo()
+                                {
+                                    FileName = leaf,
+                                    UseShellExecute = true,
+                                    WindowStyle = ProcessWindowStyle.Hidden,
+                                    WorkingDirectory = workingdir,
+                                    Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
+                                };
 
-                                //if (!File.Exists($"{Path.GetFileNameWithoutExtension(filename)}.xml")) break;
+                                DateTime start = DateTime.Now;
+
+                                try
+                                {
+                                    using (Process process = Process.Start(processinfo))
+                                    {
+                                        process.WaitForExit();
+                                        
+                                        DateTime end = DateTime.Now;
+                                        
+                                        // TODO: check if file exists; if not, populate data with query rqf name but leave stats blank
+                                        //if (!File.Exists($"{Path.GetFileNameWithoutExtension(filename)}.xml")) break;
+                                    }
+                                }
+                                catch
+                                {
+                                    throw new Exception($"Failed to launch {DefaultLeafExe}");
+                                }
                             }
-                        }
-                        catch
-                        {
-                            throw new Exception($"Failed to launch {DefaultLeafExe}");
-                        }
-                    }
                         });
 
                     this.ProcessComplete = true;
