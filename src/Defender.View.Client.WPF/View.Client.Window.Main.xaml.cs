@@ -48,7 +48,7 @@
             this.RQFPath.Focus();
         }
 
-        private void Process()
+        private async void Process()
         {
             // unhides status elements
             this.LoadingDialog.Visibility = Visibility.Visible;
@@ -57,10 +57,16 @@
 
             // TODO: add loading or wait dialog
             // TODO: add icon progress in taskbar
-            (this.DataContext as ViewModel).RunQueries();
+            await (this.DataContext as ViewModel).RunQueriesAsync();
 
+            this.Validate();
+        }
+
+        private void Validate()
+        {
+            // runs validation on new query results
             (this.DataContext as ViewModel).ValidateFiles();
-            
+
             // expands DataPanel
             this.HidePanel.Content = DownArrow;
             this.DataPanel.Maximise(this.ActualHeight);
