@@ -95,6 +95,64 @@
             }
         }
 
+        public async Task LeafFileQueryAsync(string path, string workingdir = @".\", string outputxml = @"_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
+        {
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                IEnumerable<string> filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories);
+
+                if (filenames.Any())
+                {
+                    this.ProcessErrors = string.Empty;
+                    this.ProcessOutput = string.Empty;
+
+                    await Task.Run(
+                        () => 
+                        {
+                        
+
+                    foreach (string filename in filenames)
+                    {
+                        this.CurrentFile = Path.GetFileName(filename);
+
+                        ProcessStartInfo processinfo = new ProcessStartInfo()
+                        {
+                            FileName = leaf,
+                            UseShellExecute = true,
+                            WindowStyle = ProcessWindowStyle.Hidden,
+                            WorkingDirectory = workingdir,
+                            Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
+                        };
+
+                        DateTime start = DateTime.Now;
+
+                        try
+                        {
+                            using (Process process = Process.Start(processinfo))
+                            {
+                                process.WaitForExit();
+
+                                DateTime end = DateTime.Now;
+
+                                //if (!File.Exists($"{Path.GetFileNameWithoutExtension(filename)}.xml")) break;
+                            }
+                        }
+                        catch
+                        {
+                            throw new Exception($"Failed to launch {DefaultLeafExe}");
+                        }
+                    }
+                        });
+
+                    this.ProcessComplete = true;
+                }
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
         public void LeafFileQuery(string path, string workingdir = @".\", string outputxml = @"_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
         {
             if (!string.IsNullOrWhiteSpace(path))

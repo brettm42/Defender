@@ -200,7 +200,7 @@
 
         private const string tempxml = @".\_temp.xml";
 
-        public void RunQueries()
+        public async void RunQueries()
         {
             var _leaf = new Leaf();
 
@@ -212,7 +212,8 @@
                 this.CurrentFile = _leaf.CurrentFile;
 
                 //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
-                _leaf.LeafFileQuery(this.Folder, this.Folder);
+                //_leaf.LeafFileQuery(this.Folder, this.Folder);
+                await _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
             }
 
             //this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
