@@ -91,28 +91,28 @@
                         <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}"/>
                         <DataGridTextColumn Header="Gamearea" Binding="{Binding Path=Folder}"/>
                         <DataGridTextColumn Header="Language" Binding="{Binding Path=Language}"/>
-                        <DataGridTemplateColumn Header="Errors">
+                        <DataGridTemplateColumn Header="Errors" SortMemberPath="Errors">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Not&#xA;Final">
+                        <DataGridTemplateColumn Header="Not&#xA;Final" SortMemberPath="NotFinal">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=NotFinal}" FontWeight="{Binding Path=NotFinal, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Not&#xA;Reviewed">
+                        <DataGridTemplateColumn Header="Not&#xA;Reviewed" SortMemberPath="ForReview">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=ForReview}" FontWeight="{Binding Path=ForReview, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Warnings">
+                        <DataGridTemplateColumn Header="Warnings" SortMemberPath="Warnings">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Path=Warnings}" FontWeight="{Binding Path=Warnings, Converter={StaticResource IntToFontWeight}}"/>
