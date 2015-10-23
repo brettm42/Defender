@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    internal class Constants
+    internal static class Constants
     {
         internal const string DefaultLeafExe = @"MSLeaf.exe";
 

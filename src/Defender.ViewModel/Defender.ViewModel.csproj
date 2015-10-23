@@ -44,10 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\Defender.ViewModel.Converters.BoolToCharaConverter.cs" />
+    <Compile Include="Converters\Defender.ViewModel.Converters.IntToFontWeight.cs" />
+    <Compile Include="Converters\Defender.ViewModel.Converters.StringArrayToInt.cs" />
+    <Compile Include="Converters\Defender.ViewModel.Converters.StringArrayToString.cs" />
     <Compile Include="Defender.ViewModel.Base.cs" />
     <Compile Include="Defender.ViewModel.cs" />
     <Compile Include="Defender.ViewModel.RelayCommand.cs" />
-    <Compile Include="Defender.ViewModel.ValueConverters.cs" />
+    <Compile Include="Converters\Defender.ViewModel.Converters.BoolToFillConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

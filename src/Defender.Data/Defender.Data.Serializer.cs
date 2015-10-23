@@ -28,6 +28,7 @@
                 formatter.Serialize(stream, dataitems);
                 stream.Flush();
                 stream.Position = 0;
+
                 return Convert.ToBase64String(stream.ToArray());
             }
         }
