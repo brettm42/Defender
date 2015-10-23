@@ -81,7 +81,7 @@
                     Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
                     Content="˅" Click="HidePanel_Click" TouchDown="HidePanel_TouchDown"/>
             <Rectangle Height="1" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-            <Grid x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="55"
+            <Grid x:Name="DataPanel" VerticalAlignment="Bottom" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="150"
                   MouseDown="DataPanel_MouseDown" MouseUp="DataPanel_MouseUp" TouchDown="DataPanel_TouchDown" TouchUp="DataPanel_TouchUp">
                 <Label Margin="15,0" Padding="0,5,0,0" VerticalAlignment="Top"
                        Content="Handback Statistics:" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>

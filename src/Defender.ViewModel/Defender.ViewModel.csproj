@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Defender.ViewModel.Base.cs" />
-    <Compile Include="Defender.ViewModel.Main.cs" />
+    <Compile Include="Defender.ViewModel.cs" />
     <Compile Include="Defender.ViewModel.RelayCommand.cs" />
     <Compile Include="Defender.ViewModel.ValueConverters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

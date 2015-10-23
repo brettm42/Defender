@@ -10,14 +10,11 @@
     using System.Threading.Tasks;
     using Microsoft.FSharp;
     using Defender.Model;
+    using static Defender.Data.Constants;
     using Defender.Model.Extensions;
 
     public class Leaf : DataBase
-    {
-        private const string DefaultLeafExe = @"MSLeaf.exe";
-        private const string DefaultLeafDir = @"Microsoft LEAF";
-        private const string DefaultLeafLocation = @"C:\Program Files (x86)\" + DefaultLeafDir + @"\" + DefaultLeafExe;
-                
+    {                
         public string LeafLocation { get; set; } = DefaultLeafLocation;
 
         public string CurrentFile { get; set; }

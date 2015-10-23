@@ -52,7 +52,7 @@
             this.CurrentFile.Visibility   = Visibility.Visible;
             this.SuccessButton.Visibility = Visibility.Visible;
 
-            // TODO: progress dialogue? or taskbar progress tracking
+            // TODO: progress dialog? or taskbar progress tracking
             (this.DataContext as ViewModel).ImportResults(path);
 
             // expands DataPanel
