@@ -1,6 +1,6 @@
 ﻿namespace System.Windows.Controls
 {
-    public static class xPanelExtensions
+    public static class PanelExtensions
     {
         public static void ToggleVisibility<T>(T[] fields)
         {

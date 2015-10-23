@@ -39,7 +39,6 @@
             
             this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
-            //PanelExtensions.HideFields(new object[] { this.CurrentFile, this.SuccessButton });
 
             HidePanel_Click(null, null);
 
@@ -55,8 +54,7 @@
             this.LoadingDialog.Visibility = Visibility.Visible;
             this.CurrentFile.Visibility   = Visibility.Visible;
             this.SuccessButton.Visibility = Visibility.Visible;
-
-            // TODO: add loading or wait dialog
+            
             // TODO: add icon progress in taskbar
             await (this.DataContext as ViewModel).RunQueriesAsync();
             
