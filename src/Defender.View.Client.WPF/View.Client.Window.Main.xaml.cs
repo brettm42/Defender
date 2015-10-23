@@ -14,6 +14,7 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
+    using System.Windows.Media.Effects;
     using System.Windows.Media.Imaging;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
@@ -82,6 +83,9 @@
         
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Effect = new BlurEffect();
+            this.Opacity = .85;
+
             OpenFileDialog openfile = new OpenFileDialog()
                                       {
                                           Title    = "Open a folder of queries for Handback",
@@ -93,9 +97,12 @@
             if (openfile.ShowDialog() == true)
             {
                 (this.DataContext as ViewModel).Folder = openfile.FileName;
-
+                
                 this.Process();
             }
+
+            this.Effect = null;
+            this.Opacity = 1;
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -131,6 +138,9 @@
 
         private void SuccessButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Effect = new BlurEffect();
+            this.Opacity = .85;
+
             SaveFileDialog savefile = new SaveFileDialog()
                                       {
                                           Title    = "Save Handback file as...",
@@ -143,6 +153,11 @@
                                                (savefile.ShowDialog() == true)
                                                ? savefile.FileName
                                                : null);
+
+            (this.DataContext as ViewModel).CurrentFile = $"{savefile.FileName} saved!";
+
+            this.Effect = null;
+            this.Opacity = 1;
         }
 
         #region TouchEvents

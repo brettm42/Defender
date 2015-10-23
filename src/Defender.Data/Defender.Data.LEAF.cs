@@ -21,9 +21,9 @@
 
         public bool ProcessComplete { get; set; }
 
-        public string ProcessOutput { get; set; }
+        public string ProcessOutput { get; set; } = string.Empty;
 
-        public string ProcessErrors { get; set; }
+        public string ProcessErrors { get; set; } = string.Empty;
 
         public int LeafProgress { get; set; } = 0;
 
@@ -109,7 +109,8 @@
                         {
                             foreach (string filename in filenames)
                             {
-                                this.CurrentFile = Path.GetFileName(filename);
+                                this.CurrentFile  = Path.GetFileName(filename);
+                                this.LeafProgress = this.LeafProgress + (100 / filenames.Count());
 
                                 ProcessStartInfo processinfo = new ProcessStartInfo()
                                 {
@@ -131,7 +132,7 @@
                                         DateTime end = DateTime.Now;
                                         
                                         // TODO: check if file exists; if not, populate data with query rqf name but leave stats blank
-                                        //if (!File.Exists($"{Path.GetFileNameWithoutExtension(filename)}.xml")) break;
+                                        if (!File.Exists($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml")) this.ProcessErrors += $"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml not found!";
                                     }
                                 }
                                 catch

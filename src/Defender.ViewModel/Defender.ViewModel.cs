@@ -110,6 +110,20 @@
         }
         private string _curfile;
 
+        public string[] Projects
+        {
+            get
+            {
+                return _proj;
+            }
+            set
+            {
+                _proj = value;
+                RaisePropertyChanged(nameof(Projects));
+            }
+        }
+        private string[] _proj;
+
         public string[] Gameareas
         {
             get
@@ -205,8 +219,8 @@
         {
             var _leaf = new Leaf();
 
-            while (!_leaf.ProcessComplete)
-            {
+            //while (!_leaf.ProcessComplete)
+            //{
                 this.Output   = _leaf.ProcessOutput;
                 this.Errors   = _leaf.ProcessErrors;
                 this.Progress = _leaf.LeafProgress;
@@ -215,8 +229,8 @@
                 //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
                 await _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
-            }
-
+                //}
+            
             this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
         }
 
@@ -236,6 +250,7 @@
         private void UpdateStringLists(ObservableCollection<DataItem> results)
         {
             FileList  = results?.Select(l => l.Name).Distinct().ToArray();
+            Projects  = results?.Select(l => l.Project).Distinct().ToArray();
             Languages = results?.Select(l => l.Language).Distinct().ToArray();
             Gameareas = results?.Select(l => l.Folder).Distinct().ToArray();
         }
