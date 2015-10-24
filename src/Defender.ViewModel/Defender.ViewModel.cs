@@ -219,17 +219,14 @@
         {
             var _leaf = new Leaf();
 
-            //while (!_leaf.ProcessComplete)
-            //{
-                this.Output   = _leaf.ProcessOutput;
-                this.Errors   = _leaf.ProcessErrors;
-                this.Progress = _leaf.LeafProgress;
-                this.CurrentFile = _leaf.CurrentFile;
+            this.Output   = _leaf.ProcessOutput;
+            this.Errors   = _leaf.ProcessErrors;
+            this.Progress = _leaf.LeafProgress;
+            this.CurrentFile = _leaf.CurrentFile;
 
-                //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
+            //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
-                await _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
-                //}
+            await _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
             
             this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
         }
