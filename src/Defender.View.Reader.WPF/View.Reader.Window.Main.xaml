@@ -49,10 +49,12 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel  Grid.Column="0" Margin="5, 15">
                         <Label Padding="15,0" Content="Handback File Details –"/>
+                        <TextBlock x:Name="Projects" Padding="30,0"
+                                   Text="{Binding Projects, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} queries loaded', IsAsync=True}"/>
                         <TextBlock x:Name="Gameareas" Padding="30,0"
-                                   Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas loaded', IsAsync=True}"/>
+                                   Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas found', IsAsync=True}"/>
                         <TextBlock x:Name="Languages" Padding="30,0" ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}, IsAsync=True}"
-                                   Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages loaded', IsAsync=True}"/>
+                                   Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages found', IsAsync=True}"/>
                         <TextBlock x:Name="Status" Padding="30,0">
                             <Run Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='found {0} queries in handback file'}"/>
                             <Run Text="{Binding CurrentFile, StringFormat='{}{0}...'}"/>

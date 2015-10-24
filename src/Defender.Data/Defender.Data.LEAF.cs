@@ -21,13 +21,13 @@
 
         public bool ProcessComplete { get; set; }
 
-        public string ProcessOutput { get; set; }
+        public string ProcessOutput { get; set; } = string.Empty;
 
-        public string ProcessErrors { get; set; }
+        public string ProcessErrors { get; set; } = string.Empty;
 
         public int LeafProgress { get; set; } = 0;
 
-        public bool LeafQuery(string path, string workingdir = @".\", string outputxml = @".\_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
+        public bool LeafFolderQuery(string path, string workingdir = @".\", string outputxml = @".\_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
@@ -92,64 +92,7 @@
                 throw new ArgumentNullException();
             }
         }
-
-        public async Task LeafFileQueryAsync(string path, string workingdir = @".\", string outputxml = @"_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
-        {
-            if (!string.IsNullOrWhiteSpace(path))
-            {
-                IEnumerable<string> filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories);
-
-                if (filenames.Any())
-                {
-                    this.ProcessErrors = string.Empty;
-                    this.ProcessOutput = string.Empty;
-
-                    await Task.Run(
-                        () => 
-                        {
-                            foreach (string filename in filenames)
-                            {
-                                this.CurrentFile = Path.GetFileName(filename);
-
-                                ProcessStartInfo processinfo = new ProcessStartInfo()
-                                {
-                                    FileName = leaf,
-                                    UseShellExecute = true,
-                                    WindowStyle = ProcessWindowStyle.Hidden,
-                                    WorkingDirectory = workingdir,
-                                    Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
-                                };
-
-                                DateTime start = DateTime.Now;
-
-                                try
-                                {
-                                    using (Process process = Process.Start(processinfo))
-                                    {
-                                        process.WaitForExit();
-                                        
-                                        DateTime end = DateTime.Now;
-                                        
-                                        // TODO: check if file exists; if not, populate data with query rqf name but leave stats blank
-                                        //if (!File.Exists($"{Path.GetFileNameWithoutExtension(filename)}.xml")) break;
-                                    }
-                                }
-                                catch
-                                {
-                                    throw new Exception($"Failed to launch {DefaultLeafExe}");
-                                }
-                            }
-                        });
-
-                    this.ProcessComplete = true;
-                }
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
-        }
-
+        
         public void LeafFileQuery(string path, string workingdir = @".\", string outputxml = @"_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
         {
             if (!string.IsNullOrWhiteSpace(path))
@@ -192,6 +135,64 @@
                             throw new Exception($"Failed to launch {DefaultLeafExe}");
                         }
                     }
+
+                    this.ProcessComplete = true;
+                }
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
+        public async Task LeafFileQueryAsync(string path, string workingdir = @".\", string outputxml = @"_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
+        {
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                IEnumerable<string> filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories);
+
+                if (filenames.Any())
+                {
+                    this.ProcessErrors = string.Empty;
+                    this.ProcessOutput = string.Empty;
+
+                    await Task.Run(
+                        () =>
+                        {
+                            foreach (string filename in filenames)
+                            {
+                                this.CurrentFile = Path.GetFileName(filename);
+                                this.LeafProgress = this.LeafProgress + (100 / filenames.Count());
+
+                                ProcessStartInfo processinfo = new ProcessStartInfo()
+                                {
+                                    FileName = leaf,
+                                    UseShellExecute = true,
+                                    WindowStyle = ProcessWindowStyle.Hidden,
+                                    WorkingDirectory = workingdir,
+                                    Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
+                                };
+
+                                DateTime start = DateTime.Now;
+
+                                try
+                                {
+                                    using (Process process = Process.Start(processinfo))
+                                    {
+                                        process.WaitForExit();
+
+                                        DateTime end = DateTime.Now;
+
+                                        // TODO: check if file exists; if not, populate data with query rqf name but leave stats blank
+                                        if (!File.Exists($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml")) this.ProcessErrors += $"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml not found!";
+                                    }
+                                }
+                                catch
+                                {
+                                    throw new Exception($"Failed to launch {DefaultLeafExe}");
+                                }
+                            }
+                        });
 
                     this.ProcessComplete = true;
                 }

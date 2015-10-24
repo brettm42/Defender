@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ViewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.Client.WPF"
-        mc:Ignorable="d"
+        mc:Ignorable="d" x:Name="MainWindow"
         Title="Defender" Height="750" Width="700" Icon="Resources/Defender.ico">
     <Window.DataContext>
         <ViewModel:ViewModel/>
@@ -50,12 +50,14 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel  Grid.Column="0" Margin="5, 15">
                         <Label Padding="5,0" Content="Current Handback Status –" Margin="15,0,0,0"/>
+                        <TextBlock x:Name="Projects" Padding="30,0"
+                                   Text="{Binding Projects, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} queries found', IsAsync=True}"/>
                         <TextBlock x:Name="Gameareas" Padding="30,0"
                                    Text="{Binding Gameareas, Converter={StaticResource StringArrayToString}, StringFormat='{}{0} gameareas loaded', IsAsync=True}"/>
                         <TextBlock x:Name="Languages" Padding="30,0" ToolTip="{Binding Languages, Converter={StaticResource StringArrayToString}, IsAsync=True}"
                                    Text="{Binding Languages, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} languages loaded', IsAsync=True}"/>
                         <TextBlock x:Name="Status" Padding="30,0" 
-                                   Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='found {0} queries, checking now...', IsAsync=True}"/>
+                                   Text="{Binding FileList, Converter={StaticResource StringArrayToInt}, StringFormat='{}{0} queries specified', IsAsync=True}"/>
                         <Rectangle Height="5"/>
                     </StackPanel>
                     <Button x:Name="SuccessButton" Margin="5,15,20,15" Padding="5,0" Grid.Column="1" BorderThickness="0" FontSize="32" FontWeight="Bold"

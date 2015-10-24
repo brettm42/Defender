@@ -51,7 +51,7 @@
 
         public string _Station { get; set; }
 
-        public int _Id { get; set; }
+        public int _Id { private get; set; }
 
         public object this[string prop]
         {

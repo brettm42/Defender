@@ -12,7 +12,7 @@
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
-    using System.Windows.Media.Imaging;
+    using System.Windows.Media.Effects;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
     using Microsoft.Win32;
@@ -71,6 +71,9 @@
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Effect = new BlurEffect();
+            this.Opacity = .85;
+
             OpenFileDialog openfile = new OpenFileDialog()
                                       {
                                           Title = "Select the Handback file to verify",
@@ -78,6 +81,9 @@
                                       };
 
             if (openfile.ShowDialog() == true) this.Process(openfile.FileName);
+            
+            this.Effect = null;
+            this.Opacity = 1;
         }
 
         private void DataPanel_MouseDown(object sender, MouseButtonEventArgs e)

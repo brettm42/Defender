@@ -42,8 +42,8 @@
                         DataItem filedata = new DataItem()
                                             {
                                                 Date     = DateTime.Now,
-                                                Project  = ParseFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
-                                                Folder   = ParseFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
+                                                Project  = ChunkFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
+                                                Folder   = ChunkFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
                                                 Name     = Path.GetFileNameWithoutExtension(file),
                                                 _Id      = file.GetHashCode(),
                                                 _File    = Path.GetFullPath(file),
@@ -61,7 +61,7 @@
                             filedata.Errors   = read.Where(n => n.Element("messagetype").Value == "Error")?.Count() ?? 0;
                             filedata.Warnings = read.Where(n => n.Element("messagetype").Value == "Warning")?.Count() ?? 0;
                             filedata.Language = read.Descendants("culture").FirstOrDefault()?.Value
-                                                    ?? ParseFilename(Path.GetFileNameWithoutExtension(file), '_').LastOrDefault();
+                                                    ?? ChunkFilename(Path.GetFileNameWithoutExtension(file), '_').LastOrDefault();
 
                             datagrid.Add(filedata);
                         }
@@ -85,7 +85,7 @@
             return null;
         }
 
-        internal string[] ParseFilename(string filename, char delim)
+        internal string[] ChunkFilename(string filename, char delim)
         {
             if (!string.IsNullOrWhiteSpace(filename))
             {
