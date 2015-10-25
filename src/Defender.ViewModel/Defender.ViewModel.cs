@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -79,6 +80,20 @@
         }
         private bool _success = true;
 
+        //public Progress<int> Progress
+        //{
+        //    get
+        //    {
+        //        return _prog;
+        //    }
+        //    set
+        //    {
+        //        _prog = value;
+        //        RaisePropertyChanged(nameof(Progress));
+        //    }
+        //}
+        //private Progress<int> _prog;
+
         public int Progress
         {
             get
@@ -87,14 +102,15 @@
             }
             set
             {
-                if (Enumerable.Range(0, 101).Contains(value))
-                {
-                    _progr = value;
-                    RaisePropertyChanged(nameof(Progress));
-                }
+                _progr = value;
+                RaisePropertyChanged(nameof(Progress));
+
+                //ProgressChanged(this, new ProgressChangedEventArgs(value, value));
             }
         }
         private int _progr = 0;
+
+        //public event ProgressChangedEventHandler ProgressChanged;
 
         public string CurrentFile
         {
@@ -219,14 +235,19 @@
         {
             var _leaf = new Leaf();
 
+            var prog = new Progress<int>(
+                           percent =>
+                           {
+                               this.Progress = percent;
+                           });
+
             this.Output   = _leaf.ProcessOutput;
             this.Errors   = _leaf.ProcessErrors;
-            this.Progress = _leaf.LeafProgress;
             this.CurrentFile = _leaf.CurrentFile;
 
             //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
-            await _leaf.LeafFileQueryAsync(this.Folder, this.Folder);
+            await _leaf.LeafFileQueryAsync(prog, this.Folder, this.Folder);
             
             this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
         }

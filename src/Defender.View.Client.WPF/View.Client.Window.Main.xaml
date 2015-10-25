@@ -11,6 +11,7 @@
         <ViewModel:ViewModel/>
     </Window.DataContext>
     <Window.Resources>
+        <TaskbarItemInfo x:Key="TaskbarItemInfo"/>
         <ViewModel:BoolToFillConverter x:Key="BoolToFillConverter"/>
         <ViewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
         <ViewModel:StringArrayToString x:Key="StringArrayToString"/>

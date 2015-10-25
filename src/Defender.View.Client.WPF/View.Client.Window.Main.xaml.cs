@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using System.Text;
     using System.Threading;
@@ -17,6 +18,7 @@
     using System.Windows.Media.Effects;
     using System.Windows.Navigation;
     using System.Windows.Shapes;
+    using System.Windows.Shell;
     using Microsoft.Win32;
     using Defender.ViewModel;
 
@@ -36,7 +38,7 @@
         public WindowMain()
         {
             this.InitializeComponent();
-            
+
             this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
 
@@ -59,6 +61,12 @@
             await (this.DataContext as ViewModel).RunQueriesAsync();
             
             this.Validate();
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Normal;
+            this.TaskbarItemInfo.ProgressValue = e.ProgressPercentage / 100d;
         }
 
         private void Validate()
