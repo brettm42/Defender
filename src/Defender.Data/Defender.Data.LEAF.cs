@@ -145,7 +145,7 @@
             }
         }
 
-        public async Task LeafFileQueryAsync(string path, string workingdir = @".\", string outputxml = @"_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
+        public async Task LeafFileQueryAsync(IProgress<int> progress, string path, string workingdir = @".\", string outputxml = @"_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
@@ -163,6 +163,8 @@
                             {
                                 this.CurrentFile = Path.GetFileName(filename);
                                 this.LeafProgress = this.LeafProgress + (100 / filenames.Count());
+
+                                progress.Report(this.LeafProgress + (100 / filenames.Count()));
 
                                 ProcessStartInfo processinfo = new ProcessStartInfo()
                                 {
