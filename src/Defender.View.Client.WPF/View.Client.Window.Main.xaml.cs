@@ -90,7 +90,7 @@
         
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Effect = new BlurEffect();
+            this.Effect = new BlurEffect() { Radius = 3, RenderingBias = RenderingBias.Performance };
             this.Opacity = .85;
 
             OpenFileDialog openfile = new OpenFileDialog()
