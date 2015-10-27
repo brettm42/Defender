@@ -71,7 +71,7 @@
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Effect = new BlurEffect();
+            this.Effect = new BlurEffect() { Radius = 3, RenderingBias = RenderingBias.Performance };
             this.Opacity = .85;
 
             OpenFileDialog openfile = new OpenFileDialog()
@@ -79,7 +79,7 @@
                                           Title = "Select the Handback file to verify",
                                           Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
                                       };
-
+            
             if (openfile.ShowDialog() == true) this.Process(openfile.FileName);
             
             this.Effect = null;
