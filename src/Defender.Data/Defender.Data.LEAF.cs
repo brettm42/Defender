@@ -8,10 +8,9 @@
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.FSharp;
     using Defender.Model;
-    using static Defender.Data.Constants;
     using Defender.Model.Extensions;
+    using static Defender.Data.Constants;
 
     public class Leaf : DataBase
     {                
