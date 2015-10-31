@@ -1,20 +1,17 @@
 ﻿namespace Defender.View.Reader.WPF
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
     using System.Windows.Media.Effects;
     using System.Windows.Navigation;
-    using System.Windows.Shapes;
     using Microsoft.Win32;
     using Defender.ViewModel;
 
@@ -30,6 +27,8 @@
         private static int ElemMaxHeight { get; set; }
 
         private static int ElemMinHeight { get; set; }
+
+        private ViewModel ViewModel => this.DataContext as ViewModel;
 
         public WindowMain()
         {
@@ -53,7 +52,7 @@
             this.SuccessButton.Visibility = Visibility.Visible;
 
             // TODO: progress dialog? or taskbar progress tracking
-            (this.DataContext as ViewModel).ImportResults(path);
+            ViewModel.ImportResults(path);
 
             // expands DataPanel
             this.HidePanel.Content = DownArrow;

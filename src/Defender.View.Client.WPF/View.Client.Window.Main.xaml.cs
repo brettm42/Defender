@@ -2,7 +2,6 @@
 {
     using System;
     using System.IO;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
     using System.Text;
@@ -10,14 +9,11 @@
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
     using System.Windows.Media.Effects;
     using System.Windows.Navigation;
-    using System.Windows.Shapes;
     using System.Windows.Shell;
     using Microsoft.Win32;
     using Defender.ViewModel;
@@ -34,6 +30,8 @@
         private static int ElemMaxHeight { get; set; }
 
         private static int ElemMinHeight { get; set; }
+
+        private ViewModel ViewModel => this.DataContext as ViewModel;
         
         public WindowMain()
         {
@@ -58,7 +56,7 @@
             this.SuccessButton.Visibility = Visibility.Visible;
             
             // TODO: add icon progress in taskbar
-            await (this.DataContext as ViewModel).RunQueriesAsync();
+            await ViewModel.RunQueriesAsync();
             
             this.Validate();
         }
@@ -72,7 +70,7 @@
         private void Validate()
         {
             // runs validation on new query results
-            (this.DataContext as ViewModel).ValidateFiles();
+            ViewModel.ValidateFiles();
 
             // expands DataPanel
             this.HidePanel.Content = DownArrow;
@@ -103,7 +101,7 @@
             
             if (openfile.ShowDialog() == true)
             {
-                (this.DataContext as ViewModel).Folder = openfile.FileName;
+                ViewModel.Folder = openfile.FileName;
                 
                 this.Process();
             }
@@ -137,7 +135,7 @@
         {
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
-                (this.DataContext as ViewModel).Folder = this.RQFPath.Text;
+                ViewModel.Folder = this.RQFPath.Text;
 
                 this.Process();
             }
@@ -152,16 +150,16 @@
                                       {
                                           Title    = "Save Handback file as...",
                                           Filter   = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",
-                                          FileName = $"{(this.DataContext as ViewModel).Folder}.hback",
+                                          FileName = $"{ViewModel.Folder}.hback",
                                           AddExtension = true,
                                       };
 
-            (this.DataContext as ViewModel).ExportResults(
-                                               (savefile.ShowDialog() == true)
-                                               ? savefile.FileName
-                                               : null);
+            ViewModel.ExportResults(
+                (savefile.ShowDialog() == true)
+                ? savefile.FileName
+                : null);
 
-            (this.DataContext as ViewModel).CurrentFile = $"{savefile.FileName} saved!";
+            ViewModel.CurrentFile = $"{savefile.FileName} saved!";
 
             this.Effect = null;
             this.Opacity = 1;
