@@ -44,9 +44,9 @@
   <ItemGroup>
     <Compile Include="Defender.Model.Base.cs" />
     <Compile Include="Defender.Model.DataItem.cs" />
-    <Compile Include="Extensions\Disposable.Extensions.cs" />
+    <Compile Include="Extensions\DisposableExtensions.cs" />
     <Compile Include="Extensions\FunctionalExtensions.cs" />
-    <Compile Include="Extensions\StringBuilder.Extensions.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

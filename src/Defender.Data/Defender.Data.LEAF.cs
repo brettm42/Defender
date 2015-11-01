@@ -185,7 +185,12 @@
                                         DateTime end = DateTime.Now;
 
                                         // TODO: check if file exists; if not, populate data with query rqf name but leave stats blank
-                                        if (!File.Exists($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml")) this.ProcessErrors += $"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml not found!";
+                                        if (!File.Exists($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml"))
+                                        {
+                                            this.ProcessErrors += $"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml not found!";
+
+                                            File.Create($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml");
+                                        }
                                     }
                                 }
                                 catch
@@ -226,9 +231,17 @@
 
         public Leaf(string leafpath = DefaultLeafLocation)
         {
-            this.LeafLocation = (File.Exists(leafpath) && leafpath.EndsWith(DefaultLeafExe))
-                                ? leafpath
-                                : this.FindLeaf(leafpath);
+            try
+            {
+                this.LeafLocation = (File.Exists(leafpath) && leafpath.EndsWith(DefaultLeafExe))
+                                    ? leafpath
+                                    : this.FindLeaf(leafpath);
+            }
+            catch
+            {
+                // TODO: handle exe not found more gracefully
+                throw new FileNotFoundException($"Leaf could not be found at {leafpath}.");
+            }
         }
     }
 }
