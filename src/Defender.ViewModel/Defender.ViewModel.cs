@@ -45,8 +45,7 @@
         private bool _canexecute = true;
 
         public ICommand SaveCommand { get; set; }
-
-
+        
         public string LeafPath { get; set; }
 
         public string Folder
@@ -267,10 +266,10 @@
 
         private void UpdateStringLists(ObservableCollection<DataItem> results)
         {
-            FileList  = results?.Select(l => l.Name).Distinct().ToArray();
-            Projects  = results?.Select(l => l.Project).Distinct().ToArray();
-            Languages = results?.Select(l => l.Language).Distinct().ToArray();
-            Gameareas = results?.Select(l => l.Folder).Distinct().ToArray();
+            this.FileList  = results?.Select(l => l.Name).Distinct().ToArray();
+            this.Projects  = results?.Select(l => l.Project).Distinct().ToArray();
+            this.Languages = results?.Select(l => l.Language).Distinct().ToArray();
+            this.Gameareas = results?.Select(l => l.Folder).Distinct().ToArray();
         }
 
         internal bool AnyErrors(ObservableCollection<DataItem> results)
