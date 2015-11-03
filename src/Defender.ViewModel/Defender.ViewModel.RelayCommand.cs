@@ -56,12 +56,12 @@
 
         public void OnExecuteChanged()
         {
-            EventHandler ehandler = this._canexecutechanged;
+            EventHandler eventhandler = this._canexecutechanged;
 
-            if (ehandler != null)
+            if (eventhandler != null)
             {
                 //DispatcherHelper.BeginInvokeOnUIThread(() => ehandler.Invoke(this, EventArgs.Empty));
-                ehandler.Invoke(this, EventArgs.Empty);
+                eventhandler.Invoke(this, EventArgs.Empty);
             }
         }
 
