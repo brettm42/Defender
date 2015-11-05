@@ -1,19 +1,14 @@
 ﻿namespace Defender.View.Client.WPF
 {
     using System;
-    using System.IO;
     using System.ComponentModel;
     using System.Linq;
     using System.Text;
-    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Animation;
     using System.Windows.Media.Effects;
-    using System.Windows.Navigation;
     using System.Windows.Shell;
     using Microsoft.Win32;
     using Defender.ViewModel;
