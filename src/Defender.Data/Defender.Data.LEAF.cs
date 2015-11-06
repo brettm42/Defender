@@ -26,6 +26,8 @@
 
         public int LeafProgress { get; set; } = 0;
 
+        public string[] FoundFiles { get; set; }
+
         public bool LeafFolderQuery(string path, string workingdir = @".\", string outputxml = @".\_temp.xml", string plugin = @"/SERVICEPROVIDERS  LocVer", string leaf = DefaultLeafLocation)
         {
             if (!string.IsNullOrWhiteSpace(path))
@@ -149,6 +151,7 @@
             if (!string.IsNullOrWhiteSpace(path))
             {
                 IEnumerable<string> filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories);
+                this.FoundFiles = filenames.ToArray();
 
                 if (filenames.Any())
                 {

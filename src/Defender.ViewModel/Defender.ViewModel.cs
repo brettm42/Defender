@@ -181,6 +181,20 @@
         }
         private string[] _filelist;
 
+        public string[] FoundFiles
+        {
+            get
+            {
+                return _ffiles;
+            }
+            set
+            {
+                _ffiles = value;
+                RaisePropertyChanged(nameof(FoundFiles));
+            }
+        }
+        private string[] _ffiles;
+
         public ObservableCollection<DataItem> Statistics
         {
             get
@@ -243,6 +257,7 @@
             this.Output   = _leaf.ProcessOutput;
             this.Errors   = _leaf.ProcessErrors;
             this.CurrentFile = _leaf.CurrentFile;
+            this.FoundFiles = _leaf.FoundFiles;
 
             //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
