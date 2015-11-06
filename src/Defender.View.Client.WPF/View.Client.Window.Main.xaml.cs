@@ -72,6 +72,7 @@
             this.DataPanel.Maximise(this.ActualHeight);
 
             this.LoadingDialog.Visibility = Visibility.Collapsed;
+            this.FilesLoaded.Visibility = Visibility.Collapsed;
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
@@ -97,7 +98,9 @@
             if (openfile.ShowDialog() == true)
             {
                 ViewModel.Folder = openfile.FileName;
-                
+
+                this.FilesLoaded.Visibility = Visibility.Visible;
+
                 this.Process();
             }
 
@@ -131,6 +134,8 @@
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
                 ViewModel.Folder = this.RQFPath.Text;
+
+                this.FilesLoaded.Visibility = Visibility.Visible;
 
                 this.Process();
             }
