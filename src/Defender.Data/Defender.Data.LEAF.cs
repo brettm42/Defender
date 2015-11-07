@@ -67,6 +67,8 @@
                         using (Process process = Process.Start(processinfo))
                         {
                             process.WaitForExit();
+
+                            var temp = process.ExitCode;
                             
                             //using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
                             //using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
@@ -173,6 +175,7 @@
                                     FileName = leaf,
                                     UseShellExecute = true,
                                     WindowStyle = ProcessWindowStyle.Hidden,
+                                    RedirectStandardOutput = true,
                                     WorkingDirectory = workingdir,
                                     Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
                                 };
@@ -184,6 +187,9 @@
                                     using (Process process = Process.Start(processinfo))
                                     {
                                         process.WaitForExit();
+
+                                        using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
+                                        //using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
 
                                         DateTime end = DateTime.Now;
 
