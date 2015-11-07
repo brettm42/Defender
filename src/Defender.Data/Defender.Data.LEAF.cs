@@ -198,7 +198,7 @@
                                         {
                                             this.ProcessErrors += $"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml not found!";
 
-                                            File.Create($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml");
+                                            File.WriteAllText($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml", "File not found");
                                         }
                                     }
                                 }
