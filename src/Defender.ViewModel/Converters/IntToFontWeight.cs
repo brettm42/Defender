@@ -8,7 +8,7 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((int)value > 0)
+            return (int)value > 0
                    ? System.Windows.FontWeights.Bold
                    : System.Windows.FontWeights.Regular;
         }

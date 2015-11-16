@@ -1,9 +1,5 @@
 ﻿namespace Defender.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     internal static class Constants
     {
         internal const string DefaultLeafExe = @"MSLeaf.exe";

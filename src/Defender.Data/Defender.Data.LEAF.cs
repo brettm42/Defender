@@ -8,6 +8,7 @@
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+
     using Defender.Model;
     using Defender.Model.Extensions;
     using static Defender.Data.Constants;
@@ -243,8 +244,7 @@
             try
             {
                 this.LeafLocation = (File.Exists(leafpath) && leafpath.EndsWith(DefaultLeafExe))
-                                    ? leafpath
-                                    : this.FindLeaf(leafpath);
+                                    ? leafpath : this.FindLeaf(leafpath);
             }
             catch
             {

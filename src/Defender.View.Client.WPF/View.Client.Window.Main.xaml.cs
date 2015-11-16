@@ -1,9 +1,7 @@
 ﻿namespace Defender.View.Client.WPF
 {
-    using System;
     using System.ComponentModel;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
@@ -79,7 +77,8 @@
         {
             this.DataPanel.ToggleVisibility();
 
-            this.HidePanel.Content = (this.DataPanel.Visibility == Visibility.Visible) ? DownArrow : UpArrow;
+            this.HidePanel.Content = this.DataPanel.Visibility == Visibility.Visible
+                                     ? DownArrow : UpArrow;
         }
         
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -155,9 +154,8 @@
                                       };
 
             ViewModel.ExportResults(
-                (savefile.ShowDialog() == true)
-                ? savefile.FileName
-                : null);
+                savefile.ShowDialog() == true
+                ? savefile.FileName : null);
 
             ViewModel.CurrentFile = $"{savefile.FileName} saved!";
 

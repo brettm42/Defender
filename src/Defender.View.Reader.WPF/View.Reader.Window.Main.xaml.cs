@@ -1,9 +1,7 @@
 ﻿namespace Defender.View.Reader.WPF
 {
-    using System;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
@@ -62,7 +60,7 @@
         {
             this.DataPanel.ToggleVisibility();
 
-            this.HidePanel.Content = (this.DataPanel.Visibility == Visibility.Visible) ? DownArrow : UpArrow;
+            this.HidePanel.Content = this.DataPanel.Visibility == Visibility.Visible ? DownArrow : UpArrow;
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -105,7 +103,10 @@
 
         private void RQFPath_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text)) this.Process(this.RQFPath.Text);
+            if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
+            {
+                this.Process(this.RQFPath.Text);
+            }
         }
 
         #region TouchEvents

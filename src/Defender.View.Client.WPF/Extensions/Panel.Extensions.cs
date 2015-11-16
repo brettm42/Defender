@@ -6,24 +6,21 @@
         {
             foreach (T field in fields)
             {
-                (field as StackPanel).Visibility = ((field as StackPanel).Visibility == Visibility.Visible)
-                                                   ? Visibility.Collapsed
-                                                   : Visibility.Visible;
+                (field as StackPanel).Visibility = (field as StackPanel).Visibility == Visibility.Visible
+                                                   ? Visibility.Collapsed : Visibility.Visible;
             }
         }
 
         public static void ToggleVisibility(this StackPanel @this)
         {
-            @this.Visibility = (@this.Visibility == Visibility.Visible)
-                               ? Visibility.Collapsed
-                               : Visibility.Visible;
+            @this.Visibility = @this.Visibility == Visibility.Visible
+                               ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public static void ToggleVisibility(this Grid @this)
         {
-            @this.Visibility = (@this.Visibility == Visibility.Visible)
-                               ? Visibility.Collapsed
-                               : Visibility.Visible;
+            @this.Visibility = @this.Visibility == Visibility.Visible
+                               ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public static void HideFields(object[] fields)

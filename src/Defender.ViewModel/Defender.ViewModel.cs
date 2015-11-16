@@ -248,11 +248,7 @@
         {
             var _leaf = new Leaf();
 
-            var prog = new Progress<int>(
-                           percent =>
-                           {
-                               this.Progress = percent;
-                           });
+            var prog = new Progress<int>(p => this.Progress = p);
 
             this.Output   = _leaf.ProcessOutput;
             this.Errors   = _leaf.ProcessErrors;
@@ -263,7 +259,7 @@
 
             await _leaf.LeafFileQueryAsync(prog, this.Folder, this.Folder);
             
-            this.Success = (_leaf.ProcessErrors.Any()) ? true : false;
+            this.Success = _leaf.ProcessErrors.Any() ? true : false;
         }
 
         public void ValidateFiles()
@@ -289,7 +285,7 @@
 
         internal bool AnyErrors(ObservableCollection<DataItem> results)
         {
-            return (_stats?.Where(l => l.Errors != 0).Any() ?? true) ? false : true;
+            return _stats?.Where(l => l.Errors != 0).Any() ?? true ? false : true;
         }
 
         public bool ExportResults(string path)
@@ -333,7 +329,7 @@
 
                 this.Statistics = reader.DeserialiseFromString(reader.Open(path));
 
-                return (this.Statistics != null) ? true : false;
+                return this.Statistics != null ? true : false;
             }
             else
             {
