@@ -3,6 +3,7 @@
     using System;
     using System.Globalization;
     using System.Windows.Data;
+    using System.Windows.Media;
 
     /// <summary>
     /// Converter class to convert a given boolean value to color, used for indicating system/execution status.
@@ -10,8 +11,8 @@
     /// </summary>
     public class BoolToFillConverter : IValueConverter
     {
-        private static string Red = System.Windows.Media.Colors.Red.ToString();
-        private static string LGreen = System.Windows.Media.Colors.LightGreen.ToString();
+        private static string Red = Colors.Red.ToString();
+        private static string LGreen = Colors.LightGreen.ToString();
         
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -20,7 +21,7 @@
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((string)value == LGreen) ? true : false;
+            return (string)value == LGreen ? true : false;
         }
     }
 }

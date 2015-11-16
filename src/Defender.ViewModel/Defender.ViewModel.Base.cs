@@ -7,6 +7,11 @@
     public class ViewModelBase : INotifyPropertyChanged
     {
         /// <summary>
+        /// Fires property changed event delegate.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Customized Event trigger for ViewModel.
         /// </summary>
         /// <param name="property">Name of property to raise an event for.</param>
@@ -14,10 +19,5 @@
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
-
-        /// <summary>
-        /// Fires property changed event delegate.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

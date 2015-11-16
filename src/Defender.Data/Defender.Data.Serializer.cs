@@ -5,7 +5,6 @@
     using System.IO;
     using System.Linq;
     using System.Runtime.Serialization.Formatters.Binary;
-    using System.Threading.Tasks;
     using Defender.Model;
     using Defender.Model.Extensions;
 
