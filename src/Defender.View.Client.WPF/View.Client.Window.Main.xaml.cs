@@ -44,10 +44,10 @@
         private async void Process()
         {
             // unhides status elements
-            this.LoadingDialog.Visibility = Visibility.Visible;
             this.CurrentFile.Visibility   = Visibility.Visible;
             this.SuccessButton.Visibility = Visibility.Visible;
-            
+            this.LoadingDialog.Visibility = Visibility.Visible;
+
             // TODO: add icon progress in taskbar
             await ViewModel.RunQueriesAsync();
             
@@ -153,9 +153,7 @@
                                           AddExtension = true,
                                       };
 
-            ViewModel.ExportResults(
-                savefile.ShowDialog() == true
-                ? savefile.FileName : null);
+            ViewModel.ExportResults(savefile.ShowDialog() == true ? savefile.FileName : null);
 
             ViewModel.CurrentFile = $"{savefile.FileName} saved!";
 

@@ -4,6 +4,9 @@
     using System.Globalization;
     using System.Windows.Data;
     
+    /// <summary>
+    /// Converts any integer over 0 into font weight bold. Otherwise regular weight font.
+    /// </summary>
     public class IntToFontWeight : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
