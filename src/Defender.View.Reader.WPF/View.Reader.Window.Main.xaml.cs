@@ -42,9 +42,9 @@
 
         private void Process(string path)
         {
-            this.LoadingDialog.Visibility = Visibility.Visible;
             this.CurrentFile.Visibility   = Visibility.Visible;
             this.SuccessButton.Visibility = Visibility.Visible;
+            this.LoadingDialog.Visibility = Visibility.Visible;
 
             // TODO: progress dialog? or taskbar progress tracking
             ViewModel.ImportResults(path);
