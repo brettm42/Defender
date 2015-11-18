@@ -1,6 +1,5 @@
 ﻿namespace Defender.Data.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -31,7 +30,6 @@
             //ObservableCollection deserialised = _serial.DeserialiseFromString(Resources/BinaryData);
 
             //Assert.AreEqual(Resources/DataGrid, _serial.DataGrid, "Expected decoded data to match original data, it doesn't!");
-
         }
 
         [TestMethod]
@@ -46,7 +44,6 @@
 
             //Assert.AreEqual(Resources/SerialisedData, serialised, "Expected encoded data to match, does not!");
             //Assert.AreEqual(Resources/DataGrid, _serial.DataGrid, "Expected decoded data to match original data, it doesn't!");
-
         }
     }
 }
