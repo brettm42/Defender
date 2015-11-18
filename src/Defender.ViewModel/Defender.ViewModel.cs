@@ -15,6 +15,8 @@
 
     public class ViewModel : ViewModelBase
     {
+        private const string TempXML = @".\_temp.xml";
+
         public ICommand ToggleExecute
         {
             get
@@ -241,13 +243,9 @@
         }
         private string _out;
 
-
-        private const string tempxml = @".\_temp.xml";
-
         public async Task RunQueriesAsync()
         {
             var _leaf = new Leaf();
-
             var prog = new Progress<int>(p => this.Progress = p);
 
             this.Output   = _leaf.ProcessOutput;
@@ -255,10 +253,9 @@
             this.CurrentFile = _leaf.CurrentFile;
             this.FoundFiles = _leaf.FoundFiles;
 
+            await _leaf.LeafFileQueryAsync(prog, this.Folder, this.Folder);
             //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
-            await _leaf.LeafFileQueryAsync(prog, this.Folder, this.Folder);
-            
             this.Success = _leaf.ProcessErrors.Any() ? true : false;
         }
 
@@ -268,7 +265,6 @@
             {
                 this.Progress    = _validation.CurrentProgress;
                 this.CurrentFile = _validation.CurrentFile;
-
                 this.Statistics  = _validation.Validation(this.Folder);
             }
 
@@ -312,10 +308,7 @@
                                           AddExtension = true,
                                       };
 
-            this.ExportResults(
-                (savefile.ShowDialog() == true)
-                ? savefile.FileName
-                : null);
+            this.ExportResults(savefile.ShowDialog() == true ? savefile.FileName : null);
         }
 
         public bool ImportResults(string path)

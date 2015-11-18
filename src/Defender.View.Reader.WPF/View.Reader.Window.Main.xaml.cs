@@ -7,9 +7,9 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media.Effects;
-    using Microsoft.Win32;
     using Defender.ViewModel;
-
+    using Microsoft.Win32;
+    
     /// <summary>
     /// Interaction logic for View.Reader.Window.Main.xaml
     /// </summary>

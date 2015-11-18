@@ -8,8 +8,8 @@
     using System.Windows.Input;
     using System.Windows.Media.Effects;
     using System.Windows.Shell;
-    using Microsoft.Win32;
     using Defender.ViewModel;
+    using Microsoft.Win32;
 
     /// <summary>
     /// Interaction logic for View.Client.Window.Main.xaml

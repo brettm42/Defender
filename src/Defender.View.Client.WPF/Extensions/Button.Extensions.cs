@@ -7,6 +7,5 @@
             @this.Visibility = (@this.Visibility == Visibility.Visible)
                                ? Visibility.Collapsed : Visibility.Visible;
         }
-
     }
 }
