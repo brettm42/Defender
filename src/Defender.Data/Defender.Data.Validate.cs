@@ -44,11 +44,11 @@
                                                 Project  = ChunkFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
                                                 Folder   = ChunkFilename(Path.GetFileNameWithoutExtension(file), '_')[1],
                                                 Name     = Path.GetFileNameWithoutExtension(file),
-                                                _Id      = file.GetHashCode(),
-                                                _File    = Path.GetFullPath(file),
-                                                _User    = Environment.UserName,
-                                                _Station = Environment.MachineName,
-                                                _Domain  = Environment.UserDomainName,
+                                                _id      = file.GetHashCode(),
+                                                _file    = Path.GetFullPath(file),
+                                                _user    = Environment.UserName,
+                                                _station = Environment.MachineName,
+                                                _domain  = Environment.UserDomainName,
                                             };
                         try
                         {
@@ -57,8 +57,8 @@
                                                 .Where(n => n.Element("Name").Value == "LocVer")
                                                 .Descendants("AutomationResult");
 
-                            filedata.Errors   = read.Where(n => n.Element("messagetype").Value == "Error")?.Count() ?? 0;
-                            filedata.Warnings = read.Where(n => n.Element("messagetype").Value == "Warning")?.Count() ?? 0;
+                            filedata.Errors   = read?.Count(n => n.Element("messagetype")?.Value == "Error") ?? 0;
+                            filedata.Warnings = read?.Count(n => n.Element("messagetype")?.Value == "Warning") ?? 0;
                             filedata.Language = read.Descendants("culture").FirstOrDefault()?.Value
                                                     ?? ChunkFilename(Path.GetFileNameWithoutExtension(file), '_').LastOrDefault();
 

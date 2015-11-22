@@ -5,6 +5,7 @@
     using System.IO;
     using System.Linq;
     using System.Runtime.Serialization.Formatters.Binary;
+
     using Defender.Model;
     using Defender.Model.Extensions;
 
@@ -12,11 +13,8 @@
     {
         public ObservableCollection<DataItem> DataGrid { get; set; }
         
-        public string SerialiseToString()
-        {
-            return SerialiseToString<ObservableCollection<DataItem>>(this.DataGrid);
-        }
-
+        public string SerialiseToString() => SerialiseToString<ObservableCollection<DataItem>>(this.DataGrid);
+        
         public string SerialiseToString<T>(T dataitems)
         {
             using (var stream = new MemoryStream())
@@ -30,11 +28,8 @@
             }
         }
 
-        public ObservableCollection<DataItem> DeserialiseFromString(string binarystring)
-        {
-            return this.DataGrid = DeserialiseFromString<ObservableCollection<DataItem>>(binarystring);
-        }
-
+        public ObservableCollection<DataItem> DeserialiseFromString(string binarystring) => this.DataGrid = DeserialiseFromString<ObservableCollection<DataItem>>(binarystring);
+        
         public T DeserialiseFromString<T>(string dataitems)
         {
             byte[] bytearray = Convert.FromBase64String(dataitems);
@@ -48,9 +43,9 @@
             }
         }
         
-        public Serializer(ObservableCollection<DataItem> DataGrid_in)
+        public Serializer(ObservableCollection<DataItem> dataGridIn)
         {
-            this.DataGrid = DataGrid_in;
+            this.DataGrid = dataGridIn;
         }
     }
 }

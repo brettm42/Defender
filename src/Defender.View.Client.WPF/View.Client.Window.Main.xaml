@@ -3,20 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ViewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
+        xmlns:viewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.Client.WPF"
         mc:Ignorable="d" x:Name="MainWindow"
         Title="Defender" Height="750" Width="700" Icon="Resources/Defender.ico">
     <Window.DataContext>
-        <ViewModel:ViewModel/>
+        <viewModel:ViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <TaskbarItemInfo x:Key="TaskbarItemInfo"/>
-        <ViewModel:BoolToFillConverter x:Key="BoolToFillConverter"/>
-        <ViewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
-        <ViewModel:StringArrayToString x:Key="StringArrayToString"/>
-        <ViewModel:StringArrayToInt x:Key="StringArrayToInt"/>
-        <ViewModel:IntToFontWeight x:Key="IntToFontWeight"/>
+        <viewModel:BoolToFillConverter x:Key="BoolToFillConverter"/>
+        <viewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
+        <viewModel:StringArrayToString x:Key="StringArrayToString"/>
+        <viewModel:StringArrayToInt x:Key="StringArrayToInt"/>
+        <viewModel:IntToFontWeight x:Key="IntToFontWeight"/>
     </Window.Resources>
     <Grid>
         <StackPanel>
@@ -108,28 +108,28 @@
                         <DataGridTemplateColumn Header="Errors" SortMemberPath="Errors">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Errors}" FontWeight="{Binding Path=Errors, Converter={StaticResource IntToFontWeight}}"/>
+                                    <TextBlock Text="{Binding Errors}" FontWeight="{Binding Errors, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Not&#xA;Final" SortMemberPath="NotFinal">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=NotFinal}" FontWeight="{Binding Path=NotFinal, Converter={StaticResource IntToFontWeight}}"/>
+                                    <TextBlock Text="{Binding NotFinal}" FontWeight="{Binding NotFinal, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Not&#xA;Reviewed" SortMemberPath="ForReview">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=ForReview}" FontWeight="{Binding Path=ForReview, Converter={StaticResource IntToFontWeight}}"/>
+                                    <TextBlock Text="{Binding ForReview}" FontWeight="{Binding ForReview, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Warnings" SortMemberPath="Warnings">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Warnings}" FontWeight="{Binding Path=Warnings, Converter={StaticResource IntToFontWeight}}"/>
+                                    <TextBlock Text="{Binding Warnings}" FontWeight="{Binding Warnings, Converter={StaticResource IntToFontWeight}}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

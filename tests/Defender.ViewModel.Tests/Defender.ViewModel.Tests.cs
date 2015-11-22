@@ -1,9 +1,10 @@
 ﻿namespace Defender.ViewModel.Tests
 {
     using System.Linq;
-    using System.Threading.Tasks;
+
     using Defender.ViewModel;
     using Defender.Model.Extensions;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

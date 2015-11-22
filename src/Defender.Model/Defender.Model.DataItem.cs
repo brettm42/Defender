@@ -17,7 +17,7 @@
             {
                 if (value != null)
                 {
-                    this._Id = value.GetHashCode();
+                    this._id = value.GetHashCode();
                     _name = value;
                 }
             }
@@ -40,15 +40,15 @@
         
         public DateTime Date { get; set; }
 
-        public string _User { get; set; }
+        public string _user { get; set; }
 
-        public string _File { get; set; }
+        public string _file { get; set; }
         
-        public string _Domain { get; set; }
+        public string _domain { get; set; }
 
-        public string _Station { get; set; }
+        public string _station { get; set; }
 
-        public int _Id { private get; set; }
+        public int _id { private get; set; }
 
         public object this[string prop]
         {
@@ -63,14 +63,12 @@
             }
         }
 
-        public override string ToString()
-        {
-            return this.GetType().GetProperties()
-                                 .Where(p => p.Name != "Item")
-                                 .Aggregate(
-                                     string.Empty,
-                                     (str, prop) => 
-                                         str += $"{prop.Name} - {prop.GetValue(this)?.ToString() ?? string.Empty}\n");
-        }
+        public override string ToString() =>
+            this.GetType().GetProperties()
+                          .Where(p => p.Name != "Item")
+                          .Aggregate(
+                              string.Empty,
+                              (str, prop) => 
+                                  str += $"{prop.Name} - {prop.GetValue(this)?.ToString() ?? string.Empty}\n");
     }
 }

@@ -160,18 +160,11 @@
             this.Effect = null;
             this.Opacity = 1;
         }
-
-        #region TouchEvents
-        private void LoadButton_TouchDown(object sender, TouchEventArgs e)
-        {
-            LoadButton_Click(null, null);
-        }
-
-        private void HidePanel_TouchDown(object sender, TouchEventArgs e)
-        {
-            HidePanel_Click(null, null);
-        }
-
+        
+        private void LoadButton_TouchDown(object sender, TouchEventArgs e) => LoadButton_Click(null, null);
+        
+        private void HidePanel_TouchDown(object sender, TouchEventArgs e) => HidePanel_Click(null, null);
+        
         private void DataPanel_TouchDown(object sender, TouchEventArgs e)
         {
             CaptureTouch(null);
@@ -192,6 +185,5 @@
                                         : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
         }
-        #endregion
     }
 }
