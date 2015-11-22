@@ -6,7 +6,6 @@
     using System.Linq;
     using System.IO;
     using System.Text;
-    using System.Threading;
     using System.Threading.Tasks;
 
     using Defender.Model;
@@ -67,9 +66,9 @@
                     {
                         using (Process process = Process.Start(processinfo))
                         {
-                            process.WaitForExit();
+                            process?.WaitForExit();
 
-                            var temp = process.ExitCode;
+                            var temp = process?.ExitCode;
                             
                             //using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
                             //using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
@@ -127,7 +126,7 @@
                         {
                             using (Process process = Process.Start(processinfo))
                             {
-                                process.WaitForExit();
+                                process?.WaitForExit();
 
                                 DateTime end = DateTime.Now;
 
@@ -187,10 +186,10 @@
                                 {
                                     using (Process process = Process.Start(processinfo))
                                     {
-                                        process.WaitForExit();
+                                        process?.WaitForExit();
 
-                                        using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
-                                        //using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
+                                        using (StreamReader _reader = process?.StandardOutput) this.ProcessOutput = _reader?.ReadToEnd();
+                                        //using (StreamReader _reader = process?.StandardError)  this.ProcessErrors = _reader?.ReadToEnd();
 
                                         DateTime end = DateTime.Now;
 
@@ -219,12 +218,12 @@
             }
         }
 
-        internal string FindLeaf(string in_path)
+        internal string FindLeaf(string inPath)
         {
             // if path is simply missing the .exe name
-            if (Directory.GetFiles(in_path, DefaultLeafExe, SearchOption.AllDirectories).Any())
+            if (Directory.GetFiles(inPath, DefaultLeafExe, SearchOption.AllDirectories).Any())
             {
-                return Path.Combine(in_path, DefaultLeafExe);
+                return Path.Combine(inPath, DefaultLeafExe);
             }
             else
             {
@@ -232,7 +231,7 @@
                 // TODO: catch full drive searches, eg. C:\
                 return FindLeaf(
                            Directory.GetFiles(
-                               Directory.GetParent(in_path).FullName, 
+                               Directory.GetParent(inPath).FullName, 
                                DefaultLeafExe, 
                                SearchOption.AllDirectories)
                            .FirstOrDefault());
@@ -248,7 +247,7 @@
             }
             catch
             {
-                // TODO: handle exe not found more gracefully
+                // TODO: handle .exe not found more gracefully
                 throw new FileNotFoundException($"Leaf could not be found at {leafpath}.");
             }
         }

@@ -1,6 +1,5 @@
 ﻿namespace Defender.View.Reader.WPF
 {
-    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows;
@@ -108,17 +107,10 @@
                 this.Process(this.RQFPath.Text);
             }
         }
+        
+        private void LoadButton_TouchDown(object sender, TouchEventArgs e) => LoadButton_Click(null, null);
 
-        #region TouchEvents
-        private void LoadButton_TouchDown(object sender, TouchEventArgs e)
-        {
-            LoadButton_Click(null, null);
-        }
-
-        private void HidePanel_TouchDown(object sender, TouchEventArgs e)
-        {
-            HidePanel_Click(null, null);
-        }
+        private void HidePanel_TouchDown(object sender, TouchEventArgs e) => HidePanel_Click(null, null);
 
         private void DataPanel_TouchDown(object sender, TouchEventArgs e)
         {
@@ -140,6 +132,5 @@
                                         : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
         }
-        #endregion
     }
 }

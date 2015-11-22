@@ -3,18 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ViewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
+        xmlns:viewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.Reader.WPF"
         mc:Ignorable="d"
         Title="DefenderReader" Height="750" Width="700" Icon="Resources/Defender.ico">
     <Window.DataContext>
-        <ViewModel:ViewModel/>
+        <viewModel:ViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <ViewModel:BoolToFillConverter x:Key="BoolToFillConverter"/>
-        <ViewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
-        <ViewModel:StringArrayToString x:Key="StringArrayToString"/>
-        <ViewModel:StringArrayToInt x:Key="StringArrayToInt"/>
+        <viewModel:BoolToFillConverter x:Key="BoolToFillConverter"/>
+        <viewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
+        <viewModel:StringArrayToString x:Key="StringArrayToString"/>
+        <viewModel:StringArrayToInt x:Key="StringArrayToInt"/>
     </Window.Resources>
     <Grid>
         <StackPanel Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">

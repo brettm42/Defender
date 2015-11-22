@@ -14,14 +14,14 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || !(value as string[]).Any()) return "no";
+            if (value == null || (!(value as string[])?.Any() ?? true)) return "no";
 
             return new StringBuilder()
                            .AppendSequence(
                                (string[])value,
                                (sb, str) => sb.AppendFormat("{0}, ", str))?
                            .ToString()
-                           .TrimEnd(", ".ToCharArray());
+                           .Trim(", ".ToCharArray());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

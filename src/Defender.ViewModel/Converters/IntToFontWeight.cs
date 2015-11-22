@@ -13,10 +13,7 @@
         private static readonly FontWeight Bold = FontWeights.Bold;
         private static readonly FontWeight Regular = FontWeights.Regular;
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (int)value > 0 ? Bold : Regular;
-        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => (int)value > 0 ? Bold : Regular;
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

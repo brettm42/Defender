@@ -261,11 +261,11 @@
 
         public void ValidateFiles()
         {
-            using (Validate _validation = new Validate())
+            using (Validate validation = new Validate())
             {
-                this.Progress    = _validation.CurrentProgress;
-                this.CurrentFile = _validation.CurrentFile;
-                this.Statistics  = _validation.Validation(this.Folder);
+                this.Progress    = validation.CurrentProgress;
+                this.CurrentFile = validation.CurrentFile;
+                this.Statistics  = validation.Validation(this.Folder);
             }
 
             this.Success = AnyErrors(this.Statistics);
@@ -279,11 +279,8 @@
             this.Gameareas = results?.Select(l => l.Folder).Distinct().ToArray();
         }
 
-        internal bool AnyErrors(ObservableCollection<DataItem> results)
-        {
-            return _stats?.Where(l => l.Errors != 0).Any() ?? true ? false : true;
-        }
-
+        internal bool AnyErrors(ObservableCollection<DataItem> results) => results?.Any(l => l.Errors != 0) ?? true ? false : true;
+        
         public bool ExportResults(string path)
         {
             if (!string.IsNullOrWhiteSpace(path) && (this.FileList?.Any() ?? false))

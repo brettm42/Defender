@@ -14,7 +14,7 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null || !(value as string[]).Any()) return "no";
+            if (value == null || (!(value as string[])?.Any() ?? true)) return "no";
 
             return (value as string[])?.Count() ?? 0;
         }

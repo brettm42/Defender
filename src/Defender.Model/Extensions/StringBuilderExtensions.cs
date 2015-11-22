@@ -8,9 +8,6 @@
         public static StringBuilder AppendSequence<T>(
             this StringBuilder @this,
             IEnumerable<T> seq,
-            Func<StringBuilder, T, StringBuilder> fn)
-        {
-            return seq?.Aggregate(@this, fn);
-        }
+            Func<StringBuilder, T, StringBuilder> fn) => seq?.Aggregate(@this, fn);
     }
 }
