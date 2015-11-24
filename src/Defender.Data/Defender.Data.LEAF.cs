@@ -85,10 +85,8 @@
                         throw new Exception($"Failed to launch {DefaultLeafExe}");
                     }
                 }
-                else
-                {
-                    return true;
-                }
+
+                return true;
             }
             else
             {

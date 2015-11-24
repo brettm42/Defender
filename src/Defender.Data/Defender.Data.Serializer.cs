@@ -13,7 +13,7 @@
     {
         public ObservableCollection<DataItem> DataGrid { get; set; }
         
-        public string SerialiseToString() => SerialiseToString<ObservableCollection<DataItem>>(this.DataGrid);
+        public string SerialiseToString() => SerialiseToString(this.DataGrid);
         
         public string SerialiseToString<T>(T dataitems)
         {

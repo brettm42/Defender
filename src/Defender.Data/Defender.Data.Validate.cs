@@ -16,7 +16,7 @@
 
         public string CurrentFile { get; set; } = string.Empty;
 
-        public int CurrentProgress { get; set; } = 0;
+        public int CurrentProgress { get; private set; } = 0;
 
         public ObservableCollection<DataItem> Validation(string path, bool deletefiles = false)
         {
