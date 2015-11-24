@@ -30,10 +30,8 @@
 
                 return File.Exists(path) ? true : false;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public string Open(string path)
@@ -42,11 +40,9 @@
             {
                 return File.ReadAllText(path);
             }
-            else
-            {
-                //throw new FileLoadException();
-                return null;
-            }
+
+            //throw new FileLoadException();
+            return null;
         }
     }
 }

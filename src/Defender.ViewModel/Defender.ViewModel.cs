@@ -245,18 +245,18 @@
 
         public async Task RunQueriesAsync()
         {
-            var _leaf = new Leaf();
+            var leaf = new Leaf();
             var prog = new Progress<int>(p => this.Progress = p);
 
-            this.Output   = _leaf.ProcessOutput;
-            this.Errors   = _leaf.ProcessErrors;
-            this.CurrentFile = _leaf.CurrentFile;
-            this.FoundFiles = _leaf.FoundFiles;
+            this.Output   = leaf.ProcessOutput;
+            this.Errors   = leaf.ProcessErrors;
+            this.CurrentFile = leaf.CurrentFile;
+            this.FoundFiles = leaf.FoundFiles;
 
-            await _leaf.LeafFileQueryAsync(prog, this.Folder, this.Folder);
+            await leaf.LeafFileQueryAsync(prog, this.Folder, this.Folder);
             //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
-            this.Success = _leaf.ProcessErrors.Any() ? true : false;
+            this.Success = leaf.ProcessErrors.Any();
         }
 
         public void ValidateFiles()
@@ -319,14 +319,11 @@
 
                 this.Statistics = reader.DeserialiseFromString(reader.Open(path));
 
-                return this.Statistics != null ? true : false;
+                return this.Statistics != null;
             }
-            else
-            {
-                return this.Success = false;
-            }
-        }
 
+            return this.Success = false;
+        }
 
         public ViewModel()
         {

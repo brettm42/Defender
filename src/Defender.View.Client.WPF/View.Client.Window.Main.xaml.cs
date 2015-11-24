@@ -97,7 +97,6 @@
             if (openfile.ShowDialog() == true)
             {
                 ViewModel.Folder = openfile.FileName;
-
                 this.FilesLoaded.Visibility = Visibility.Visible;
 
                 this.Process();
@@ -133,7 +132,6 @@
             if (e.Key == Key.Return && !string.IsNullOrWhiteSpace(this.RQFPath.Text))
             {
                 ViewModel.Folder = this.RQFPath.Text;
-
                 this.FilesLoaded.Visibility = Visibility.Visible;
 
                 this.Process();
