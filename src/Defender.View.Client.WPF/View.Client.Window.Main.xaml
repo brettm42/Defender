@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:Defender.ViewModel;assembly=Defender.ViewModel"
+        xmlns:converters="clr-namespace:Defender.ViewModel.Converters;assembly=Defender.ViewModel"
         xmlns:local="clr-namespace:Defender.View.Client.WPF"
         mc:Ignorable="d" x:Name="MainWindow"
         Title="Defender" Height="750" Width="700" Icon="Resources/Defender.ico">
@@ -12,11 +13,11 @@
     </Window.DataContext>
     <Window.Resources>
         <TaskbarItemInfo x:Key="TaskbarItemInfo"/>
-        <viewModel:BoolToFillConverter x:Key="BoolToFillConverter"/>
-        <viewModel:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
-        <viewModel:StringArrayToString x:Key="StringArrayToString"/>
-        <viewModel:StringArrayToInt x:Key="StringArrayToInt"/>
-        <viewModel:IntToFontWeight x:Key="IntToFontWeight"/>
+        <converters:BoolToFillConverter x:Key="BoolToFillConverter"/>
+        <converters:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
+        <converters:StringArrayToString x:Key="StringArrayToString"/>
+        <converters:StringArrayToInt x:Key="StringArrayToInt"/>
+        <converters:IntToFontWeight x:Key="IntToFontWeight"/>
     </Window.Resources>
     <Grid>
         <StackPanel>

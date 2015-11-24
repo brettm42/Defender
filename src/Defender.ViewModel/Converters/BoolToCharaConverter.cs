@@ -1,4 +1,4 @@
-﻿namespace Defender.ViewModel
+﻿namespace Defender.ViewModel.Converters
 {
     using System;
     using System.Globalization;
