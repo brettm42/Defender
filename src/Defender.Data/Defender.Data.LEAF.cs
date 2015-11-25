@@ -39,7 +39,7 @@
                     this.ProcessErrors = string.Empty;
                     this.ProcessOutput = string.Empty;
 
-                    ProcessStartInfo processinfo = new ProcessStartInfo()
+                    ProcessStartInfo processinfo = new ProcessStartInfo
                     {
                         FileName = leaf,
                         UseShellExecute = true,
@@ -76,7 +76,7 @@
                             DateTime end = DateTime.Now;
 
                             return File.Exists(outputxml)
-                                   ? string.IsNullOrWhiteSpace(this.ProcessErrors) ? true : false
+                                   ? string.IsNullOrWhiteSpace(this.ProcessErrors)
                                    : false;
                         }
                     }
@@ -109,7 +109,7 @@
                     {
                         this.CurrentFile = Path.GetFileName(filename);
 
-                        ProcessStartInfo processinfo = new ProcessStartInfo()
+                        ProcessStartInfo processinfo = new ProcessStartInfo
                         {
                             FileName = leaf,
                             UseShellExecute = true,
@@ -168,10 +168,11 @@
 
                                 progress.Report(this.LeafProgress + (100 / filenames.Count()));
 
-                                ProcessStartInfo processinfo = new ProcessStartInfo()
+                                ProcessStartInfo processinfo = new ProcessStartInfo
                                 {
                                     FileName = leaf,
-                                    UseShellExecute = true,
+                                    UseShellExecute = false,
+                                    //UseShellExecute = true,
                                     WindowStyle = ProcessWindowStyle.Hidden,
                                     RedirectStandardOutput = true,
                                     WorkingDirectory = workingdir,
@@ -240,7 +241,7 @@
         {
             try
             {
-                this.LeafLocation = (File.Exists(leafpath) && leafpath.EndsWith(DefaultLeafExe))
+                this.LeafLocation = File.Exists(leafpath) && leafpath.EndsWith(DefaultLeafExe)
                                     ? leafpath : this.FindLeaf(leafpath);
             }
             catch

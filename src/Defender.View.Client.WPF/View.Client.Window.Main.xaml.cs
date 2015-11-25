@@ -83,10 +83,10 @@
         
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Effect = new BlurEffect() { Radius = 3, RenderingBias = RenderingBias.Performance };
+            this.Effect = new BlurEffect { Radius = 3, RenderingBias = RenderingBias.Performance };
             this.Opacity = .85;
 
-            OpenFileDialog openfile = new OpenFileDialog()
+            OpenFileDialog openfile = new OpenFileDialog
                                       {
                                           Title    = "Open a folder of queries for Handback",
                                           FileName = "--This Folder--",
@@ -140,10 +140,10 @@
 
         private void SuccessButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Effect = new BlurEffect();
+            this.Effect = new BlurEffect { Radius = 3, RenderingBias = RenderingBias.Performance };
             this.Opacity = .85;
 
-            SaveFileDialog savefile = new SaveFileDialog()
+            SaveFileDialog savefile = new SaveFileDialog
                                       {
                                           Title    = "Save Handback file as...",
                                           Filter   = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",

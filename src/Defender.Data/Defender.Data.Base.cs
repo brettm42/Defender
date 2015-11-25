@@ -1,9 +1,7 @@
 ﻿namespace Defender.Data
 {
-    using System;
     using System.IO;
     using System.ComponentModel;
-    using System.Linq;
     using System.Text;
 
     public class DataBase : INotifyPropertyChanged
@@ -28,7 +26,7 @@
             {
                 File.WriteAllText(path, file, UTF8Encoding.UTF8);
 
-                return File.Exists(path) ? true : false;
+                return File.Exists(path);
             }
 
             return false;
