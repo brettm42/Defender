@@ -15,6 +15,6 @@
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => (bool)value ? Check : X;
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => (string)value == Check ? true : false;
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => (string)value == Check;
     }
 }

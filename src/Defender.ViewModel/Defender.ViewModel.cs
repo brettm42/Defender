@@ -209,7 +209,6 @@
                 RaisePropertyChanged(nameof(Statistics));
 
                 UpdateStringLists(_stats);
-
                 this.Success = AnyErrors(_stats);
             }
         }
@@ -254,9 +253,12 @@
             this.FoundFiles = leaf.FoundFiles;
 
             await leaf.LeafFileQueryAsync(prog, this.Folder, this.Folder);
-            //this.Success  = _leaf.LeafQuery(this.Folder, this.Folder, tempxml);
+            //this.Success  = leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
             this.Success = leaf.ProcessErrors.Any();
+
+            this.Output = leaf.ProcessOutput;
+            this.Errors = leaf.ProcessErrors;
         }
 
         public void ValidateFiles()
@@ -297,7 +299,7 @@
 
         internal void SaveResults()
         {
-            SaveFileDialog savefile = new SaveFileDialog()
+            SaveFileDialog savefile = new SaveFileDialog
                                       {
                                           Title = "Save Handback file as...",
                                           Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",

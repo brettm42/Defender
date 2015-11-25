@@ -64,10 +64,10 @@
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Effect = new BlurEffect() { Radius = 3, RenderingBias = RenderingBias.Performance };
+            this.Effect = new BlurEffect { Radius = 3, RenderingBias = RenderingBias.Performance };
             this.Opacity = .85;
 
-            OpenFileDialog openfile = new OpenFileDialog()
+            OpenFileDialog openfile = new OpenFileDialog
                                       {
                                           Title = "Select the Handback file to verify",
                                           Filter = "Handback file (*.hback)|*.hback|Text file (*.txt)|*.txt|All files (*.*)|*.*",

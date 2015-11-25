@@ -38,7 +38,7 @@
                         this.CurrentFile = Path.GetFileNameWithoutExtension(file);
 
                         // builds DataItem to store results
-                        DataItem filedata = new DataItem()
+                        DataItem filedata = new DataItem
                                             {
                                                 Date     = DateTime.Now,
                                                 Project  = ChunkFilename(Path.GetFileNameWithoutExtension(file), '_').FirstOrDefault(),
