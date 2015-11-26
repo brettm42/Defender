@@ -7,7 +7,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
-    using Microsoft.FSharp;
     using Microsoft.Win32;
     using Defender.Data;
     using Defender.Model;
@@ -327,9 +326,9 @@
             return this.Success = false;
         }
 
-        public ViewModel()
-        {
-            //SaveCommand = new RelayCommand(() => SaveResults, e => CanExecute);
-        }
+        //public ViewModel()
+        //{
+        //    SaveCommand = new RelayCommand(() => SaveResults, e => CanExecute);
+        //}
     }
 }

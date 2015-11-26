@@ -40,23 +40,23 @@
                     this.ProcessOutput = string.Empty;
 
                     ProcessStartInfo processinfo = new ProcessStartInfo
-                    {
-                        FileName = leaf,
-                        UseShellExecute = true,
-                        //UseShellExecute = false,
-                        //WindowStyle = ProcessWindowStyle.Hidden,
-                        //RedirectStandardError = true,
-                        //RedirectStandardOutput = true,
-                        ErrorDialog = true,
-                        WorkingDirectory = workingdir,
-                        Arguments = new StringBuilder()
-                                        .Append("Run Automation OpenFile /FILENAMES ")
-                                        .AppendSequence(
-                                            filenames,
-                                            (sb, file) => sb.AppendFormat("{0};", file))
-                                        .AppendFormat(" Validate /OUTPUTPATH {0} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {0} /RETURN Error", outputxml)
-                                        .ToString(),
-                    };
+                                                   {
+                                                       FileName = leaf,
+                                                       UseShellExecute = true,
+                                                       //UseShellExecute = false,
+                                                       //WindowStyle = ProcessWindowStyle.Hidden,
+                                                       //RedirectStandardError = true,
+                                                       //RedirectStandardOutput = true,
+                                                       ErrorDialog = true,
+                                                       WorkingDirectory = workingdir,
+                                                       Arguments = new StringBuilder()
+                                                                       .Append("Run Automation OpenFile /FILENAMES ")
+                                                                       .AppendSequence(
+                                                                           filenames,
+                                                                           (sb, file) => sb.AppendFormat("{0};", file))
+                                                                       .AppendFormat(" Validate /OUTPUTPATH {0} /RETURN Error Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {0} /RETURN Error", outputxml)
+                                                                       .ToString(),
+                                                   };
 
                     processinfo.Arguments = $"Run Automation OpenFile /FILENAMES {path} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {outputxml} /RETURN Error";
 
@@ -169,15 +169,15 @@
                                 progress.Report(this.LeafProgress + (100 / filenames.Count()));
 
                                 ProcessStartInfo processinfo = new ProcessStartInfo
-                                {
-                                    FileName = leaf,
-                                    UseShellExecute = false,
-                                    //UseShellExecute = true,
-                                    WindowStyle = ProcessWindowStyle.Hidden,
-                                    RedirectStandardOutput = true,
-                                    WorkingDirectory = workingdir,
-                                    Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
-                                };
+                                                               {
+                                                                   FileName = leaf,
+                                                                   UseShellExecute = false,
+                                                                   //UseShellExecute = true,
+                                                                   WindowStyle = ProcessWindowStyle.Hidden,
+                                                                   RedirectStandardOutput = true,
+                                                                   WorkingDirectory = workingdir,
+                                                                   Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
+                                                               };
 
                                 DateTime start = DateTime.Now;
 
