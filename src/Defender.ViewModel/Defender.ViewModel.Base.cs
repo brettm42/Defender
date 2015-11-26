@@ -1,8 +1,6 @@
 ﻿namespace Defender.ViewModel
 {
     using System.ComponentModel;
-    using System.Linq;
-    using Defender.Model.Extensions;
 
     public class ViewModelBase : INotifyPropertyChanged
     {

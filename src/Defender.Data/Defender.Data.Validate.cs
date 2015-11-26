@@ -59,7 +59,7 @@
 
                             filedata.Errors   = read?.Count(n => n.Element("messagetype")?.Value == "Error") ?? 0;
                             filedata.Warnings = read?.Count(n => n.Element("messagetype")?.Value == "Warning") ?? 0;
-                            filedata.Language = read.Descendants("culture").FirstOrDefault()?.Value
+                            filedata.Language = read?.Descendants("culture").FirstOrDefault()?.Value
                                                     ?? ChunkFilename(Path.GetFileNameWithoutExtension(file), '_').LastOrDefault();
 
                             datagrid.Add(filedata);
