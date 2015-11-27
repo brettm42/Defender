@@ -11,11 +11,10 @@
     using Defender.Data;
     using Defender.Model;
     using Defender.Model.Extensions;
+    using static Defender.ViewModel.Constants;
 
     public class ViewModel : ViewModelBase
     {
-        private const string TempXML = @".\_temp.xml";
-
         public ICommand ToggleExecute
         {
             get
