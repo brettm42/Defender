@@ -48,6 +48,7 @@
     <Compile Include="Converters\IntToFontWeight.cs" />
     <Compile Include="Converters\StringArrayToInt.cs" />
     <Compile Include="Converters\StringArrayToString.cs" />
+    <Compile Include="Defender.ViewModel.Constants.cs" />
     <Compile Include="Defender.ViewModel.Base.cs" />
     <Compile Include="Defender.ViewModel.cs" />
     <Compile Include="Defender.ViewModel.RelayCommand.cs" />
