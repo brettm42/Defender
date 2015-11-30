@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -275,11 +274,11 @@
         {
             this.FileList  = results?.Select(l => l.Name).Distinct().ToArray();
             this.Projects  = results?.Select(l => l.Project).Distinct().ToArray();
-            this.Languages = results?.Select(l => l.Language).Distinct().ToArray();
             this.Gameareas = results?.Select(l => l.Folder).Distinct().ToArray();
+            this.Languages = results?.Select(l => l.Language).Distinct().ToArray();
         }
 
-        internal bool AnyErrors(ObservableCollection<DataItem> results) => results?.Any(l => l.Errors != 0) ?? true ? false : true;
+        internal bool AnyErrors(ObservableCollection<DataItem> results) => results?.Any(l => l.Errors != 0) ?? false;
         
         public bool ExportResults(string path)
         {
