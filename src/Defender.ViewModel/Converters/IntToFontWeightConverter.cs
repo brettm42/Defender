@@ -8,7 +8,7 @@
     /// <summary>
     /// Converts any integer over 0 into font weight bold. Otherwise regular weight font.
     /// </summary>
-    public class IntToFontWeight : IValueConverter
+    public class IntToFontWeightConverter : IValueConverter
     {
         private static readonly FontWeight Bold = FontWeights.Bold;
         private static readonly FontWeight Regular = FontWeights.Regular;

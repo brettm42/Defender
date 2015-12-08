@@ -10,7 +10,7 @@
     /// Converter class to convert a given string array to concatenated string.
     /// Enumerates each item in the array and adds it to a string using ', ' (comma &amp; space) as the separator.
     /// </summary>
-    public class StringArrayToString : IValueConverter
+    public class StringArrayToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

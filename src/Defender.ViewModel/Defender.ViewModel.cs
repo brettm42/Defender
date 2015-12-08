@@ -294,7 +294,7 @@
             }
         }
 
-        internal void SaveResults()
+        public void SaveResults()
         {
             SaveFileDialog savefile = new SaveFileDialog
                                       {

@@ -14,9 +14,9 @@
     <Window.Resources>
         <converters:BoolToFillConverter x:Key="BoolToFillConverter"/>
         <converters:BoolToCharaConverter x:Key="BoolToCharaConverter"/>
-        <converters:StringArrayToString x:Key="StringArrayToString"/>
-        <converters:StringArrayToInt x:Key="StringArrayToInt"/>
-        <converters:IntToFontWeight x:Key="IntToFontWeight"/>
+        <converters:StringArrayToStringConverter x:Key="StringArrayToString"/>
+        <converters:StringArrayToIntConverter x:Key="StringArrayToInt"/>
+        <converters:IntToFontWeightConverter x:Key="IntToFontWeight"/>
     </Window.Resources>
     <Grid>
         <StackPanel Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">

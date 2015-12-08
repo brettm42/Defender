@@ -8,34 +8,34 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class ConverterTests
+    public class ViewModelTests
     {
         [TestMethod]
-        public void ValidateFilesTest()
+        public void BoolToCharaConverterTests()
         {
             Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void RunQueriesAsync()
+        public void BoolToFillConverterTests()
         {
             Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void ExportResultsTest()
+        public void IntToFontWeightConverterTests()
         {
             Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void SaveResultsTest()
+        public void StringArrayToIntConverterTests()
         {
             Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void ImportResultsTest()
+        public void StringArrayToStringConverterTests()
         {
             Assert.Inconclusive();
         }

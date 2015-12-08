@@ -10,7 +10,7 @@
     /// Calculates the number of items in the given array and returns the count.
     /// <see cref="ConvertBack(object, Type, object, CultureInfo)"/> currently not supported (not really possible :P ).
     /// </summary>
-    public class StringArrayToInt : IValueConverter
+    public class StringArrayToIntConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
