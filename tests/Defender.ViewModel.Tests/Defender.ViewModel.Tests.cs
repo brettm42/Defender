@@ -8,7 +8,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class ConverterTests
+    public class ViewModelTests
     {
         [TestMethod]
         public void ValidateFilesTest()

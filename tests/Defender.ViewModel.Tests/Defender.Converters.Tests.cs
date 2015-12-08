@@ -8,7 +8,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class ViewModelTests
+    public class ConverterTests
     {
         [TestMethod]
         public void BoolToCharaConverterTests()
