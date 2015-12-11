@@ -248,7 +248,7 @@
             this.Errors   = leaf.ProcessErrors;
             this.CurrentFile = leaf.CurrentFile;
             this.FoundFiles = leaf.FoundFiles;
-
+            
             await leaf.LeafFileQueryAsync(prog, this.Folder, this.Folder);
             //this.Success  = leaf.LeafQuery(this.Folder, this.Folder, tempxml);
 
