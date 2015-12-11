@@ -164,9 +164,9 @@
                             foreach (string filename in filenames)
                             {
                                 this.CurrentFile = Path.GetFileName(filename);
-                                this.LeafProgress = this.LeafProgress + (100 / filenames.Count());
+                                this.LeafProgress = this.LeafProgress + 100 / filenames.Count();
 
-                                progress.Report(this.LeafProgress + (100 / filenames.Count()));
+                                progress.Report(this.LeafProgress + 100 / filenames.Count());
 
                                 ProcessStartInfo processinfo = new ProcessStartInfo
                                                                {
@@ -187,8 +187,8 @@
                                     {
                                         process?.WaitForExit();
 
-                                        using (StreamReader _reader = process?.StandardOutput) this.ProcessOutput = _reader?.ReadToEnd();
-                                        //using (StreamReader _reader = process?.StandardError)  this.ProcessErrors = _reader?.ReadToEnd();
+                                        using (StreamReader reader = process?.StandardOutput) this.ProcessOutput = reader?.ReadToEnd();
+                                        //using (StreamReader reader = process?.StandardError)  this.ProcessErrors = reader?.ReadToEnd();
 
                                         DateTime end = DateTime.Now;
 
