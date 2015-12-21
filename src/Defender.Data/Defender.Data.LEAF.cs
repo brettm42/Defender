@@ -110,13 +110,13 @@
                         this.CurrentFile = Path.GetFileName(filename);
 
                         ProcessStartInfo processinfo = new ProcessStartInfo
-                        {
-                            FileName = leaf,
-                            UseShellExecute = true,
-                            WindowStyle = ProcessWindowStyle.Hidden,
-                            WorkingDirectory = workingdir,
-                            Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
-                        };
+                                                       {
+                                                           FileName = leaf,
+                                                           UseShellExecute = true,
+                                                           WindowStyle = ProcessWindowStyle.Hidden,
+                                                           WorkingDirectory = workingdir,
+                                                           Arguments = $"Run Automation OpenFile /FILENAMES {Path.GetFullPath(filename)} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {Path.Combine(workingdir, Path.GetFileName(filename))}.xml /RETURN Error",
+                                                       };
 
                         DateTime start = DateTime.Now;
 
