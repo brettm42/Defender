@@ -1,4 +1,4 @@
-﻿namespace Defender.Data
+﻿namespace Defender.Infrastructure
 {
     using System;
     using System.Collections.Generic;
@@ -8,11 +8,11 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    using Defender.Model;
-    using Defender.Model.Extensions;
-    using static Defender.Data.Constants;
+    using Defender.Infrastructure;
+    using Defender.Infrastructure.Extensions;
+    using static Defender.Infrastructure.Constants;
 
-    public class Leaf : DataBase
+    public class Leaf : InfrastructureBase
     {                
         public string LeafLocation { get; set; } = DefaultLeafLocation;
 

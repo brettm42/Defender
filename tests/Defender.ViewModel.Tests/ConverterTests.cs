@@ -1,41 +1,38 @@
 ﻿namespace Defender.ViewModel.Tests
 {
     using System.Linq;
-
     using Defender.ViewModel;
-    using Defender.Model.Extensions;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class ViewModelTests
+    public class ConverterTests
     {
         [TestMethod]
-        public void ValidateFilesTest()
+        public void BoolToCharaConverterTests()
         {
             Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void RunQueriesAsync()
+        public void BoolToFillConverterTests()
         {
             Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void ExportResultsTest()
+        public void IntToFontWeightConverterTests()
         {
             Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void SaveResultsTest()
+        public void StringArrayToIntConverterTests()
         {
             Assert.Inconclusive();
         }
 
         [TestMethod]
-        public void ImportResultsTest()
+        public void StringArrayToStringConverterTests()
         {
             Assert.Inconclusive();
         }

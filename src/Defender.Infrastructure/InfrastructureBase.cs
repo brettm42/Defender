@@ -1,10 +1,10 @@
-﻿namespace Defender.Data
+﻿namespace Defender.Infrastructure
 {
     using System.IO;
     using System.ComponentModel;
     using System.Text;
 
-    public class DataBase : INotifyPropertyChanged
+    public class InfrastructureBase : INotifyPropertyChanged
     {
         /// <summary>
         /// Customized Event trigger for ViewModel.

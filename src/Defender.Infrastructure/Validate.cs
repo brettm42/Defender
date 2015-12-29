@@ -1,4 +1,4 @@
-﻿namespace Defender.Data
+﻿namespace Defender.Infrastructure
 {
     using System;
     using System.Collections.Generic;
@@ -7,8 +7,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Xml.Linq;
-    using Defender.Model;
-    using Defender.Model.Extensions;
+    using Defender.Infrastructure;
+    using Defender.Infrastructure.Extensions;
 
     public class Validate : IDisposable
     {

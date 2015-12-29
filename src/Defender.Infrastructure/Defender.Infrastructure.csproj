@@ -34,27 +34,27 @@
     <Reference Include="FSharp.Core, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Defender.Data.Base.cs" />
-    <Compile Include="Defender.Data.Constants.cs" />
-    <Compile Include="Defender.Data.Validate.cs" />
-    <Compile Include="Defender.Data.Leaf.cs" />
-    <Compile Include="Defender.Data.Serializer.cs" />
+    <Compile Include="InfrastructureBase.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="ModelBase.cs" />
+    <Compile Include="DataItem\DataItem.cs" />
+    <Compile Include="Extensions\DisposableExtensions.cs" />
+    <Compile Include="Extensions\FunctionalExtensions.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Validate.cs" />
+    <Compile Include="Leaf.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Defender.Model\Defender.Model.csproj">
-      <Project>{d665f7c7-8011-4a62-a3d2-0ade1ac9dcc3}</Project>
-      <Name>Defender.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

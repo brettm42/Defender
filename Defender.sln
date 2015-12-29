@@ -1,21 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.View.Client.WPF", "src\Defender.View.Client.WPF\Defender.View.Client.WPF.csproj", "{7F152FF7-0759-4189-A3DA-F9FE91366BC8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.ViewModel", "src\Defender.ViewModel\Defender.ViewModel.csproj", "{F9E2859B-4AC8-4426-8814-4169B0F735FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.Model", "src\Defender.Model\Defender.Model.csproj", "{D665F7C7-8011-4A62-A3D2-0ADE1AC9DCC3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.Data", "src\Defender.Data\Defender.Data.csproj", "{9114BB96-D7DE-493D-BC89-C15E3C4E2346}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.Infrastructure", "src\Defender.Infrastructure\Defender.Infrastructure.csproj", "{9114BB96-D7DE-493D-BC89-C15E3C4E2346}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.View.Reader.WPF", "src\Defender.View.Reader.WPF\Defender.View.Reader.WPF.csproj", "{28123FFD-0DBD-4B01-823B-BD0AC33B03B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.ViewModel.Tests", "tests\Defender.ViewModel.Tests\Defender.ViewModel.Tests.csproj", "{A4B3E8AB-0F78-44D4-B530-2326B5EEC75F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.Data.Tests", "tests\Defender.Data.Tests\Defender.Data.Tests.csproj", "{233CA6D4-8C96-43BB-A926-89506494D1D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Defender.Infrastructure.Tests", "tests\Defender.Infrastructure.Tests\Defender.Infrastructure.Tests.csproj", "{233CA6D4-8C96-43BB-A926-89506494D1D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{F9E2859B-4AC8-4426-8814-4169B0F735FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9E2859B-4AC8-4426-8814-4169B0F735FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9E2859B-4AC8-4426-8814-4169B0F735FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D665F7C7-8011-4A62-A3D2-0ADE1AC9DCC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D665F7C7-8011-4A62-A3D2-0ADE1AC9DCC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D665F7C7-8011-4A62-A3D2-0ADE1AC9DCC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D665F7C7-8011-4A62-A3D2-0ADE1AC9DCC3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9114BB96-D7DE-493D-BC89-C15E3C4E2346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9114BB96-D7DE-493D-BC89-C15E3C4E2346}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9114BB96-D7DE-493D-BC89-C15E3C4E2346}.Release|Any CPU.ActiveCfg = Release|Any CPU

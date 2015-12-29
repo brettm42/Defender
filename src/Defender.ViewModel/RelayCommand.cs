@@ -2,7 +2,7 @@
 {
     using System;
     using System.Windows.Input;
-    using Defender.Model.Extensions;
+    using Defender.Infrastructure.Extensions;
 
     public class RelayCommand : ICommand
     {

@@ -1,8 +1,8 @@
-﻿namespace Defender.Data
+﻿namespace Defender.Infrastructure
 {
     internal static class Constants
     {
-internal const string AppName = @"Defender";
+        internal const string AppName = @"Defender";
 
         internal const string DefaultLeafExe = @"MSLeaf.exe";
 
