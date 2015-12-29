@@ -1,4 +1,4 @@
-﻿namespace Defender.Model
+﻿namespace Defender.Infrastructure
 {
     using System;
     using System.Linq;

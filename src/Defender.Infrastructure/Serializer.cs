@@ -1,4 +1,4 @@
-﻿namespace Defender.Data
+﻿namespace Defender.Infrastructure
 {
     using System;
     using System.Collections.ObjectModel;
@@ -6,10 +6,10 @@
     using System.Linq;
     using System.Runtime.Serialization.Formatters.Binary;
 
-    using Defender.Model;
-    using Defender.Model.Extensions;
+    using Defender.Infrastructure;
+    using Defender.Infrastructure.Extensions;
 
-    public class Serializer : DataBase
+    public class Serializer : InfrastructureBase
     {
         public ObservableCollection<DataItem> DataGrid { get; set; }
         

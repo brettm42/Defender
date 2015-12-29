@@ -48,22 +48,18 @@
     <Compile Include="Converters\IntToFontWeightConverter.cs" />
     <Compile Include="Converters\StringArrayToIntConverter.cs" />
     <Compile Include="Converters\StringArrayToStringConverter.cs" />
-    <Compile Include="Defender.ViewModel.Constants.cs" />
-    <Compile Include="Defender.ViewModel.Base.cs" />
-    <Compile Include="Defender.ViewModel.cs" />
-    <Compile Include="Defender.ViewModel.ProgressItem.cs" />
-    <Compile Include="Defender.ViewModel.RelayCommand.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="ViewModelBase.cs" />
+    <Compile Include="ViewModel.cs" />
+    <Compile Include="ProgressItem.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Converters\BoolToFillConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Defender.Data\Defender.Data.csproj">
+    <ProjectReference Include="..\Defender.Infrastructure\Defender.Infrastructure.csproj">
       <Project>{9114bb96-d7de-493d-bc89-c15e3c4e2346}</Project>
-      <Name>Defender.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Defender.Model\Defender.Model.csproj">
-      <Project>{d665f7c7-8011-4a62-a3d2-0ade1ac9dcc3}</Project>
-      <Name>Defender.Model</Name>
+      <Name>Defender.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

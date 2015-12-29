@@ -7,9 +7,8 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
     using Microsoft.Win32;
-    using Defender.Data;
-    using Defender.Model;
-    using Defender.Model.Extensions;
+    using Defender.Infrastructure;
+    using Defender.Infrastructure.Extensions;
     using static Defender.ViewModel.Constants;
 
     public class ViewModel : ViewModelBase

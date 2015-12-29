@@ -1,15 +1,13 @@
-﻿namespace Defender.Data.Tests
+﻿namespace Defender.Infrastructure.Tests
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-
-    using Defender.Data;
-    using Defender.Model;
+    using Defender.Infrastructure;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class DataTests
+    public class InfrastructureTests
     {
         [TestMethod]
         [TestCategory("UnitTest")]

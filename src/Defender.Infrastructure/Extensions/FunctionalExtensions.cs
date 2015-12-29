@@ -1,4 +1,4 @@
-﻿namespace Defender.Model.Extensions
+﻿namespace Defender.Infrastructure.Extensions
 {
     using System;
 
