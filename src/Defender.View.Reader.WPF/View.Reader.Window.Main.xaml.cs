@@ -30,7 +30,6 @@
 
             this.CurrentFile.Visibility   = Visibility.Hidden;
             this.SuccessButton.Visibility = Visibility.Hidden;
-
             HidePanel_Click(null, null);
 
             ElemMinHeight = (int)this.Height / 8;
@@ -58,10 +57,14 @@
         private void HidePanel_Click(object sender, RoutedEventArgs e)
         {
             this.DataPanel.ToggleVisibility();
+<<<<<<< HEAD
 
             this.HidePanel.Content = 
                 this.DataPanel.Visibility == Visibility.Visible 
                 ? DownArrow : UpArrow;
+=======
+            this.HidePanel.Content = this.DataPanel.Visibility == Visibility.Visible ? DownArrow : UpArrow;
+>>>>>>> master
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
