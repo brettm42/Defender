@@ -33,7 +33,7 @@
 
                     foreach (var file in files)
                     {
-                        this.CurrentProgress = this.CurrentProgress + (100 / files.Count());
+                        this.CurrentProgress = this.CurrentProgress + 100 / files.Count();
 
                         this.CurrentFile = Path.GetFileNameWithoutExtension(file);
 

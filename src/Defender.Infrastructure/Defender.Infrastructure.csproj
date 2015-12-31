@@ -7,8 +7,8 @@
     <ProjectGuid>{9114BB96-D7DE-493D-BC89-C15E3C4E2346}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Defender.Data</RootNamespace>
-    <AssemblyName>Defender.Data</AssemblyName>
+    <RootNamespace>Defender.Infrastructure</RootNamespace>
+    <AssemblyName>Defender.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

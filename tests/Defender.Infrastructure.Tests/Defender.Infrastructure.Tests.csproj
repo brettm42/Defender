@@ -6,8 +6,8 @@
     <ProjectGuid>{233CA6D4-8C96-43BB-A926-89506494D1D9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Defender.Data.Tests</RootNamespace>
-    <AssemblyName>Defender.Data.Tests</AssemblyName>
+    <RootNamespace>Defender.Infrastructure.Tests</RootNamespace>
+    <AssemblyName>Defender.Infrastructure.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

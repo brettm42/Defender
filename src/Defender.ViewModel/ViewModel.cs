@@ -287,10 +287,8 @@
 
                 return writer.Save(writer.SerialiseToString(), path);
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public void SaveResults()
