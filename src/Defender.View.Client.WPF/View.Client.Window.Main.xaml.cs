@@ -37,7 +37,6 @@
 
             ElemMinHeight = (int)this.Height / 8;
             ElemMaxHeight = (int)this.Height - ElemMinHeight;
-
             this.RQFPath.Focus();
         }
 
@@ -50,7 +49,6 @@
 
             // TODO: add icon progress in taskbar
             await ViewModel.RunQueriesAsync();
-            
             this.Validate();
         }
 
@@ -76,7 +74,6 @@
         private void HidePanel_Click(object sender, RoutedEventArgs e)
         {
             this.DataPanel.ToggleVisibility();
-
             this.HidePanel.Content = 
                 this.DataPanel.Visibility == Visibility.Visible
                 ? DownArrow : UpArrow;
@@ -134,7 +131,6 @@
             {
                 ViewModel.Folder = this.RQFPath.Text;
                 this.FilesLoaded.Visibility = Visibility.Visible;
-
                 this.Process();
             }
         }
@@ -153,7 +149,6 @@
                                       };
 
             ViewModel.ExportResults(savefile.ShowDialog() == true ? savefile.FileName : null);
-
             ViewModel.CurrentFile = $"{savefile.FileName} saved!";
 
             this.Effect = null;

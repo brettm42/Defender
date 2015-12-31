@@ -34,7 +34,6 @@
 
             ElemMinHeight = (int)this.Height / 8;
             ElemMaxHeight = (int)this.Height - ElemMinHeight;
-
             this.RQFPath.Focus();
         }
 
@@ -50,21 +49,15 @@
             // expands DataPanel
             this.HidePanel.Content = DownArrow;
             this.DataPanel.Maximise(this.ActualHeight);
-
             this.LoadingDialog.Visibility = Visibility.Collapsed;
         }
 
         private void HidePanel_Click(object sender, RoutedEventArgs e)
         {
             this.DataPanel.ToggleVisibility();
-<<<<<<< HEAD
-
             this.HidePanel.Content = 
                 this.DataPanel.Visibility == Visibility.Visible 
                 ? DownArrow : UpArrow;
-=======
-            this.HidePanel.Content = this.DataPanel.Visibility == Visibility.Visible ? DownArrow : UpArrow;
->>>>>>> master
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
