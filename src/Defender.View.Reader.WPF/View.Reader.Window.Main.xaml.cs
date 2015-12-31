@@ -59,7 +59,9 @@
         {
             this.DataPanel.ToggleVisibility();
 
-            this.HidePanel.Content = this.DataPanel.Visibility == Visibility.Visible ? DownArrow : UpArrow;
+            this.HidePanel.Content = 
+                this.DataPanel.Visibility == Visibility.Visible 
+                ? DownArrow : UpArrow;
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -94,7 +96,7 @@
         private void DataPanel_MouseMove(object sender, MouseEventArgs e)
         {
             this.DataPanel.Height = this.ActualHeight - e.GetPosition(this).Y >= ElemMinHeight
-                                    ? this.ActualHeight - e.GetPosition(this).Y <= (this.ActualHeight - 20)
+                                    ? this.ActualHeight - e.GetPosition(this).Y <= this.ActualHeight - 20
                                         ? this.ActualHeight - e.GetPosition(this).Y
                                         : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;
@@ -127,7 +129,7 @@
         private void DataPanel_TouchMove(object sender, TouchEventArgs e)
         {
             this.DataPanel.Height = this.ActualHeight - e.GetTouchPoint(this).Position.Y >= ElemMinHeight
-                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= (this.ActualHeight - 20)
+                                    ? this.ActualHeight - e.GetTouchPoint(this).Position.Y <= this.ActualHeight - 20
                                         ? this.ActualHeight - e.GetTouchPoint(this).Position.Y
                                         : this.ActualHeight - ElemMinHeight
                                     : ElemMinHeight;

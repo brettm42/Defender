@@ -16,7 +16,7 @@
         {
             if (value == null || (!(value as string[])?.Any() ?? true)) return "no";
 
-            return (value as string[])?.Count() ?? 0;
+            return (value as string[])?.Length ?? 0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
