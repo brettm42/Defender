@@ -1,6 +1,7 @@
 ﻿namespace Defender.ViewModel.Tests
 {
     using System.Linq;
+    using System.IO;
     using Defender.ViewModel;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
