@@ -7,19 +7,19 @@
     public class InfrastructureBase : INotifyPropertyChanged
     {
         /// <summary>
-        /// Customized Event trigger for ViewModel.
-        /// </summary>
-        /// <param name="property">Name of property to raise an event for.</param>
-        internal void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(property));
-        }
-
-        /// <summary>
         /// Fires property changed event delegate.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Customized Event trigger for ViewModel.
+        /// </summary>
+        /// <param name="property">Name of property to raise an event for.</param>
+        public void RaisePropertyChanged(string property)
+        {
+            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(property));
+        }
+        
         public bool Save(string file, string path)
         {
             if (!string.IsNullOrWhiteSpace(path) && Path.HasExtension(path) && !string.IsNullOrWhiteSpace(file))
