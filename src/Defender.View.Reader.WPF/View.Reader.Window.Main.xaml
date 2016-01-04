@@ -69,7 +69,7 @@
                 </Grid>
                 <Rectangle Height="1" Margin="-5,0,-5,0"
                            Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
-                <TextBlock x:Name="CurrentFile"  Margin="15,0,10,0" Padding="0,10,5,10" VerticalAlignment="Bottom" FontWeight="Bold"
+                <TextBlock x:Name="CurrentFile"  Margin="15,0,10,0" Padding="0,10,5,10" VerticalAlignment="Bottom"
                            Text="{Binding CurrentFile, StringFormat='Verifying {0}...'}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
                 <ProgressBar VerticalAlignment="Bottom" Height="30" Margin="-2,5,-2,0" BorderThickness="0,1" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
                              Value="{Binding Progress}"/>
