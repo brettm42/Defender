@@ -32,7 +32,7 @@
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
-                IEnumerable<string> filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories);
+                var filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories).ToArray();
 
                 if (filenames.Any())
                 {
@@ -98,7 +98,7 @@
         {
             if (!string.IsNullOrWhiteSpace(path))
             {
-                IEnumerable<string> filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories);
+                var filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories).ToArray();
 
                 if (filenames.Any())
                 {
@@ -153,7 +153,7 @@
                 IEnumerable<string> filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories);
                 this.FoundFiles = filenames.ToArray();
 
-                if (filenames.Any())
+                if (this.FoundFiles.Any())
                 {
                     this.ProcessErrors = string.Empty;
                     this.ProcessOutput = string.Empty;
@@ -161,12 +161,12 @@
                     await Task.Run(
                         () =>
                         {
-                            foreach (string filename in filenames)
+                            foreach (string filename in this.FoundFiles)
                             {
                                 this.CurrentFile = Path.GetFileName(filename);
-                                this.LeafProgress = this.LeafProgress + 100 / filenames.Count();
+                                this.LeafProgress = this.LeafProgress + 100 / this.FoundFiles.Length;
 
-                                progress.Report(this.LeafProgress + 100 / filenames.Count());
+                                progress.Report(this.LeafProgress + 100 / this.FoundFiles.Length);
 
                                 ProcessStartInfo processinfo = new ProcessStartInfo
                                                                {

@@ -29,11 +29,11 @@
 
                 try
                 {
-                    IEnumerable<string> files = Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories);
+                    var files = Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories).ToArray();
 
                     foreach (var file in files)
                     {
-                        this.CurrentProgress = this.CurrentProgress + 100 / files.Count();
+                        this.CurrentProgress = this.CurrentProgress + 100 / files.Length;
 
                         this.CurrentFile = Path.GetFileNameWithoutExtension(file);
 
