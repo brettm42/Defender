@@ -33,7 +33,6 @@
             if (!string.IsNullOrWhiteSpace(path))
             {
                 var filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories).ToArray();
-
                 if (filenames.Any())
                 {
                     this.ProcessErrors = string.Empty;
@@ -61,15 +60,13 @@
                     processinfo.Arguments = $"Run Automation OpenFile /FILENAMES {path} Validate /SERVICEPROVIDERS LocVer /OUTPUTPATH {outputxml} /RETURN Error";
 
                     DateTime start = DateTime.Now;
-
                     try
                     {
                         using (Process process = Process.Start(processinfo))
                         {
                             process?.WaitForExit();
-
                             var temp = process?.ExitCode;
-                            
+
                             //using (StreamReader _reader = process.StandardOutput) this.ProcessOutput = _reader.ReadToEnd();
                             //using (StreamReader _reader = process.StandardError)  this.ProcessErrors = _reader.ReadToEnd();
 
@@ -99,7 +96,6 @@
             if (!string.IsNullOrWhiteSpace(path))
             {
                 var filenames = Directory.EnumerateFiles(path, "*.rqf", SearchOption.AllDirectories).ToArray();
-
                 if (filenames.Any())
                 {
                     this.ProcessErrors = string.Empty;
@@ -119,13 +115,11 @@
                                                        };
 
                         DateTime start = DateTime.Now;
-
                         try
                         {
                             using (Process process = Process.Start(processinfo))
                             {
                                 process?.WaitForExit();
-
                                 DateTime end = DateTime.Now;
 
                                 //if (!File.Exists($"{Path.GetFileNameWithoutExtension(filename)}.xml")) break;
@@ -165,7 +159,6 @@
                             {
                                 this.CurrentFile = Path.GetFileName(filename);
                                 this.LeafProgress = this.LeafProgress + 100 / this.FoundFiles.Length;
-
                                 progress.Report(this.LeafProgress + 100 / this.FoundFiles.Length);
 
                                 ProcessStartInfo processinfo = new ProcessStartInfo
@@ -196,7 +189,6 @@
                                         if (!File.Exists($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml"))
                                         {
                                             this.ProcessErrors += $"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml not found!";
-
                                             File.WriteAllText($"{Path.Combine(workingdir, Path.GetFileName(filename))}.xml", "File not found");
                                         }
                                     }
@@ -224,17 +216,15 @@
             {
                 return Path.Combine(inPath, DefaultLeafExe);
             }
-            else
-            {
-                // recursively runs a directory up each pass until .exe found
-                // TODO: catch full drive searches, eg. C:\
-                return FindLeaf(
-                           Directory.GetFiles(
-                               Directory.GetParent(inPath).FullName, 
-                               DefaultLeafExe, 
-                               SearchOption.AllDirectories)
-                           .FirstOrDefault());
-            }
+             
+            // recursively runs a directory up each pass until .exe found
+            // TODO: catch full drive searches, eg. C:\
+            return FindLeaf(
+                       Directory.GetFiles(
+                           Directory.GetParent(inPath).FullName, 
+                           DefaultLeafExe, 
+                           SearchOption.AllDirectories)
+                       .FirstOrDefault());
         }
 
         public Leaf(string leafpath = DefaultLeafLocation)

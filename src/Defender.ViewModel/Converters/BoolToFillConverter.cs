@@ -14,8 +14,10 @@
         private static readonly string Red = Colors.IndianRed.ToString();
         private static readonly string LGreen = Colors.LightGreen.ToString();
         
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => (bool)value ? LGreen : Red;
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => 
+            (bool)value ? LGreen : Red;
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => (string)value == LGreen;
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => 
+            (string)value == LGreen;
     }
 }

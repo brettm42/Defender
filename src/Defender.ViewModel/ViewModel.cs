@@ -101,7 +101,6 @@
             {
                 _progr = value;
                 RaisePropertyChanged(nameof(Progress));
-
                 //ProgressChanged(this, new ProgressChangedEventArgs(value, value));
             }
         }
