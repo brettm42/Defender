@@ -23,18 +23,15 @@
             // read temp directory XMLs and calculate statistics
             if (Directory.Exists(path) && Directory.GetFiles(path).Any())
             {
-                this.CurrentProgress = 0;  
-                              
+                this.CurrentProgress = 0;
                 ObservableCollection<DataItem> datagrid = new ObservableCollection<DataItem>();
 
                 try
                 {
                     var files = Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories).ToArray();
-
                     foreach (var file in files)
                     {
                         this.CurrentProgress = this.CurrentProgress + 100 / files.Length;
-
                         this.CurrentFile = Path.GetFileNameWithoutExtension(file);
 
                         // builds DataItem to store results

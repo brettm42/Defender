@@ -27,12 +27,12 @@
             }
         }
 
-        public ObservableCollection<DataItem> DeserialiseFromString(string binarystring) => this.DataGrid = DeserialiseFromString<ObservableCollection<DataItem>>(binarystring);
+        public ObservableCollection<DataItem> DeserialiseFromString(string binarystring) => 
+            this.DataGrid = DeserialiseFromString<ObservableCollection<DataItem>>(binarystring);
         
         public T DeserialiseFromString<T>(string dataitems)
         {
             byte[] bytearray = Convert.FromBase64String(dataitems);
-
             using (var stream = new MemoryStream(bytearray))
             {
                 var formatter = new BinaryFormatter();
