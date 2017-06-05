@@ -10,8 +10,8 @@
     /// </summary>
     public class BoolToCharaConverter : IValueConverter
     {
-        private const string X = @"X";
-        private const string Check = @"✓";
+        private const string X = "X";
+        private const string Check = "✓";
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => 
             (bool)value ? Check : X;
